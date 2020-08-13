@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
+
+mainClassName = 'Main'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.7.22'
+}
+
+test {
+    exclude 'practices/**'
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+        showStandardStreams = true
+    }
+}
+
+checkstyle {
+    toolVersion '8.34'
+    configFile file('config/checkstyle/checkstyle.xml')
+}
+
+checkstyleMain {
+    source ='src/main/java'
+}
+
+checkstyleTest {
+    source ='src/main/java'
+}
+
+check.dependsOn jacocoTestReport
+
+test.finalizedBy("checkstyleMain")
+test.finalizedBy("jacocoTestReport")
