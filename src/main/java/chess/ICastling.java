@@ -1,0 +1,3 @@
+interface ICastling {
+    void castling();
+}

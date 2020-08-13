@@ -1,0 +1,3 @@
+interface ICheck {
+    boolean doesCheck();
+}
