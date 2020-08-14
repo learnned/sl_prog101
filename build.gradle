@@ -31,13 +31,15 @@ checkstyle {
 
 checkstyleMain {
     source ='src/main/java'
+    excludes = ['practices/**']
 }
 
 checkstyleTest {
     source ='src/main/java'
+    excludes = ['practices/**']
 }
 
-check.dependsOn jacocoTestReport
+//check.dependsOn jacocoTestReport
 
 test.finalizedBy("checkstyleMain")
-test.finalizedBy("jacocoTestReport")
+//test.finalizedBy("jacocoTestReport")
