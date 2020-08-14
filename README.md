@@ -95,13 +95,10 @@ There is special behavior that just few pieces can do:
 Games can be won in the following ways:
 
 
-**✓ Checkmate :** The player whose turn it is to move is in check and has no legal move to escape
-check.
-**✓ Resignation :** Either player may resign, conceding the game to the opponent.
-**✓ Win on time :** In games with a time control, a player wins if the opponent runs out of time, even
-if the opponent has a superior position, as long as the player has a theoretical possibility to
-checkmate the opponent.
-**✓ Forfeit :** A player who cheats, violates the rules, or violates the rules of conduct specified for the particular tournament, can be forfeited
+**✓ Checkmate :** The player whose turn it is to move is in check and has no legal move to escape check.  
+**✓ Resignation :** Either player may resign, conceding the game to the opponent.  
+**✓ Win on time :** In games with a time control, a player wins if the opponent runs out of time, even if the opponent has a superior position, as long as the player has a theoretical possibility to checkmate the opponent.  
+**✓ Forfeit :** A player who cheats, violates the rules, or violates the rules of conduct specified for the particular tournament, can be forfeited  
 
 
 **Draw** :
