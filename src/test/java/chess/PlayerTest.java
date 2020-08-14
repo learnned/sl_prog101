@@ -37,5 +37,5 @@ public class PlayerTest {
         String actual = player.showSurrender();
         assertEquals(expected, actual);
     }
-
 }
+
