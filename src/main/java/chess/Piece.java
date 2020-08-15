@@ -1,20 +1,12 @@
-enum Color {
-    WHITE, BLACK
-}
-
-enum Symbol {
-    p, B, H, R, Q, K;
-}
-
-enum Status {
-    ALIVE, DEAD, VOID
-}
+//package chess;
 
 abstract class Piece implements IMovable {
     private Color color;
     private Symbol symbol;
     private Status status;
     private Position position;
+    static final String WHITE_STRING = "W";
+    static final String BLACK_STRING = "B";
 
     public abstract void kill();
 
@@ -47,10 +39,10 @@ abstract class Piece implements IMovable {
     public String toString() {
         String initial;
         if (this.color == Color.WHITE) {
-            initial = "W";
+            initial = WHITE_STRING;
         } else {
-            initial = "B";
+            initial = BLACK_STRING;
         }
-        return "" + this.symbol + initial;
+        return this.symbol.toString() + initial;
     }
 }

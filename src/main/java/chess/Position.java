@@ -1,3 +1,5 @@
+//package chess;
+
 class Position {
     private int column;
     private int row;

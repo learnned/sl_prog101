@@ -1,3 +1,5 @@
+//package chess;
+
 class Main {
 
     private String aux;
