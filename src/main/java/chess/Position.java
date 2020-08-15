@@ -1,4 +1,4 @@
-//package chess;
+package chess;
 
 class Position {
     private int column;

@@ -1,4 +1,4 @@
-//package chess;
+package chess;
 
 abstract class Piece implements IMovable {
     private Color color;

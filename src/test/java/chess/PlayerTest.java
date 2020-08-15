@@ -1,7 +1,5 @@
 package chess;
-
-import chess.Color;
-import chess.Player;
+import chess.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

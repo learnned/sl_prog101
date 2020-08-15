@@ -1,4 +1,4 @@
-//package chess;
+package chess;
 
 interface ICastling {
     void castling();
