@@ -16,12 +16,6 @@ class Main {
         Rook r = new Rook(Color.BLACK, pos);
         Bishop b = new Bishop(Color.BLACK, pos);
         Horse h = new Horse(Color.WHITE, pos);
-
-        System.out.println(k.toString());
-        System.out.println(q.toString());
-        System.out.println(p.toString());
-        System.out.println(r.toString());
-        System.out.println(b.toString());
-        System.out.println(h.toString());
+        ChessBoard board = new ChessBoard();
     }
 }

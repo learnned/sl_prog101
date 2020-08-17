@@ -15,11 +15,11 @@ class Horse extends Piece {
     public void die() {
     }
 
-    public Position move(final Position target) {
+    public Position move(final Piece target) {
         return super.getPosition();
     }
 
-    public boolean isPosibleMove(final Position target) {
+    public boolean isPosibleMove(final Piece target) {
         return true;
     }
 
