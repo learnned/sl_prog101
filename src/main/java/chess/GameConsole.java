@@ -5,13 +5,13 @@ public class GameConsole {
     private Player playerBlack;
     private ChessBoard board;
 
-    final static String LETTERS_ROW = "     a   b   c   d   e   f   g   h  \n";
-    final static String HYPHENS_ROW = "  ---------------------------------\n";
-    final static int LAST_INDEX = 7;
-    final static int FIRST_INDEX = 0;
-    final static String BLANK = " ";
-    final static String BAR = "|";
-    final static String END_LINE = "\n";
+    static final String LETTERS_ROW = "     a   b   c   d   e   f   g   h  \n";
+    static final String HYPHENS_ROW = "  ---------------------------------\n";
+    static final int LAST_INDEX = 7;
+    static final int FIRST_INDEX = 0;
+    static final String BLANK = " ";
+    static final String BAR = "|";
+    static final String END_LINE = "\n";
 
     public GameConsole() {
         this.board = new ChessBoard();
@@ -39,7 +39,7 @@ public class GameConsole {
         container = LETTERS_ROW;
         container += HYPHENS_ROW;
         for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
-            container += (irow + 1) + BLANK + BAR ;
+            container += (irow + 1) + BLANK + BAR;
             for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
                 if (this.board.getBoard()[icol][irow].getColor() == Color.BLACK) {
                     container += BLANK + this.board.getBoard()[icol][irow].toString() + BAR;
