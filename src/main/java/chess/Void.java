@@ -2,11 +2,10 @@ package chess;
 
 import java.util.ArrayList;
 
-class Queen extends Piece {
-    Queen(final Color color, final Position source) {
-        super.setColor(color);
-        super.setSymbol(Symbol.Q);
-        super.setStatus(Status.ALIVE);
+class Void extends Piece {
+    Void(final Position source) {
+        super.setSymbol(Symbol.v);
+        super.setStatus(Status.VOID);
         super.setPosition(source);
     }
 

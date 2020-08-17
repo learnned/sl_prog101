@@ -2,9 +2,9 @@ package chess;
 import java.util.ArrayList;
 
 interface IMovable {
-    Position move(Position target);
+    Position move(Piece target);
 
-    boolean isPosibleMove(Position target);
+    boolean isPosibleMove(Piece target);
 
     ArrayList<Position> getPosibleMoves();
 
