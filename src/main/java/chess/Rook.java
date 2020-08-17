@@ -15,7 +15,7 @@ class Rook extends Piece implements ICastling {
 
     public void move(final Piece target) {
     }
-
+    
     public void die() {
     }
 
