@@ -16,7 +16,11 @@ public class ChessBoardTest {
         String actual = "";
         for (int j = 7; j >= 0; j--) {
             for (int i = 0; i < 8; i++) {
-                actual += chessboard.getBoard()[i][j].toString();
+                if (chessboard.getBoard()[i][j] == null) {
+                    actual += "  ";
+                } else {
+                    actual += chessboard.getBoard()[i][j].toString();
+                }
             }
         }
         final String expected = "RBHBBBQBKBBBHBRB" +

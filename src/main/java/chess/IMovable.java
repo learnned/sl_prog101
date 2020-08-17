@@ -1,12 +1,12 @@
 package chess;
-import java.util.ArrayList;
+import java.util.List;
 
 interface IMovable {
-    Position move(Piece target);
+    void move(Piece target);
 
     boolean isPosibleMove(Piece target);
 
-    ArrayList<Position> getPosibleMoves();
+    List<Piece> getPosibleMoves(ChessBoard ch);
 
     void checkmate();
 }

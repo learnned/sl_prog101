@@ -7,9 +7,8 @@ abstract class Piece implements IMovable {
     private Position position;
     static final String WHITE_STRING = "W";
     static final String BLACK_STRING = "B";
-    static final String BLANK_STRING = "  ";
 
-    public abstract void kill();
+    public abstract void kill(Piece target);
 
     public abstract void die();
 
@@ -38,16 +37,12 @@ abstract class Piece implements IMovable {
     }
 
     public String toString() {
-        if (this.status == Status.VOID) {
-            return BLANK_STRING;
+        String initial;
+        if (this.color == Color.WHITE) {
+            initial = WHITE_STRING;
         } else {
-            String initial;
-            if (this.color == Color.WHITE) {
-                initial = WHITE_STRING;
-            } else {
-                initial = BLACK_STRING;
-            }
-            return this.symbol.toString() + initial;
+            initial = BLACK_STRING;
         }
+        return this.symbol.toString() + initial;
     }
 }

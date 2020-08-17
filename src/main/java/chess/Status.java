@@ -1,4 +1,4 @@
 package chess;
 enum Status {
-    ALIVE, DEAD, VOID
+    ALIVE, DEAD;
 }

@@ -15,8 +15,6 @@ public class ChessBoard {
     static final int SOURCE_COL_RIGHT_BISHOPS = 5;
     static final int SOURCE_COL_QUEENS = 3;
     static final int SOURCE_COL_KINGS = 4;
-    static final int BEGINNING_OF_SOURCE_ROW_VOID = 2;
-    static final int END_OF_SOURCE_ROW_VOID = 5;
 
     public ChessBoard() {
         board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
@@ -34,22 +32,12 @@ public class ChessBoard {
 
     /**Method that creates the pieces**/
     private void createPieces() {
-        createVoids();
         createPawns();
         createRooks();
         createHorses();
         createBishops();
         createQueens();
         createKings();
-    }
-
-    private void createVoids() {
-        for (int irow = BEGINNING_OF_SOURCE_ROW_VOID; irow <= END_OF_SOURCE_ROW_VOID; irow++) {
-            for (int icol = 0; icol < CHESSBOARD_SIZE; icol++) {
-                Position pos = new Position(icol, irow);
-                board[icol][irow] = new Void(pos);
-            }
-        }
     }
 
     private void createPawns() {

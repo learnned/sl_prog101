@@ -10,6 +10,7 @@ public class GameConsole {
     static final int LAST_INDEX = 7;
     static final int FIRST_INDEX = 0;
     static final String BLANK = " ";
+    static final String THREE_BLANKS = "   ";
     static final String BAR = "|";
     static final String END_LINE = "\n";
 
@@ -41,10 +42,14 @@ public class GameConsole {
         for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
             container += (irow + 1) + BLANK + BAR;
             for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
-                if (this.board.getBoard()[icol][irow].getColor() == Color.BLACK) {
-                    container += BLANK + this.board.getBoard()[icol][irow].toString() + BAR;
+                if (this.board.getBoard()[icol][irow] == null) {
+                    container += THREE_BLANKS + BAR;
                 } else {
-                    container += this.board.getBoard()[icol][irow].toString() + BLANK + BAR;
+                    if (this.board.getBoard()[icol][irow].getColor() == Color.BLACK) {
+                        container += BLANK + this.board.getBoard()[icol][irow].toString() + BAR;
+                    } else {
+                        container += this.board.getBoard()[icol][irow].toString() + BLANK + BAR;
+                    }
                 }
             }
             container += END_LINE;
