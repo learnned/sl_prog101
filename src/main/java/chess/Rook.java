@@ -1,4 +1,5 @@
 package chess;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ class Rook extends Piece implements ICastling {
 
     public void move(final Piece target) {
     }
-    
+
     public void die() {
     }
 
