@@ -10,21 +10,8 @@ class Horse extends Piece {
         super.setPosition(source);
     }
 
-    public void kill(final Piece target) {
-    }
-
-    public void move(final Piece target) {
-    }
-
-    public void die() {
-    }
-
-    public boolean isPosibleMove(final Piece target) {
-        return true;
-    }
-
-    public List<Piece> getPosibleMoves(final ChessBoard chb) {
-        List<Piece> array = new ArrayList<Piece>();
+    public ArrayList<Position> getPosibleMoves(final ChessBoard chb) {
+        ArrayList<Position> array = new ArrayList<Position>();
         return array;
     }
 

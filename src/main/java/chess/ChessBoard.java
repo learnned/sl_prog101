@@ -20,6 +20,10 @@ public class ChessBoard {
         board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
         createPieces();
     }
+    public ChessBoard(Piece piece) {
+        board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
+        board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
+    }
 
     /**
      *
@@ -29,9 +33,11 @@ public class ChessBoard {
     public Piece[][] getBoard() {
         return this.board;
     }
-
+    public void move2(final Position p, final Piece piece) {
+        board[p.getColumn()][p.getRow()] = piece;
+    }
     /**Method that creates the pieces**/
-    private void createPieces() {
+    public void createPieces() {
         createPawns();
         createRooks();
         createHorses();

@@ -11,33 +11,21 @@ class Pawn extends Piece implements IPawn {
         super.setPosition(source);
     }
 
-    public void kill(final Piece target) {
-    }
-
-    public void move(final Piece target) {
-    }
-
-    public void die() {
-    }
-
-    public boolean isPosibleMove(final Piece target) {
-        return true;
-    }
-
-    public List<Piece> getPosibleMoves(final ChessBoard chb) {
-        List<Piece> array = new ArrayList<Piece>();
+    public ArrayList<Position> getPosibleMoves(final ChessBoard chb) {
+        ArrayList<Position> array = new ArrayList<Position>();
         return array;
     }
 
     public void checkmate() {
     }
 
-    public Piece promotion(final byte type) {
-        Position pos = new Position(0, 0);
-        Pawn piece = new Pawn(Color.WHITE, pos);
-        return piece;
+    @Override
+    public Piece promotion(byte type) {
+        return null;
     }
 
+    @Override
     public void inPassant() {
+
     }
 }

@@ -28,4 +28,14 @@ public class RookTest {
         String actual = piece.toString();
         assertEquals(expected, actual);
     }
+  /*  @Test
+    public void testMoveRook() {
+        ChessBoard chessBoard = new ChessBoard();
+        Rook piece = (Rook) chessBoard.getBoard()[0][0];
+        Position expected = piece.getPosition();
+        Pawn pawn = (Pawn) chessBoard.getBoard()[0][1];
+        piece.move(pawn);
+        Position actual = piece.getPosition();
+        assertEquals(expected, actual);
+    }*/
 }

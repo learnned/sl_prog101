@@ -28,4 +28,34 @@ public class BishopTest {
         String actual = piece.toString();
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testMoveBishop() {
+        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
+        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
+        boolean po= piece.move(new Position(0,0),chessBoard);
+        assertTrue(po);
+    }
+    @Test
+    public void testMoveLeftUpBishop() {
+        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
+        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
+        boolean po= piece.move(new Position(1,7),chessBoard);
+        assertTrue(po);
+    }
+    @Test
+    public void testMoveRighttUpBishop() {
+        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
+        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
+        boolean po= piece.move(new Position(7,7),chessBoard);
+        assertTrue(po);
+    }
+    @Test
+    public void testMoveRightDownBishop() {
+        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
+        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
+        boolean po= piece.move(new Position(7,1),chessBoard);
+        assertTrue(po);
+    }
+
 }
