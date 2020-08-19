@@ -1,7 +1,6 @@
 package chess;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class Pawn extends Piece implements IPawn {
     Pawn(final Color color, final Position source) {
@@ -20,7 +19,7 @@ class Pawn extends Piece implements IPawn {
     }
 
     @Override
-    public Piece promotion(byte type) {
+    public Piece promotion(final byte type) {
         return null;
     }
 

@@ -30,7 +30,7 @@ public class BishopTest {
     }
 
     @Test
-    public void testMoveBishop() {
+    public void testMoveLeftDownBishop() {
         ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
         Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
         boolean po= piece.move(new Position(0,0),chessBoard);
@@ -51,11 +51,35 @@ public class BishopTest {
         assertTrue(po);
     }
     @Test
-    public void testMoveRightDownBishop() {
+    public void testMoveRightDownBishopEnemy() {
         ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
+        chessBoard.addPiece(new Queen(Color.BLACK,new Position(1,1)));
         Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
-        boolean po= piece.move(new Position(7,1),chessBoard);
+        boolean po= piece.move(new Position(1,1),chessBoard);
         assertTrue(po);
     }
-
+    @Test
+    public void testMoveRightDownBishopBehindEnemy() {
+        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
+        chessBoard.addPiece(new Queen(Color.BLACK,new Position(1,1)));
+        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
+        boolean po= piece.move(new Position(0,0),chessBoard);
+        assertFalse(po);
+    }
+    @Test
+    public void testMoveRightDownBishopAllied() {
+        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
+        chessBoard.addPiece(new Queen(Color.WHITE,new Position(1,1)));
+        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
+        boolean po= piece.move(new Position(1,1),chessBoard);
+        assertFalse(po);
+    }
+    @Test
+    public void testMoveRightDownBishopBehindAllied() {
+        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4)));
+        chessBoard.addPiece(new Queen(Color.WHITE,new Position(1,1)));
+        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
+        boolean po= piece.move(new Position(0,0),chessBoard);
+        assertFalse(po);
+    }
 }

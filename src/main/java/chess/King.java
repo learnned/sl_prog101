@@ -1,7 +1,6 @@
 package chess;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class King extends Piece implements ICastling, ICheck {
     King(final Color color, final Position source) {

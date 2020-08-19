@@ -1,7 +1,5 @@
 package chess;
 
-import java.util.List;
-
 abstract class Piece implements IMovable {
     private Color color;
     private Symbol symbol;
@@ -37,8 +35,8 @@ abstract class Piece implements IMovable {
         this.position = source;
     }
 
-    public boolean move(final Position position, final ChessBoard chess) {//reference to the chessboard and change position
-       if(isPossibleMove(position,chess)) {
+    public boolean move(final Position position, final ChessBoard chess) {
+        if (isPossibleMove(position, chess)) {
            if (chess.getBoard()[this.position.getColumn()][this.position.getRow()] != null) {
                chess.getBoard()[this.position.getColumn()][this.position.getRow()].die();
            }
@@ -50,9 +48,9 @@ abstract class Piece implements IMovable {
        }
        return false;
     }
-    public boolean isPossibleMove(final Position target,final ChessBoard chess) {
-            for(Position pos : getPosibleMoves(chess)) {
-                if((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())){
+    public boolean isPossibleMove(final Position target, final ChessBoard chess) {
+            for (Position pos : getPosibleMoves(chess)) {
+                if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
                     return true;
                 }
             }

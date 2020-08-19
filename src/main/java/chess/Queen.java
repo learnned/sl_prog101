@@ -1,8 +1,6 @@
 package chess;
 
 import java.util.ArrayList;
-import java.util.List;
-
 class Queen extends Piece {
     Queen(final Color color, final Position source) {
         super.setColor(color);

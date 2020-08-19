@@ -1,6 +1,5 @@
 package chess;
 import java.util.ArrayList;
-import java.util.List;
 
 class Horse extends Piece {
     Horse(final Color color, final Position source) {
