@@ -5,6 +5,7 @@ abstract class Piece implements IMovable {
     private Symbol symbol;
     private Status status;
     private Position position;
+    private ChessBoard chessBoard;
     static final String WHITE_STRING = "W";
     static final String BLACK_STRING = "B";
 
@@ -34,6 +35,9 @@ abstract class Piece implements IMovable {
     public void setPosition(final Position source) {
         this.position = source;
     }
+    public void setChessBoard(final ChessBoard chessBoard) {
+        this.chessBoard = chessBoard;
+    }
 
     public boolean move(final Position position, final ChessBoard chess) {
         if (isPossibleMove(position, chess)) {
@@ -56,7 +60,9 @@ abstract class Piece implements IMovable {
             }
             return false;
     }
-
+    public ChessBoard getChessBoard() {
+        return chessBoard;
+    }
     public String toString() {
         String initial;
         if (this.color == Color.WHITE) {

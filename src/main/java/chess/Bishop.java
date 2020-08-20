@@ -3,106 +3,55 @@ import java.util.ArrayList;
 
 class Bishop extends Piece {
 
-    static final int LIMIT_OF_ARRAY = 8;
+    private DiagonalMovePiece diagonalMovePiece;
 
-    Bishop(final Color color, final Position source) {
+    Bishop(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
         super.setSymbol(Symbol.B);
         super.setStatus(Status.ALIVE);
         super.setPosition(source);
+        super.setChessBoard(chessBoard);
+        this.diagonalMovePiece = new DiagonalMovePiece(this);
     }
-
 
 
     public ArrayList<Position> getPosibleMoves(final ChessBoard chb) {
+        int row = this.getPosition().getRow();
+        int column = this.getPosition().getColumn();
         ArrayList<Position> arraypositions = new ArrayList<Position>();
-        Piece[][] board = chb.getBoard(); //Implement possible kill
-        leftDownDiagonal(arraypositions, board);
-        leftUpDiagonal(arraypositions, board);
-        rightUpDiagonal(arraypositions, board);
-        rightDownDiagonal(arraypositions, board);
+        diagonalMovePiece.diagonal(arraypositions, column - 1, row - 1, -1, -1);
+        diagonalMovePiece.diagonal(arraypositions, column + 1, row - 1, -1, +1);
+        diagonalMovePiece.diagonal(arraypositions, column + 1, row + 1, +1, +1);
+        diagonalMovePiece.diagonal(arraypositions, column - 1, row + 1, +1, -1);
         for (Position p: arraypositions) {
             System.out.print(p.getColumn() + "." + p.getRow() + " |");
         }
+        System.out.println();
 
         return arraypositions;
     }
-    void leftDownDiagonal(final ArrayList<Position> arraypositions, final Piece[][] board) {
-       int row = this.getPosition().getRow() - 1;
-       int column = this.getPosition().getColumn() - 1;
-        while ((row >= 0) && (column >= 0)) {
-                    if (isPosibleToContinue(board[column][row]) == -1) {
-                        arraypositions.add(board[column][row].getPosition());
+
+  /*
+    /*void diagonal(final ArrayList<Position> arraypositions, final int column, final int row, final int rowIncrement, final int columnIncrement) {
+        int c = column;
+        int r = row;
+        while ((r >= 0) && (c >= 0) && (r < LIMIT_OF_ARRAY) && (c < LIMIT_OF_ARRAY)) {
+                    if (isPosibleToContinue(super.getChessBoard().getBoard()[c][r]) == -1) {
+                        arraypositions.add(super.getChessBoard().getBoard()[c][r].getPosition());
                         break;
-                    } else if (isPosibleToContinue(board[column][row ]) == 0) {
-                        arraypositions.add(new Position(column, row));
-                        column--;
-                        row--;
+                    } else if (isPosibleToContinue(super.getChessBoard().getBoard()[c][r ]) == 0) {
+                        arraypositions.add(new Position(c, r));
+                        c += columnIncrement;
+                        r += rowIncrement;
                     } else {
                         break;
                     }
         }
-    }
-    void leftUpDiagonal(final ArrayList<Position> arraypositions, final Piece[][] board) {
-        int row = this.getPosition().getRow() - 1;
-        int column = this.getPosition().getColumn() + 1;
-        while ((row >= 0) && (column < LIMIT_OF_ARRAY)) {
-                if (isPosibleToContinue(board[column][row]) == -1) {
-                    arraypositions.add(board[column][row].getPosition());
-                    break;
-                } else if (isPosibleToContinue(board[column][row]) == 0) {
-                    arraypositions.add(new Position(column, row));
-                    column++;
-                    row--;
-                } else {
-                    break;
-                }
-        }
-    }
-    void rightUpDiagonal(final ArrayList<Position> arraypositions, final Piece[][] board) {
-        int row = this.getPosition().getRow() + 1;
-        int column = this.getPosition().getColumn() + 1;
-        while ((row < LIMIT_OF_ARRAY) && (column < LIMIT_OF_ARRAY)) {
-            if (isPosibleToContinue(board[column][row]) == -1) {
-                arraypositions.add(board[column][row].getPosition());
-                break;
-            } else if (isPosibleToContinue(board[column][row]) == 0) {
-                arraypositions.add(new Position(column, row));
-                column++;
-                row++;
-            } else {
-                break;
-            }
-        }
-    }
+    }*/
 
-    void rightDownDiagonal(final ArrayList<Position> arraypositions, final Piece[][] board) {
-        int row = this.getPosition().getRow() + 1;
-        int column = this.getPosition().getColumn() - 1;
-        while ((row < LIMIT_OF_ARRAY) && (column >= 0)) {
-            if (isPosibleToContinue(board[column][row]) == -1) {
-                arraypositions.add(board[column][row].getPosition());
-                break;
-            } else if (isPosibleToContinue(board[column][row]) == 0) {
-                arraypositions.add(new Position(column, row));
-                column--;
-                row++;
-            } else {
-                break;
-            }
-        }
-    }
 
-    public byte isPosibleToContinue(final Piece piece) {
 
-        if (piece == null) {
-            return 0;
-        }
-        if (piece.getColor() != this.getColor()) {
-            return -1;
-        }
-        return 1;
-    }
+
 
     public void checkmate() {
     }

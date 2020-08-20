@@ -24,6 +24,10 @@ public class ChessBoard {
         board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
         board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
     }
+    /**create the cheassboard without piecese**/
+    public void crateChessBoard() {
+        board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
+    }
     /**add a new piece to teh board the purpose of test**/
     public void addPiece(final Piece piece) {
         board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
@@ -87,10 +91,10 @@ public class ChessBoard {
         Position posBRBishop = new Position(SOURCE_COL_RIGHT_BISHOPS, SOURCE_ROW_BLACK_NOT_PAWNS);
         Position posWLBishop = new Position(SOURCE_COL_LEFT_BISHOPS, SOURCE_ROW_WHITE_NOT_PAWNS);
         Position posWRBishop = new Position(SOURCE_COL_RIGHT_BISHOPS, SOURCE_ROW_WHITE_NOT_PAWNS);
-        board[SOURCE_COL_LEFT_BISHOPS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Bishop(Color.BLACK, posBLBishop);
-        board[SOURCE_COL_RIGHT_BISHOPS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Bishop(Color.BLACK, posBRBishop);
-        board[SOURCE_COL_LEFT_BISHOPS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Bishop(Color.WHITE, posWLBishop);
-        board[SOURCE_COL_RIGHT_BISHOPS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Bishop(Color.WHITE, posWRBishop);
+        board[SOURCE_COL_LEFT_BISHOPS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Bishop(Color.BLACK, posBLBishop, this);
+        board[SOURCE_COL_RIGHT_BISHOPS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Bishop(Color.BLACK, posBRBishop, this);
+        board[SOURCE_COL_LEFT_BISHOPS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Bishop(Color.WHITE, posWLBishop, this);
+        board[SOURCE_COL_RIGHT_BISHOPS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Bishop(Color.WHITE, posWRBishop, this);
     }
 
     private void createQueens() {
