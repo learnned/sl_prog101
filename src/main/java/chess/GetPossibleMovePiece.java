@@ -14,10 +14,10 @@ public class GetPossibleMovePiece {
         int c = column;
         int r = row;
         while ((r >= 0) && (c >= 0) && (r < LIMIT_OF_ARRAY) && (c < LIMIT_OF_ARRAY)) {
-            if (isPosibleToContinue(piece.getChessBoard().getBoard()[c][r]) == -1) {
+            if (isPossibleToContinue(piece.getChessBoard().getBoard()[c][r]) == -1) {
                 arraypositions.add(piece.getChessBoard().getBoard()[c][r].getPosition());
                 break;
-            } else if (isPosibleToContinue(piece.getChessBoard().getBoard()[c][r]) == 0) {
+            } else if (isPossibleToContinue(piece.getChessBoard().getBoard()[c][r]) == 0) {
                 arraypositions.add(new Position(c, r));
                 c += columnIncrement;
                 r += rowIncrement;
@@ -26,13 +26,18 @@ public class GetPossibleMovePiece {
             }
         }
     }
-    /**Control if is possible to continue**/
-    public byte isPosibleToContinue(final Piece piece) {
 
-        if (piece == null) {
+    /**
+     * Compares the state of the target piece target against with the target piece
+     * @param targetPiece the target piece
+     * @return Byte     0,-1 When possible movement, 1 Otherwise.
+     */
+    public byte isPossibleToContinue(final Piece targetPiece) {
+
+        if (targetPiece == null) {
             return 0;
         }
-        if (piece.getColor() != piece.getColor()) {
+        if (this.piece.getColor() != targetPiece.getColor()) {
             return -1;
         }
         return 1;

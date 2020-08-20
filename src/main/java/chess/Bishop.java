@@ -15,7 +15,7 @@ class Bishop extends Piece {
     }
 
 
-    public ArrayList<Position> getPosibleMoves(final ChessBoard chb) {
+    public ArrayList<Position> getPossibleMoves(final ChessBoard chb) {
         int row = this.getPosition().getRow();
         int column = this.getPosition().getColumn();
         ArrayList<Position> arraypositions = new ArrayList<Position>();
@@ -23,11 +23,6 @@ class Bishop extends Piece {
         getPossibleMovePiece.diagonal(arraypositions, column + 1, row - 1, -1, +1);
         getPossibleMovePiece.diagonal(arraypositions, column + 1, row + 1, +1, +1);
         getPossibleMovePiece.diagonal(arraypositions, column - 1, row + 1, +1, -1);
-        for (Position p: arraypositions) {
-            System.out.print(p.getColumn() + "." + p.getRow() + " |");
-        }
-        System.out.println();
-
         return arraypositions;
     }
 

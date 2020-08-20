@@ -53,7 +53,7 @@ abstract class Piece implements IMovable {
        return false;
     }
     public boolean isPossibleMove(final Position target, final ChessBoard chess) {
-            for (Position pos : getPosibleMoves(chess)) {
+            for (Position pos : getPossibleMoves(chess)) {
                 if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
                     return true;
                 }

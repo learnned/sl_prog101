@@ -10,7 +10,7 @@ class Pawn extends Piece implements IPawn {
         super.setPosition(source);
     }
 
-    public ArrayList<Position> getPosibleMoves(final ChessBoard chb) {
+    public ArrayList<Position> getPossibleMoves(final ChessBoard chb) {
         ArrayList<Position> array = new ArrayList<Position>();
         return array;
     }
