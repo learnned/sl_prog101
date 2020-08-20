@@ -31,28 +31,6 @@ class Bishop extends Piece {
         return arraypositions;
     }
 
-  /*
-    /*void diagonal(final ArrayList<Position> arraypositions, final int column, final int row, final int rowIncrement, final int columnIncrement) {
-        int c = column;
-        int r = row;
-        while ((r >= 0) && (c >= 0) && (r < LIMIT_OF_ARRAY) && (c < LIMIT_OF_ARRAY)) {
-                    if (isPosibleToContinue(super.getChessBoard().getBoard()[c][r]) == -1) {
-                        arraypositions.add(super.getChessBoard().getBoard()[c][r].getPosition());
-                        break;
-                    } else if (isPosibleToContinue(super.getChessBoard().getBoard()[c][r ]) == 0) {
-                        arraypositions.add(new Position(c, r));
-                        c += columnIncrement;
-                        r += rowIncrement;
-                    } else {
-                        break;
-                    }
-        }
-    }*/
-
-
-
-
-
     public void checkmate() {
     }
 }

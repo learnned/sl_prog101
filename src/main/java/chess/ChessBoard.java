@@ -69,10 +69,10 @@ public class ChessBoard {
         Position posBRRook = new Position(SOURCE_COL_RIGHT_ROOKS, SOURCE_ROW_BLACK_NOT_PAWNS);
         Position posWLRook = new Position(SOURCE_COL_LEFT_ROOKS, SOURCE_ROW_WHITE_NOT_PAWNS);
         Position posWRRook = new Position(SOURCE_COL_RIGHT_ROOKS, SOURCE_ROW_WHITE_NOT_PAWNS);
-        board[SOURCE_COL_LEFT_ROOKS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Rook(Color.BLACK, posBLRook);
-        board[SOURCE_COL_RIGHT_ROOKS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Rook(Color.BLACK, posBRRook);
-        board[SOURCE_COL_LEFT_ROOKS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Rook(Color.WHITE, posWLRook);
-        board[SOURCE_COL_RIGHT_ROOKS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Rook(Color.WHITE, posWRRook);
+        board[SOURCE_COL_LEFT_ROOKS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Rook(Color.BLACK, posBLRook, this);
+        board[SOURCE_COL_RIGHT_ROOKS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Rook(Color.BLACK, posBRRook, this);
+        board[SOURCE_COL_LEFT_ROOKS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Rook(Color.WHITE, posWLRook, this);
+        board[SOURCE_COL_RIGHT_ROOKS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Rook(Color.WHITE, posWRRook, this);
     }
 
     private void createHorses() {
