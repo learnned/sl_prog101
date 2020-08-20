@@ -2,11 +2,11 @@ package chess;
 
 import java.util.ArrayList;
 
-public class DiagonalMovePiece {
+public class GetPossibleMovePiece {
 
     static final int LIMIT_OF_ARRAY = 8;
     private Piece piece;
-    DiagonalMovePiece(final Piece piece) {
+    GetPossibleMovePiece(final Piece piece) {
         this.piece = piece;
     }
     /**Add all the possible moves on diagonal**/
