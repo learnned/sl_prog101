@@ -9,7 +9,7 @@ class Queen extends Piece {
         super.setPosition(source);
     }
 
-    public ArrayList<Position> getPossibleMoves(final ChessBoard chb) {
+    public ArrayList<Position> getPossibleMoves() {
         ArrayList<Position> array = new ArrayList<Position>();
         return array;
     }

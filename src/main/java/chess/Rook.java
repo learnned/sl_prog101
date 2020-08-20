@@ -13,15 +13,15 @@ class Rook extends Piece implements ICastling {
         this.getPossibleMovePiece = new GetPossibleMovePiece(this);
     }
 
-    public ArrayList<Position> getPossibleMoves(final ChessBoard chb) {
-        ArrayList<Position> arraypositions = new ArrayList<Position>();
+    public ArrayList<Position> getPossibleMoves() {
+        ArrayList<Position> arrayPositions = new ArrayList<Position>();
         int row = this.getPosition().getRow();
         int column = this.getPosition().getColumn();
-        getPossibleMovePiece.diagonal(arraypositions, column + 1, row, 0, +1);
-        getPossibleMovePiece.diagonal(arraypositions, column - 1, row, 0, -1);
-        getPossibleMovePiece.diagonal(arraypositions, column, row + 1, +1, 0);
-        getPossibleMovePiece.diagonal(arraypositions, column, row - 1, -1, 0);
-        return arraypositions;
+        getPossibleMovePiece.possibleMovement(arrayPositions, column + 1, row, 0, +1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column - 1, row, 0, -1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column, row + 1, +1, 0);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column, row - 1, -1, 0);
+        return arrayPositions;
     }
 
 

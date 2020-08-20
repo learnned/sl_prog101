@@ -25,10 +25,11 @@ public class ChessBoard {
         board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
     }
     /**create the cheassboard without piecese**/
-    public void crateChessBoard() {
+    public void crateAnEmptyChessBoard() {
         board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
     }
-    /**add a new piece to teh board the purpose of test**/
+
+    /**add a new piece to the board the purpose of test**/
     public void addPiece(final Piece piece) {
         board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
     }
@@ -41,10 +42,12 @@ public class ChessBoard {
     public Piece[][] getBoard() {
         return this.board;
     }
+
     /**method to move a piece**/
-    public void move2(final Position p, final Piece piece) {
+   /* public void move2(final Position p, final Piece piece) {
         board[p.getColumn()][p.getRow()] = piece;
-    }
+    }*/
+
     /**Method that creates the pieces**/
     public void createPieces() {
         createPawns();

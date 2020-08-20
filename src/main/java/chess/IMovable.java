@@ -2,8 +2,8 @@ package chess;
 import java.util.List;
 
 interface IMovable {
-    boolean isPossibleMove(Position target, ChessBoard chess);
-    List<Position> getPossibleMoves(ChessBoard ch);
+    boolean isPossibleMove(Position target);
+    List<Position> getPossibleMoves();
 
     void checkmate();
 }

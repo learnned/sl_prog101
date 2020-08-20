@@ -15,15 +15,15 @@ class Bishop extends Piece {
     }
 
 
-    public ArrayList<Position> getPossibleMoves(final ChessBoard chb) {
+    public ArrayList<Position> getPossibleMoves() {
         int row = this.getPosition().getRow();
         int column = this.getPosition().getColumn();
-        ArrayList<Position> arraypositions = new ArrayList<Position>();
-        getPossibleMovePiece.diagonal(arraypositions, column - 1, row - 1, -1, -1);
-        getPossibleMovePiece.diagonal(arraypositions, column + 1, row - 1, -1, +1);
-        getPossibleMovePiece.diagonal(arraypositions, column + 1, row + 1, +1, +1);
-        getPossibleMovePiece.diagonal(arraypositions, column - 1, row + 1, +1, -1);
-        return arraypositions;
+        ArrayList<Position> arrayPositions = new ArrayList<Position>();
+        getPossibleMovePiece.possibleMovement(arrayPositions, column - 1, row - 1, -1, -1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column + 1, row - 1, -1, +1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column + 1, row + 1, +1, +1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column - 1, row + 1, +1, -1);
+        return arrayPositions;
     }
 
     public void checkmate() {

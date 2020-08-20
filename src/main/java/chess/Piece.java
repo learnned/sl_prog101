@@ -39,21 +39,21 @@ abstract class Piece implements IMovable {
         this.chessBoard = chessBoard;
     }
 
-    public boolean move(final Position position, final ChessBoard chess) {
-        if (isPossibleMove(position, chess)) {
-           if (chess.getBoard()[this.position.getColumn()][this.position.getRow()] != null) {
-               chess.getBoard()[this.position.getColumn()][this.position.getRow()].die();
+    public boolean move(final Position position) {
+        if (isPossibleMove(position)) {
+           if (chessBoard.getBoard()[this.position.getColumn()][this.position.getRow()] != null) {
+               chessBoard.getBoard()[this.position.getColumn()][this.position.getRow()].die();
            }
            //chess.getBoard()[this.position.getColumn()][this.position.getRow()] = null;
-           chess.move2(this.position, null);
+            chessBoard.addPiece(this);
            this.position = position;
-           chess.getBoard()[this.position.getColumn()][this.position.getRow()] = this;
+            chessBoard.getBoard()[this.position.getColumn()][this.position.getRow()] = this;
            return true;
        }
        return false;
     }
-    public boolean isPossibleMove(final Position target, final ChessBoard chess) {
-            for (Position pos : getPossibleMoves(chess)) {
+    public boolean isPossibleMove(final Position target) {
+            for (Position pos : getPossibleMoves()) {
                 if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
                     return true;
                 }
