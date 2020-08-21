@@ -18,6 +18,14 @@ class Queen extends Piece {
         int row = this.getPosition().getRow();
         int column = this.getPosition().getColumn();
         ArrayList<Position> arrayPositions = new ArrayList<Position>();
+        getPossibleMovePiece.possibleMovement(arrayPositions, column - 1, row - 1, -1, -1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column + 1, row - 1, -1, +1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column + 1, row + 1, +1, +1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column - 1, row + 1, +1, -1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column + 1, row, 0, +1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column - 1, row, 0, -1);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column, row + 1, +1, 0);
+        getPossibleMovePiece.possibleMovement(arrayPositions, column, row - 1, -1, 0);
         return arrayPositions;
     }
 
