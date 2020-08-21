@@ -33,7 +33,6 @@ public class GetPossibleMovePiece {
      * @return Byte     0,-1 When possible movement, 1 Otherwise.
      */
     public byte isPossibleToContinue(final Piece targetPiece) {
-
         if (targetPiece == null) {
             return 0;
         }

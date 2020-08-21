@@ -36,70 +36,70 @@ public class BishopTest {
     public void testMoveLeftDownBishop() {
         ChessBoard chessBoard1 = new ChessBoard();
         chessBoard1.crateAnEmptyChessBoard();
-        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4),chessBoard1));
-        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
-        boolean po= piece.move(new Position(0,0));
+        chessBoard1.addPiece(new Bishop(Color.WHITE, new Position(4,4), chessBoard1));
+        Bishop piece = (Bishop) chessBoard1.getBoard()[4][4];
+        boolean po = piece.move(new Position(0, 0));
         assertTrue(po);
     }
     @Test
     public void testMoveLeftUpBishop() {
         ChessBoard chessBoard1 = new ChessBoard();
         chessBoard1.crateAnEmptyChessBoard();
-        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4),chessBoard1));
-        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
-        boolean po= piece.move(new Position(1,7));
+        chessBoard1.addPiece(new Bishop(Color.WHITE, new Position(4, 4), chessBoard1));
+        Bishop piece = (Bishop) chessBoard1.getBoard()[4][4];
+        boolean po = piece.move(new Position(1, 7));
         assertTrue(po);
     }
     @Test
     public void testMoveRighttUpBishop() {
         ChessBoard chessBoard1 = new ChessBoard();
         chessBoard1.crateAnEmptyChessBoard();
-        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4),chessBoard1));
-        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
-        boolean po= piece.move(new Position(7,7));
+        chessBoard1.addPiece(new Bishop(Color.WHITE, new Position(4, 4), chessBoard1));
+        Bishop piece = (Bishop) chessBoard1.getBoard()[4][4];
+        boolean po = piece.move(new Position(7, 7));
         assertTrue(po);
     }
     @Test
     public void testMoveRightDownBishopEnemy() {
         ChessBoard chessBoard1 = new ChessBoard();
         chessBoard1.crateAnEmptyChessBoard();
-        ChessBoard chessBoard = new ChessBoard(new Bishop(Color.WHITE,new Position(4,4),chessBoard1));
-        chessBoard.addPiece(new Queen(Color.BLACK,new Position(1,1)));
-        Bishop piece = (Bishop) chessBoard.getBoard()[4][4];
-        boolean po= piece.move(new Position(1,1));
+        chessBoard1.addPiece(new Bishop(Color.WHITE, new Position(4, 4), chessBoard1));
+        chessBoard1.addPiece(new Queen(Color.BLACK, new Position(1, 1), chessBoard1));
+        Bishop piece = (Bishop) chessBoard1.getBoard()[4][4];
+        boolean po = piece.move(new Position(1, 1));
         assertTrue(po);
     }
     @Test
     public void testMoveRightDownBishopBehindEnemy() {
         ChessBoard chessBoard1 = new ChessBoard();
         chessBoard1.crateAnEmptyChessBoard();
-        Bishop proof =new Bishop(Color.WHITE,new Position(4,4),chessBoard1);
+        Bishop proof =new Bishop(Color.WHITE, new Position(4, 4), chessBoard1);
         chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Queen(Color.BLACK,new Position(1,1)));
+        chessBoard1.addPiece(new Queen(Color.BLACK, new Position(1, 1), chessBoard1));
         Bishop piece = (Bishop) chessBoard1.getBoard()[4][4];
-        boolean po= piece.move(new Position(0,0));
+        boolean po = piece.move(new Position(0, 0));
         assertFalse(po);
     }
     @Test
     public void testMoveRightDownBishopAllied() {
         ChessBoard chessBoard1 = new ChessBoard();
         chessBoard1.crateAnEmptyChessBoard();
-        Bishop proof =new Bishop(Color.WHITE,new Position(4,4),chessBoard1);
+        Bishop proof =new Bishop(Color.WHITE, new Position(4, 4), chessBoard1);
         chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Queen(Color.WHITE,new Position(1,1)));
+        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(1, 1), chessBoard1));
         Bishop piece = (Bishop) chessBoard1.getBoard()[4][4];
-        boolean po= piece.move(new Position(1,1));
+        boolean po = piece.move(new Position(1, 1));
         assertFalse(po);
     }
     @Test
     public void testMoveRightDownBishopBehindAllied() {
         ChessBoard chessBoard1 = new ChessBoard();
         chessBoard1.crateAnEmptyChessBoard();
-        Bishop proof =new Bishop(Color.WHITE,new Position(4,4),chessBoard1);
+        Bishop proof =new Bishop(Color.WHITE, new Position(4, 4), chessBoard1);
         chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Queen(Color.WHITE,new Position(1,1)));
+        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(1, 1), chessBoard1));
         Bishop piece = (Bishop) chessBoard1.getBoard()[4][4];
-        boolean po= piece.move(new Position(0,0));
+        boolean po = piece.move(new Position(0, 0));
         assertFalse(po);
     }
 }

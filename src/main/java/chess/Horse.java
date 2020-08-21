@@ -10,8 +10,8 @@ class Horse extends Piece {
     }
 
     public ArrayList<Position> getPossibleMoves() {
-        ArrayList<Position> array = new ArrayList<Position>();
-        return array;
+        ArrayList<Position> arrayPosition = new ArrayList<Position>();
+        return arrayPosition;
     }
 
     public void checkmate() {

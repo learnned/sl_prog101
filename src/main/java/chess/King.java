@@ -11,8 +11,8 @@ class King extends Piece implements ICastling, ICheck {
     }
 
     public ArrayList<Position> getPossibleMoves() {
-        ArrayList<Position> array = new ArrayList<Position>();
-        return array;
+        ArrayList<Position> arrayPosition = new ArrayList<Position>();
+        return arrayPosition;
     }
 
     public void checkmate() {
@@ -20,7 +20,6 @@ class King extends Piece implements ICastling, ICheck {
 
     @Override
     public void castling() {
-
     }
 
     @Override

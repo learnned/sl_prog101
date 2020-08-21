@@ -32,9 +32,11 @@ abstract class Piece implements IMovable {
     public void setStatus(final Status status) {
         this.status = status;
     }
+
     public void setPosition(final Position source) {
         this.position = source;
     }
+
     public void setChessBoard(final ChessBoard chessBoard) {
         this.chessBoard = chessBoard;
     }
@@ -44,25 +46,27 @@ abstract class Piece implements IMovable {
            if (chessBoard.getBoard()[this.position.getColumn()][this.position.getRow()] != null) {
                chessBoard.getBoard()[this.position.getColumn()][this.position.getRow()].die();
            }
-           //chess.getBoard()[this.position.getColumn()][this.position.getRow()] = null;
             chessBoard.addPiece(this);
-           this.position = position;
+            this.position = position;
             chessBoard.getBoard()[this.position.getColumn()][this.position.getRow()] = this;
-           return true;
+            return true;
        }
        return false;
     }
+
     public boolean isPossibleMove(final Position target) {
-            for (Position pos : getPossibleMoves()) {
-                if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
-                    return true;
-                }
+        for (Position pos : getPossibleMoves()) {
+            if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
+                return true;
             }
-            return false;
+        }
+        return false;
     }
+
     public ChessBoard getChessBoard() {
         return chessBoard;
     }
+
     public String toString() {
         String initial;
         if (this.color == Color.WHITE) {

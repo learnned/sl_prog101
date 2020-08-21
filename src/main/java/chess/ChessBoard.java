@@ -103,8 +103,8 @@ public class ChessBoard {
     private void createQueens() {
         Position posBQueen = new Position(SOURCE_COL_QUEENS, SOURCE_ROW_BLACK_NOT_PAWNS);
         Position posWQueen = new Position(SOURCE_COL_QUEENS, SOURCE_ROW_WHITE_NOT_PAWNS);
-        board[SOURCE_COL_QUEENS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Queen(Color.BLACK, posBQueen);
-        board[SOURCE_COL_QUEENS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Queen(Color.WHITE, posWQueen);
+        board[SOURCE_COL_QUEENS][SOURCE_ROW_BLACK_NOT_PAWNS] = new Queen(Color.BLACK, posBQueen, this);
+        board[SOURCE_COL_QUEENS][SOURCE_ROW_WHITE_NOT_PAWNS] = new Queen(Color.WHITE, posWQueen, this);
     }
 
     private void createKings() {

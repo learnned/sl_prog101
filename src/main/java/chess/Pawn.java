@@ -11,8 +11,8 @@ class Pawn extends Piece implements IPawn {
     }
 
     public ArrayList<Position> getPossibleMoves() {
-        ArrayList<Position> array = new ArrayList<Position>();
-        return array;
+        ArrayList<Position> arrayPositions = new ArrayList<Position>();
+        return arrayPositions;
     }
 
     public void checkmate() {
