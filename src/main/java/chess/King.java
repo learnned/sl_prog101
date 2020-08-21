@@ -1,7 +1,6 @@
 package chess;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class King extends Piece implements ICastling, ICheck {
     King(final Color color, final Position source) {
@@ -11,30 +10,19 @@ class King extends Piece implements ICastling, ICheck {
         super.setPosition(source);
     }
 
-    public void kill(final Piece target) {
-    }
-
-    public void move(final Piece target) {
-    }
-
-    public void die() {
-    }
-
-    public boolean isPosibleMove(final Piece target) {
-        return true;
-    }
-
-    public List<Piece> getPosibleMoves(final ChessBoard chb) {
-        List<Piece> array = new ArrayList<Piece>();
-        return array;
+    public ArrayList<Position> getPossibleMoves() {
+        ArrayList<Position> arrayPosition = new ArrayList<Position>();
+        return arrayPosition;
     }
 
     public void checkmate() {
     }
 
+    @Override
     public void castling() {
     }
 
+    @Override
     public boolean doesCheck() {
         return false;
     }

@@ -1,6 +1,5 @@
 package chess;
 import java.util.ArrayList;
-import java.util.List;
 
 class Horse extends Piece {
     Horse(final Color color, final Position source) {
@@ -10,22 +9,9 @@ class Horse extends Piece {
         super.setPosition(source);
     }
 
-    public void kill(final Piece target) {
-    }
-
-    public void move(final Piece target) {
-    }
-
-    public void die() {
-    }
-
-    public boolean isPosibleMove(final Piece target) {
-        return true;
-    }
-
-    public List<Piece> getPosibleMoves(final ChessBoard chb) {
-        List<Piece> array = new ArrayList<Piece>();
-        return array;
+    public ArrayList<Position> getPossibleMoves() {
+        ArrayList<Position> arrayPosition = new ArrayList<Position>();
+        return arrayPosition;
     }
 
     public void checkmate() {

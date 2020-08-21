@@ -1,7 +1,6 @@
 package chess;
 
 import java.util.ArrayList;
-import java.util.List;
 
 class Pawn extends Piece implements IPawn {
     Pawn(final Color color, final Position source) {
@@ -11,33 +10,21 @@ class Pawn extends Piece implements IPawn {
         super.setPosition(source);
     }
 
-    public void kill(final Piece target) {
-    }
-
-    public void move(final Piece target) {
-    }
-
-    public void die() {
-    }
-
-    public boolean isPosibleMove(final Piece target) {
-        return true;
-    }
-
-    public List<Piece> getPosibleMoves(final ChessBoard chb) {
-        List<Piece> array = new ArrayList<Piece>();
-        return array;
+    public ArrayList<Position> getPossibleMoves() {
+        ArrayList<Position> arrayPositions = new ArrayList<Position>();
+        return arrayPositions;
     }
 
     public void checkmate() {
     }
 
+    @Override
     public Piece promotion(final byte type) {
-        Position pos = new Position(0, 0);
-        Pawn piece = new Pawn(Color.WHITE, pos);
-        return piece;
+        return null;
     }
 
+    @Override
     public void inPassant() {
+
     }
 }
