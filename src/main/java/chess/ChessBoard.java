@@ -83,10 +83,10 @@ public class ChessBoard {
         Position posBRHorse = new Position(SOURCE_COL_RIGHT_HORSES, SOURCE_ROW_BLACK_NOT_PAWNS);
         Position posWLHorse = new Position(SOURCE_COL_LEFT_HORSES, SOURCE_ROW_WHITE_NOT_PAWNS);
         Position posWRHorse = new Position(SOURCE_COL_RIGHT_HORSES, SOURCE_ROW_WHITE_NOT_PAWNS);
-        board[SOURCE_COL_LEFT_HORSES][SOURCE_ROW_BLACK_NOT_PAWNS] = new Horse(Color.BLACK, posBLHorse);
-        board[SOURCE_COL_RIGHT_HORSES][SOURCE_ROW_BLACK_NOT_PAWNS] = new Horse(Color.BLACK, posBRHorse);
-        board[SOURCE_COL_LEFT_HORSES][SOURCE_ROW_WHITE_NOT_PAWNS] = new Horse(Color.WHITE, posWLHorse);
-        board[SOURCE_COL_RIGHT_HORSES][SOURCE_ROW_WHITE_NOT_PAWNS] = new Horse(Color.WHITE, posWRHorse);
+        board[SOURCE_COL_LEFT_HORSES][SOURCE_ROW_BLACK_NOT_PAWNS] = new Horse(Color.BLACK, posBLHorse, this);
+        board[SOURCE_COL_RIGHT_HORSES][SOURCE_ROW_BLACK_NOT_PAWNS] = new Horse(Color.BLACK, posBRHorse, this);
+        board[SOURCE_COL_LEFT_HORSES][SOURCE_ROW_WHITE_NOT_PAWNS] = new Horse(Color.WHITE, posWLHorse, this);
+        board[SOURCE_COL_RIGHT_HORSES][SOURCE_ROW_WHITE_NOT_PAWNS] = new Horse(Color.WHITE, posWRHorse, this);
     }
 
     private void createBishops() {
