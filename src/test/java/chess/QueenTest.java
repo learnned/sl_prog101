@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 public class QueenTest {
     @Test
     public void testCreateQueen() {
-        Position pos = new Position(0, 0);
+        Position position = new Position(0, 0);
         ChessBoard chessBoard = new ChessBoard();
-        Queen piece = new Queen(Color.BLACK, pos,chessBoard);
+        Queen piece = new Queen(Color.BLACK, position,chessBoard);
         assertNotNull(piece);
     }
 
     @Test
     public void testBlackQueenToString() {
-        Position pos = new Position(0, 0);
+        Position position = new Position(0, 0);
         ChessBoard chessBoard = new ChessBoard();
-        Queen piece = new Queen(Color.BLACK, pos,chessBoard);
+        Queen piece = new Queen(Color.BLACK, position,chessBoard);
         String expected = "QB";
         String actual = piece.toString();
         assertEquals(expected, actual);
@@ -23,9 +23,9 @@ public class QueenTest {
 
     @Test
     public void testWhiteQueenToString() {
-        Position pos = new Position(0, 0);
+        Position position = new Position(0, 0);
         ChessBoard chessBoard = new ChessBoard();
-        Queen piece = new Queen(Color.WHITE, pos,chessBoard);
+        Queen piece = new Queen(Color.WHITE, position,chessBoard);
         String expected = "QW";
         String actual = piece.toString();
         assertEquals(expected, actual);
@@ -33,143 +33,123 @@ public class QueenTest {
 
     @Test
     public void testMoveLeftDownQueen() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(0, 0));
-        assertTrue(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertTrue(queen.move(new Position(0, 0)));
     }
     @Test
     public void testMoveLeftUpQueen() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(1, 7));
-        assertTrue(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertTrue(queen.move(new Position(1, 7)));
     }
     @Test
-    public void testMoveRighttUpQueen() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(7, 7));
-        assertTrue(po);
+    public void testMoveRightUpQueen() {
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertTrue(queen.move(new Position(7, 7)));
     }
     @Test
     public void testMoveRightDownQueenEnemy() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard1));
-        chessBoard1.addPiece(new Bishop(Color.BLACK, new Position(1, 1), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(1, 1));
-        assertTrue(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        chessBoard.addPiece(new Bishop(Color.BLACK, new Position(1, 1), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertTrue(queen.move(new Position(1, 1)));
     }
     @Test
     public void testMoveRightDownQueenBehindEnemy() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        Queen proof = new Queen(Color.WHITE, new Position(4, 4), chessBoard1);
-        chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Bishop(Color.BLACK,new Position(1, 1), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(0, 0));
-        assertFalse(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        chessBoard.addPiece(new Bishop(Color.BLACK,new Position(1, 1), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertFalse(queen.move(new Position(0, 0)));
     }
     @Test
     public void testMoveRightDownQueenAllied() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        Queen proof = new Queen(Color.WHITE, new Position(4, 4), chessBoard1);
-        chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Bishop(Color.WHITE, new Position(1, 1), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(1, 1));
-        assertFalse(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        chessBoard.addPiece(new Bishop(Color.WHITE, new Position(1, 1), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertFalse(queen.move(new Position(1, 1)));
     }
     @Test
     public void testMoveRightDownQueenBehindAllied() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        Queen proof =new Queen(Color.WHITE, new Position(4, 4), chessBoard1);
-        chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Bishop(Color.WHITE, new Position(1, 1), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(0, 0));
-        assertFalse(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        chessBoard.addPiece(new Bishop(Color.WHITE, new Position(1, 1), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertFalse(queen.move(new Position(0, 0)));
     }
 
     @Test
     public void testMoveUpQueen() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        ChessBoard chessBoard = new ChessBoard(new Queen(Color.WHITE, new Position(4, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard.getBoard()[4][4];
-        boolean po = piece.move(new Position(7, 4));
-        assertTrue(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertTrue(queen.move(new Position(7, 4)));
     }
     @Test
     public void testMoveDownQueen() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(0, 4));
-        assertTrue(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertTrue(queen.move(new Position(0, 4)));
     }
     @Test
     public void testMoveLeftQueen() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(4, 0));
-        assertTrue(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        Queen piece = (Queen) chessBoard.getBoard()[4][4];
+        assertTrue(piece.move(new Position(4, 0)));
     }
     @Test
     public void testMoveRightQueen() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po= piece.move(new Position(4, 7));
-        assertTrue(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertTrue(queen.move(new Position(4, 7)));
     }
 
     @Test
     public void testMoveDownQueenBehindEnemy() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        Queen proof =new Queen(Color.WHITE, new Position(4, 4), chessBoard1);
-        chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Rook(Color.BLACK, new Position(1, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(0, 4));
-        assertFalse(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        chessBoard.addPiece(new Rook(Color.BLACK, new Position(1, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertFalse(queen.move(new Position(0, 4)));
     }
     @Test
     public void testMoveDownQueenAllied() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        Queen proof =new Queen(Color.WHITE, new Position(4, 4), chessBoard1);
-        chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Queen(Color.WHITE, new Position(1, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(1, 4));
-        assertFalse(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(1, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertFalse(queen.move(new Position(1, 4)));
     }
     @Test
     public void testMoveUpQueenBehindAllied() {
-        ChessBoard chessBoard1 = new ChessBoard();
-        chessBoard1.crateAnEmptyChessBoard();
-        Queen proof =new Queen(Color.WHITE, new Position(4, 4), chessBoard1);
-        chessBoard1.addPiece(proof);
-        chessBoard1.addPiece(new Rook(Color.WHITE, new Position(6, 4), chessBoard1));
-        Queen piece = (Queen) chessBoard1.getBoard()[4][4];
-        boolean po = piece.move(new Position(7, 4));
-        assertFalse(po);
+        ChessBoard chessBoard = new ChessBoard();
+        chessBoard.crateAnEmptyChessBoard();
+        chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
+        chessBoard.addPiece(new Rook(Color.WHITE, new Position(6, 4), chessBoard));
+        Queen queen = (Queen) chessBoard.getBoard()[4][4];
+        assertFalse(queen.move(new Position(7, 4)));
     }
 }
