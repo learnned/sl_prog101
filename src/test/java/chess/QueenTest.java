@@ -3,6 +3,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class QueenTest {
+
+    final static int VISUALITATION_MODE = 0;
+
     @Test
     public void testCreateQueen() {
         Position position = new Position(0, 0);
@@ -17,7 +20,7 @@ public class QueenTest {
         ChessBoard chessBoard = new ChessBoard();
         Queen piece = new Queen(Color.BLACK, position,chessBoard);
         String expected = "QB";
-        String actual = piece.toString();
+        String actual = piece.toString(VISUALITATION_MODE);
         assertEquals(expected, actual);
     }
 
@@ -27,7 +30,7 @@ public class QueenTest {
         ChessBoard chessBoard = new ChessBoard();
         Queen piece = new Queen(Color.WHITE, position,chessBoard);
         String expected = "QW";
-        String actual = piece.toString();
+        String actual = piece.toString(VISUALITATION_MODE);
         assertEquals(expected, actual);
     }
 

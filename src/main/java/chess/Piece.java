@@ -94,13 +94,19 @@ abstract class Piece implements IMovable {
         return chessBoard;
     }
 
-    public String toString() {
-        String initial;
-        if (this.color == Color.WHITE) {
-            initial = WHITE_STRING;
+    public String toString(final int visualitationMode) {
+        if (visualitationMode == 1) {
+            if (this.color == Color.WHITE) {
+                return this.symbol.getWhite();
+            } else {
+                return this.symbol.getWhite();
+            }
         } else {
-            initial = BLACK_STRING;
+            if (this.color == Color.WHITE) {
+                return this.symbol.getlabel() + WHITE_STRING;
+            } else {
+                return this.symbol.getlabel() + BLACK_STRING;
+            }
         }
-        return this.symbol.toString() + initial;
     }
 }

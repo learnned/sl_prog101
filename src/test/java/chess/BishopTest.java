@@ -4,6 +4,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BishopTest {
+
+    final static int VISUALITATION_MODE = 0;
+
     @Test
     public void testCreateBishop() {
         Position pos = new Position(0, 0);
@@ -18,7 +21,7 @@ public class BishopTest {
         ChessBoard chessBoard = new ChessBoard();
         Bishop piece = new Bishop(Color.BLACK, pos, chessBoard);
         String expected = "BB";
-        String actual = piece.toString();
+        String actual = piece.toString(VISUALITATION_MODE);
         assertEquals(expected, actual);
     }
 
@@ -28,7 +31,7 @@ public class BishopTest {
         ChessBoard chessBoard = new ChessBoard();
         Bishop piece = new Bishop(Color.WHITE, pos, chessBoard);
         String expected = "BW";
-        String actual = piece.toString();
+        String actual = piece.toString(VISUALITATION_MODE);
         assertEquals(expected, actual);
     }
 

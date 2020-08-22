@@ -4,6 +4,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PawnTest {
+
+    final static int VISUALITATION_MODE = 0;
+
     @Test
     public void testCreatePawn() {
         Position pos = new Position(0, 0);
@@ -15,8 +18,8 @@ public class PawnTest {
     public void testBlackPawnToString() {
         Position pos = new Position(0, 0);
         Pawn piece = new Pawn(Color.BLACK, pos);
-        String expected = "pB";
-        String actual = piece.toString();
+        String expected = "PB";
+        String actual = piece.toString(VISUALITATION_MODE);
         assertEquals(expected, actual);
     }
 
@@ -24,8 +27,8 @@ public class PawnTest {
     public void testWhitePawnToString() {
         Position pos = new Position(0, 0);
         Pawn piece = new Pawn(Color.WHITE, pos);
-        String expected = "pW";
-        String actual = piece.toString();
+        String expected = "PW";
+        String actual = piece.toString(VISUALITATION_MODE);
         assertEquals(expected, actual);
     }
 

@@ -4,7 +4,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class RookTest {
-   @Test
+
+    final static int VISUALITATION_MODE = 0;
+
+    @Test
     public void testCreateRook() {
         Position pos = new Position(0, 0);
         ChessBoard chessBoard = new ChessBoard();
@@ -18,7 +21,7 @@ public class RookTest {
         ChessBoard chessBoard = new ChessBoard();
         Rook piece = new Rook(Color.BLACK, pos, chessBoard);
         String expected = "RB";
-        String actual = piece.toString();
+        String actual = piece.toString(VISUALITATION_MODE);
         assertEquals(expected, actual);
     }
 
@@ -28,7 +31,7 @@ public class RookTest {
         ChessBoard chessBoard = new ChessBoard();
         Rook piece = new Rook(Color.WHITE, pos, chessBoard);
         String expected = "RW";
-        String actual = piece.toString();
+        String actual = piece.toString(VISUALITATION_MODE);
         assertEquals(expected, actual);
     }
     @Test
