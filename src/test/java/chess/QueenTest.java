@@ -56,7 +56,7 @@ public class QueenTest {
         assertTrue(queen.move(new Position(7, 7)));
     }
     @Test
-    public void testMoveRightDownQueenEnemy() {
+    public void testMoveLeftDownQueenEnemy() {
         ChessBoard chessBoard = new ChessBoard();
         chessBoard.crateAnEmptyChessBoard();
         chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
@@ -65,7 +65,7 @@ public class QueenTest {
         assertTrue(queen.move(new Position(1, 1)));
     }
     @Test
-    public void testMoveRightDownQueenBehindEnemy() {
+    public void testMoveLeftDownQueenBehindEnemy() {
         ChessBoard chessBoard = new ChessBoard();
         chessBoard.crateAnEmptyChessBoard();
         chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
@@ -74,7 +74,7 @@ public class QueenTest {
         assertFalse(queen.move(new Position(0, 0)));
     }
     @Test
-    public void testMoveRightDownQueenAllied() {
+    public void testMoveLeftDownQueenAllied() {
         ChessBoard chessBoard = new ChessBoard();
         chessBoard.crateAnEmptyChessBoard();
         chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));
@@ -83,7 +83,7 @@ public class QueenTest {
         assertFalse(queen.move(new Position(1, 1)));
     }
     @Test
-    public void testMoveRightDownQueenBehindAllied() {
+    public void testMoveLeftDownQueenBehindAllied() {
         ChessBoard chessBoard = new ChessBoard();
         chessBoard.crateAnEmptyChessBoard();
         chessBoard.addPiece(new Queen(Color.WHITE, new Position(4, 4), chessBoard));

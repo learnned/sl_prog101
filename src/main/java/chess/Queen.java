@@ -12,7 +12,6 @@ class Queen extends Piece {
         super.setStatus(Status.ALIVE);
         super.setChessBoard(chessBoard);
         super.setPosition(source);
-
         this.getPossibleMovePiece = new GetPossibleMovePiece(this);
     }
 
