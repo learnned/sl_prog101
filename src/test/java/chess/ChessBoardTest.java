@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 public class ChessBoardTest {
 
+    final static int VISUALITATION_MODE = 0;
+
     @Test
     public void testCreateChessBoard() {
         ChessBoard chessboard = new ChessBoard();
@@ -19,17 +21,17 @@ public class ChessBoardTest {
                 if (chessboard.getBoard()[i][j] == null) {
                     actual += "  ";
                 } else {
-                    actual += chessboard.getBoard()[i][j].toString();
+                    actual += chessboard.getBoard()[i][j].toString(VISUALITATION_MODE);
                 }
             }
         }
         final String expected = "RBHBBBQBKBBBHBRB" +
-                                "pBpBpBpBpBpBpBpB" +
+                                "PBPBPBPBPBPBPBPB" +
                                 "                " +
                                 "                " +
                                 "                " +
                                 "                " +
-                                "pWpWpWpWpWpWpWpW" +
+                                "PWPWPWPWPWPWPWPW" +
                                 "RWHWBWQWKWBWHWRW";
         assertEquals(expected, actual);
     }
