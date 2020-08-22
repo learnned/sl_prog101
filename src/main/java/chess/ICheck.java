@@ -1,5 +1,5 @@
 package chess;
 
 interface ICheck {
-    boolean doesCheck();
+    boolean isChecked();
 }

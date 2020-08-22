@@ -1,7 +1,7 @@
 package chess;
 
 import java.util.ArrayList;
-class Rook extends Piece implements ICastling {
+class Rook extends Piece {
 
     private GetPossibleMovePiece getPossibleMovePiece;
     Rook(final Color color, final Position source, final ChessBoard chessBoard) {
@@ -28,6 +28,4 @@ class Rook extends Piece implements ICastling {
     public void checkmate() {
     }
 
-    public void castling() {
-    }
 }
