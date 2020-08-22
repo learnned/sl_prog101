@@ -6,8 +6,8 @@ abstract class Piece implements IMovable {
     private Status status;
     private Position position;
     private ChessBoard chessBoard;
-    static final String WHITE_STRING = "W";
-    static final String BLACK_STRING = "B";
+    static final String WHITE_STRING = "W", BLACK_STRING = "B";
+    static final int CASTLING_LEFT = -2, CASTLING_RIGHT = 2, CASTLING_LEFT_ROOK_SOURCE = 0, CASTLING_RIGHT_ROOK_SOURCE = 7, CASTLING_LEFT_ROOK_TARGET = 3, CASTLING_RIGHT_ROOK_TARGET = 5;
     private boolean firstMovement = true;
 
     public final void die() {
@@ -58,15 +58,15 @@ abstract class Piece implements IMovable {
             chessBoard.addPiece(this);
             this.position = target;
             chessBoard.getBoard()[previousPosition.getColumn()][previousPosition.getRow()] = null;
-            if (this instanceof King && (this.getPosition().getColumn() - previousPosition.getColumn() == -2 || this.getPosition().getColumn() - previousPosition.getColumn() == 2)) {
+            if (this instanceof King && (this.getPosition().getColumn() - previousPosition.getColumn() == CASTLING_LEFT || this.getPosition().getColumn() - previousPosition.getColumn() == CASTLING_RIGHT)) {
                 Piece rookMoved;
                 int targetCol;
-                if (this.getPosition().getColumn() - previousPosition.getColumn() == 2){
-                    rookMoved = chessBoard.getBoard()[7][previousPosition.getRow()];
-                    targetCol = 5;
+                if (this.getPosition().getColumn() - previousPosition.getColumn() == CASTLING_RIGHT) {
+                    rookMoved = chessBoard.getBoard()[CASTLING_RIGHT_ROOK_SOURCE][previousPosition.getRow()];
+                    targetCol = CASTLING_RIGHT_ROOK_TARGET;
                 } else {
-                    rookMoved = chessBoard.getBoard()[0][previousPosition.getRow()];
-                    targetCol = 3;
+                    rookMoved = chessBoard.getBoard()[CASTLING_LEFT_ROOK_SOURCE][previousPosition.getRow()];
+                    targetCol = CASTLING_LEFT_ROOK_TARGET;
                 }
                 Position previousRookPos = rookMoved.getPosition();
                 if (rookMoved.firstMovement) {

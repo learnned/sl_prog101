@@ -2,9 +2,6 @@ package chess;
 import chess.*;
 import org.junit.Test;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class KingTest {
