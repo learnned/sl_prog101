@@ -3,7 +3,8 @@ package chess;
 import java.util.ArrayList;
 
 class Pawn extends Piece implements IPawn {
-    static final int LIMIT_OF_ARRAY = 8, EMPTY = 0, FRIEND = 1, ENEMY = -1;
+    static final int LIMIT_OF_ARRAY = 8, EMPTY = 0, FRIEND = 1, ENEMY = -1, BEGGING_OF_ARRAY = 0;
+    static final int ROCK = 0, BISHOP = 1, QUEEN = 3, HORSE = 2, NEGATIVE = -1, POSITIVE = 1;
     private static boolean firstMovement;
     Pawn(final Color color, final Position source) {
         super.setColor(color);
@@ -26,9 +27,9 @@ class Pawn extends Piece implements IPawn {
         int row = this.getPosition().getRow();
         int column = this.getPosition().getColumn();
         ArrayList<Position> arrayPositions = new ArrayList<Position>();
-        if ((row >= 0) && (column >= 0) && (row < LIMIT_OF_ARRAY) && (column < LIMIT_OF_ARRAY)) {
-            checkMovements(arrayPositions, "WHITE", column, row, 1, -1);
-            checkMovements(arrayPositions, "BLACK", column, row, -1, 1);
+        if ((row >= BEGGING_OF_ARRAY) && (column >= BEGGING_OF_ARRAY) && (row < LIMIT_OF_ARRAY) && (column < LIMIT_OF_ARRAY)) {
+            checkMovements(arrayPositions, "WHITE", column, row, POSITIVE, NEGATIVE);
+            checkMovements(arrayPositions, "BLACK", column, row, NEGATIVE, POSITIVE);
         }
         return arrayPositions;
     }
@@ -43,9 +44,7 @@ class Pawn extends Piece implements IPawn {
         return FRIEND;
     }
     public void changeFirstMovementState() {
-        if (firstMovement) {
             this.firstMovement = false;
-        }
     }
 
     public void checkMovements(final ArrayList<Position> arrayPositions, final String color, final int column, final int row, final int negative, final int positive) {
@@ -72,11 +71,38 @@ class Pawn extends Piece implements IPawn {
 
     @Override
     public Piece promotion(final byte type) {
+        int row = this.getPosition().getRow();
+        if (row == LIMIT_OF_ARRAY && this.getColor().toString() == "BLACK") {
+
+        }
+        if (row == BEGGING_OF_ARRAY && this.getColor().toString() == "WHITE") {
+
+        }
         return null;
     }
 
     @Override
     public void inPassant() {
 
+    }
+
+    public Piece getPiece(final byte type) {
+        if (type == ROCK) {
+            Piece rock =  new Rook(this.getColor(), this.getPosition());
+            return rock;
+        }
+        if (type == BISHOP) {
+            Piece bishop =  new Bishop(this.getColor(), this.getPosition());
+            return bishop;
+        }
+        if (type == HORSE) {
+            Piece horse =  new Horse(this.getColor(), this.getPosition());
+            return horse;
+        }
+        if (type == QUEEN) {
+            Piece queen =  new Queen(this.getColor(), this.getPosition());
+            return queen;
+        }
+        return null;
     }
 }
