@@ -24,12 +24,12 @@ public class ChessBoardTest {
             }
         }
         final String expected = "RBHBBBQBKBBBHBRB" +
-                                "pBpBpBpBpBpBpBpB" +
+                                "PBPBPBPBPBPBPBPB" +
                                 "                " +
                                 "                " +
                                 "                " +
                                 "                " +
-                                "pWpWpWpWpWpWpWpW" +
+                                "PWPWPWPWPWPWPWPW" +
                                 "RWHWBWQWKWBWHWRW";
         assertEquals(expected, actual);
     }

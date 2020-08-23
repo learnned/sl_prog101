@@ -4,6 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BishopTest {
+
     @Test
     public void testCreateBishop() {
         Position pos = new Position(0, 0);

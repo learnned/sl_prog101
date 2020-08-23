@@ -4,7 +4,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class RookTest {
-   @Test
+
+    @Test
     public void testCreateRook() {
         Position pos = new Position(0, 0);
         ChessBoard chessBoard = new ChessBoard();
