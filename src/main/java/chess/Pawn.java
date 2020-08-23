@@ -16,7 +16,7 @@ class Pawn extends Piece implements IPawn {
 
     Pawn(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
-        super.setSymbol(Symbol.p);
+        super.setSymbol(Symbol.P);
         super.setStatus(Status.ALIVE);
         super.setPosition(source);
         super.setChessBoard(chessBoard);
