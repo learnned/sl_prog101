@@ -4,7 +4,7 @@ public class GameConsole {
     private Player playerWhite;
     private Player playerBlack;
     private ChessBoard board;
-    private int visualizationMode;
+    private boolean visualizationMode;
 
     static final String LETTERS_ROW = "   |  A   |  B   |  C   |  D   |  E   |  F   |  G   |  H   |  \n";
     static final String HYPHENS_ROW = "   +------+------+------+------+------+------+------+------+\n";
@@ -14,8 +14,8 @@ public class GameConsole {
     static final String FOUR_BLANKS = "    ";
     static final String BAR = " | ";
     static final String END_LINE = "\n";
-    static final int VISUALIZATION_TEXT = 0;
-    static final int VISUALIZATION_ASCII = 1;
+    static final boolean VISUALIZATION_TEXT = false;
+    static final boolean VISUALIZATION_ASCII = true;
     //Colors
     static final String COLOR_RESET = "\033[0m";
     // Regular Colors
@@ -34,7 +34,7 @@ public class GameConsole {
         this.board = new ChessBoard();
     }
 
-    public GameConsole(final int visualizationMode) {
+    public GameConsole(final boolean visualizationMode) {
         if (visualizationMode == VISUALIZATION_ASCII) {
             this.visualizationMode = VISUALIZATION_ASCII;
         } else {

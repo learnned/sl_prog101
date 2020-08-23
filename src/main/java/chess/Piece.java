@@ -6,7 +6,7 @@ abstract class Piece implements IMovable {
     private Status status;
     private Position position;
     private ChessBoard chessBoard;
-    private int visualizationMode;
+    private boolean visualizationMode;
     static final String WHITE_STRING = "W";
     static final String BLACK_STRING = "B";
     static final int CASTLING_LEFT = -2, CASTLING_RIGHT = 2, CASTLING_LEFT_ROOK_SOURCE = 0, CASTLING_RIGHT_ROOK_SOURCE = 7, CASTLING_LEFT_ROOK_TARGET = 3, CASTLING_RIGHT_ROOK_TARGET = 5;

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ChessBoard {
     private Piece[][] board;
-    private int visualizationMode;
+    private boolean visualizationMode;
     static final int CHESSBOARD_SIZE = 8;
     static final int SOURCE_ROW_BLACK_PAWNS = 6;
     static final int SOURCE_ROW_WHITE_PAWNS = 1;
@@ -30,7 +30,7 @@ public class ChessBoard {
         board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
     }
 
-    public ChessBoard(final int visualizationMode) {
+    public ChessBoard(final boolean visualizationMode) {
         board = new Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
         this.visualizationMode = visualizationMode;
         createPieces();
@@ -40,7 +40,7 @@ public class ChessBoard {
      * Return type of visualization of the game
      */
 
-    public int getVisualizationMode() {
+    public boolean getVisualizationMode() {
         return this.visualizationMode;
     }
 
