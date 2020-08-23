@@ -71,13 +71,6 @@ class Pawn extends Piece implements IPawn {
 
     @Override
     public Piece promotion(final byte type) {
-        int row = this.getPosition().getRow();
-        if (row == LIMIT_OF_ARRAY && this.getColor().toString() == "BLACK") {
-
-        }
-        if (row == BEGGING_OF_ARRAY && this.getColor().toString() == "WHITE") {
-
-        }
         return null;
     }
 
