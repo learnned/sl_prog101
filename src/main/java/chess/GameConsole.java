@@ -13,7 +13,7 @@ public class GameConsole {
     static final String THREE_BLANKS = "   ";
     static final String BAR = " | ";
     static final String END_LINE = "\n";
-    static final int VISUALIZATION_MODE = 1;
+    static final int  VISUALIZATION_MODE = 1;
     //Colors
     static final String COLOR_RESET = "\033[0m";
     // Regular Colors
@@ -55,14 +55,27 @@ public class GameConsole {
         for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
             container = container + addColorSymbols((irow + 1) + "") + addColorSymbols(BLANK + BAR);
             for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
-                if (board.getBoard()[icol][irow] == null) {
-                    container = container + addColorSymbols(THREE_BLANKS) + addColorSymbols(BAR);
-                } else {
-                    String element = board.getBoard()[icol][irow].toString(VISUALIZATION_MODE);
-                    if (board.getBoard()[icol][irow].getColor() == Color.BLACK) {
-                        container = container + addColorBlack(BLANK + element + BLANK) + addColorSymbols(BAR);
+                if ((icol + irow) % 2 == 0) {
+                    if (board.getBoard()[icol][irow] == null) {
+                        container = container + addColorBlack(THREE_BLANKS) + addColorSymbols(BAR);
                     } else {
-                        container = container + addColorWhite(BLANK + element + BLANK) + addColorSymbols(BAR);
+                        String element = board.getBoard()[icol][irow].toString(VISUALIZATION_MODE);
+                        if (board.getBoard()[icol][irow].getColor() == Color.BLACK) {
+                            container = container + addColorBlack(BLANK + element + BLANK) + addColorSymbols(BAR);
+                        } else {
+                            container = container + addColorBlack(BLANK + element + BLANK) + addColorSymbols(BAR);
+                        }
+                    }
+                } else {
+                    if (board.getBoard()[icol][irow] == null) {
+                        container = container + addColorWhite(THREE_BLANKS) + addColorSymbols(BAR);
+                    } else {
+                        String element = board.getBoard()[icol][irow].toString(VISUALIZATION_MODE);
+                        if (board.getBoard()[icol][irow].getColor() == Color.BLACK) {
+                            container = container + addColorWhite(BLANK + element + BLANK) + addColorSymbols(BAR);
+                        } else {
+                            container = container + addColorWhite(BLANK + element + BLANK) + addColorSymbols(BAR);
+                        }
                     }
                 }
             }
