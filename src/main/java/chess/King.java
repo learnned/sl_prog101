@@ -49,7 +49,7 @@ class King extends Piece implements ICastling, ICheck {
                 row += rowIncrement;
                 if (col >= LEFT_BOTTOM_LIMIT && row >= LEFT_BOTTOM_LIMIT && col <= RIGHT_TOP_LIMIT && row <= RIGHT_TOP_LIMIT) {
                     temp = this.getChessBoard().getBoard()[col][row];
-                    if (!this.getChessBoard().isUnderAtack(col, row, this.getColor())) {
+                    if (!this.getChessBoard().isUnderAttack(col, row, this.getColor())) {
                         if (temp == null) {
                             arrayPosition.add(new Position(col, row));
                         } else if (this.getColor() != temp.getColor()) {
@@ -74,17 +74,17 @@ class King extends Piece implements ICastling, ICheck {
 
     public void castling(final ArrayList arrayPosition) {
         int kingRow = this.getPosition().getRow();
-        if (!getChessBoard().isUnderAtack(E_COL, kingRow, this.getColor())) {
+        if (!getChessBoard().isUnderAttack(E_COL, kingRow, this.getColor())) {
             if (getChessBoard().getBoard()[A_COL][kingRow] instanceof Rook && getChessBoard().getBoard()[A_COL][kingRow].getFirstMovement()
                     && getChessBoard().getBoard()[B_COL][kingRow] == null && getChessBoard().getBoard()[C_COL][kingRow] == null
                     && getChessBoard().getBoard()[D_COL][kingRow] == null) {
-                if (!getChessBoard().isUnderAtack(C_COL, kingRow, this.getColor()) && !getChessBoard().isUnderAtack(D_COL, kingRow, this.getColor())) {
+                if (!getChessBoard().isUnderAttack(C_COL, kingRow, this.getColor()) && !getChessBoard().isUnderAttack(D_COL, kingRow, this.getColor())) {
                     arrayPosition.add(new Position(C_COL, kingRow));
                 }
             }
             if (getChessBoard().getBoard()[H_COL][kingRow] instanceof Rook && getChessBoard().getBoard()[H_COL][kingRow].getFirstMovement()
                     && getChessBoard().getBoard()[G_COL][kingRow] == null && getChessBoard().getBoard()[F_COL][kingRow] == null) {
-                if (!getChessBoard().isUnderAtack(G_COL, kingRow, this.getColor()) && !getChessBoard().isUnderAtack(F_COL, kingRow, this.getColor())) {
+                if (!getChessBoard().isUnderAttack(G_COL, kingRow, this.getColor()) && !getChessBoard().isUnderAttack(F_COL, kingRow, this.getColor())) {
                     arrayPosition.add(new Position(G_COL, kingRow));
                 }
             }
@@ -92,7 +92,7 @@ class King extends Piece implements ICastling, ICheck {
     }
 
     public boolean isChecked() {
-        if (getChessBoard().isUnderAtack(this.getPosition().getColumn(), this.getPosition().getRow(), this.getColor())) {
+        if (getChessBoard().isUnderAttack(this.getPosition().getColumn(), this.getPosition().getRow(), this.getColor())) {
             return true;
         }
         return false;

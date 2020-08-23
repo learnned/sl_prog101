@@ -121,7 +121,7 @@ public class ChessBoard {
      * @return if a Piece of Void space is under enemy attack or not
      *
      **/
-    public boolean isUnderAtack(final int col, final int row, final Color color) {
+    public boolean isUnderAttack(final int col, final int row, final Color color) {
         for (int irow = 0; irow < CHESSBOARD_SIZE; irow++) {
             for (int icol = 0; icol < CHESSBOARD_SIZE; icol++) {
                 if (this.board[icol][irow] != null && this.board[icol][irow].getColor() != color) {
