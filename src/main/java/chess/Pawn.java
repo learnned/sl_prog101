@@ -5,13 +5,11 @@ import java.util.ArrayList;
 class Pawn extends Piece implements IPawn {
     static final int LIMIT_OF_ARRAY = 8, EMPTY = 0, FRIEND = 1, ENEMY = -1, BEGGING_OF_ARRAY = 0;
     static final int ROCK = 0, BISHOP = 1, QUEEN = 3, HORSE = 2, NEGATIVE = -1, POSITIVE = 1;
-    private static boolean firstMovement;
     Pawn(final Color color, final Position source) {
         super.setColor(color);
         super.setSymbol(Symbol.P);
         super.setStatus(Status.ALIVE);
         super.setPosition(source);
-        firstMovement = true;
     }
 
     Pawn(final Color color, final Position source, final ChessBoard chessBoard) {
@@ -20,7 +18,6 @@ class Pawn extends Piece implements IPawn {
         super.setStatus(Status.ALIVE);
         super.setPosition(source);
         super.setChessBoard(chessBoard);
-        firstMovement = true;
     }
 
     public ArrayList<Position> getPossibleMoves() {
@@ -43,13 +40,10 @@ class Pawn extends Piece implements IPawn {
         }
         return FRIEND;
     }
-    public void changeFirstMovementState() {
-            this.firstMovement = false;
-    }
 
     public void checkMovements(final ArrayList<Position> arrayPositions, final String color, final int column, final int row, final int negative, final int positive) {
         if ((super.getColor() + "").equals(color)) {
-            if (firstMovement) {
+            if (getFirstMovement()) {
                 if (possibleMovement(this.getChessBoard().getBoard()[column][row + negative]) == EMPTY) {
                     arrayPositions.add(new Position(column, row + negative + negative));
                 }
