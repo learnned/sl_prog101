@@ -72,6 +72,9 @@ public class GameConsole {
                         container = container + addColorBlack(FOUR_BLANKS);
                     } else {
                         String element = board.getBoard()[icol][irow].toString();
+                        if (element.length() == 1) {
+                            container = container + BLANK;
+                        }
                         if ((icol + irow) % 2 == 0) {
                             container = container + addColorBlack(BLANK + element + BLANK);
                         } else {
