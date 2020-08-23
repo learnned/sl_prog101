@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.List;
+
 public class ChessBoard {
     private Piece[][] board;
     static final int CHESSBOARD_SIZE = 8;
@@ -110,7 +112,29 @@ public class ChessBoard {
     private void createKings() {
         Position posBKing = new Position(SOURCE_COL_KINGS, SOURCE_ROW_BLACK_NOT_PAWNS);
         Position posWKing = new Position(SOURCE_COL_KINGS, SOURCE_ROW_WHITE_NOT_PAWNS);
-        board[SOURCE_COL_KINGS][SOURCE_ROW_BLACK_NOT_PAWNS] = new King(Color.BLACK, posBKing);
-        board[SOURCE_COL_KINGS][SOURCE_ROW_WHITE_NOT_PAWNS] = new King(Color.WHITE, posWKing);
+        board[SOURCE_COL_KINGS][SOURCE_ROW_BLACK_NOT_PAWNS] = new King(Color.BLACK, posBKing, this);
+        board[SOURCE_COL_KINGS][SOURCE_ROW_WHITE_NOT_PAWNS] = new King(Color.WHITE, posWKing, this);
+    }
+
+    /**
+     *
+     * @return if a Piece of Void space is under enemy attack or not
+     *
+     **/
+    public boolean isUnderAttack(final int col, final int row, final Color color) {
+        for (int irow = 0; irow < CHESSBOARD_SIZE; irow++) {
+            for (int icol = 0; icol < CHESSBOARD_SIZE; icol++) {
+                if (this.board[icol][irow] != null && this.board[icol][irow].getColor() != color) {
+                    List<Position> arrayMoves;
+                    arrayMoves = board[icol][irow].getPossibleMoves();
+                    for (Position move : arrayMoves) {
+                        if (move.getColumn() == col && move.getRow() == row) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

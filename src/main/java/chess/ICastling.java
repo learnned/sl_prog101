@@ -1,5 +1,6 @@
 package chess;
+import java.util.ArrayList;
 
 interface ICastling {
-    void castling();
+    void castling(ArrayList arrayList);
 }
