@@ -6,6 +6,15 @@ class Queen extends Piece {
     static final int NEGATIVEONE = -1;
     static final int POSITIVEONE = +1;
     static final int ZERO = 0;
+
+    Queen(final Color color, final Position source) {
+        super.setColor(color);
+        super.setSymbol(Symbol.Q);
+        super.setStatus(Status.ALIVE);
+        super.setPosition(source);
+        this.getPossibleMovePiece = new GetPossibleMovePiece(this);
+    }
+
     Queen(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
         super.setSymbol(Symbol.Q);

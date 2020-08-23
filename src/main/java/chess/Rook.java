@@ -4,6 +4,14 @@ import java.util.ArrayList;
 class Rook extends Piece implements ICastling {
 
     private GetPossibleMovePiece getPossibleMovePiece;
+    Rook(final Color color, final Position source) {
+        super.setColor(color);
+        super.setSymbol(Symbol.R);
+        super.setStatus(Status.ALIVE);
+        super.setPosition(source);
+        this.getPossibleMovePiece = new GetPossibleMovePiece(this);
+    }
+
     Rook(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
         super.setSymbol(Symbol.R);

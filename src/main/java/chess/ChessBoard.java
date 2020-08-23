@@ -24,7 +24,7 @@ public class ChessBoard {
         board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
         board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
     }
-    /**create the cheassboard without piecese**/
+    /**create the chessboard without pieces**/
     public void crateAnEmptyChessBoard() {
         board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
     }
