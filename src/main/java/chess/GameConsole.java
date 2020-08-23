@@ -4,16 +4,22 @@ public class GameConsole {
     private Player playerWhite;
     private Player playerBlack;
     private ChessBoard board;
+    private int visualizationMode;
 
-    static final String LETTERS_ROW = "   |  A  |  B  |  C  |  D  |  E  |  F  |  G  |  H  |  \n";
-    static final String HYPHENS_ROW = "   +-----+-----+-----+-----+-----+-----+-----+-----+\n";
+    static final String LETTERS_ROW = "   |  A   |  B   |  C   |  D   |  E   |  F   |  G   |  H   |  \n";
+    static final String HYPHENS_ROW = "   +------+------+------+------+------+------+------+------+\n";
     static final int LAST_INDEX = 7;
     static final int FIRST_INDEX = 0;
     static final String BLANK = " ";
-    static final String THREE_BLANKS = "   ";
+    static final String FOUR_BLANKS = "    ";
     static final String BAR = " | ";
     static final String END_LINE = "\n";
+<<<<<<< HEAD
     static final int  VISUALIZATION_MODE = 1;
+=======
+    static final int VISUALIZATION_TEXT = 0;
+    static final int VISUALIZATION_ASCII = 1;
+>>>>>>> Update the visualizing pieces in console
     //Colors
     static final String COLOR_RESET = "\033[0m";
     // Regular Colors
@@ -28,8 +34,19 @@ public class GameConsole {
 
 
     public GameConsole() {
+        visualizationMode = VISUALIZATION_TEXT;
         this.board = new ChessBoard();
     }
+
+    public GameConsole(final int visualizationMode) {
+        if (visualizationMode == VISUALIZATION_ASCII) {
+            this.visualizationMode = VISUALIZATION_ASCII;
+        } else {
+            this.visualizationMode = VISUALIZATION_TEXT;
+        }
+        board = new ChessBoard(this.visualizationMode);
+    }
+
     /**Method that starts the game**/
     public void start() {
         System.out.println("the game has started");
@@ -113,5 +130,4 @@ public class GameConsole {
     private String addColorBlack(final String symbol) {
         return COLOR_BLACK + COLOR_GREEN_BACKGROUND + symbol + COLOR_RESET;
     }
-
 }

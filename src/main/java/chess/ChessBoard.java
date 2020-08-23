@@ -4,6 +4,7 @@ import java.util.List;
 
 public class ChessBoard {
     private Piece[][] board;
+    private int visualizationMode;
     static final int CHESSBOARD_SIZE = 8;
     static final int SOURCE_ROW_BLACK_PAWNS = 6;
     static final int SOURCE_ROW_WHITE_PAWNS = 1;
@@ -19,14 +20,31 @@ public class ChessBoard {
     static final int SOURCE_COL_KINGS = 4;
 
     public ChessBoard() {
-        board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
+        board = new Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
+        visualizationMode = GameConsole.VISUALIZATION_TEXT;
         createPieces();
     }
+
     public ChessBoard(final Piece piece) {
         board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
         board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
     }
-    /**create the chessboard without pieces**/
+
+    public ChessBoard(final int visualizationMode) {
+        board = new Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
+        this.visualizationMode = visualizationMode;
+        createPieces();
+    }
+
+    /**
+     * Return type of visualization of the game
+     */
+
+    public int getVisualizationMode() {
+        return this.visualizationMode;
+    }
+
+    /**create the cheassboard without piecese**/
     public void crateAnEmptyChessBoard() {
         board = new  Piece[CHESSBOARD_SIZE][CHESSBOARD_SIZE];
     }

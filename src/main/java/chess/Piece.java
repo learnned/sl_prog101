@@ -6,7 +6,9 @@ abstract class Piece implements IMovable {
     private Status status;
     private Position position;
     private ChessBoard chessBoard;
-    static final String WHITE_STRING = "W", BLACK_STRING = "B";
+    private int visualizationMode;
+    static final String WHITE_STRING = "W";
+    static final String BLACK_STRING = "B";
     static final int CASTLING_LEFT = -2, CASTLING_RIGHT = 2, CASTLING_LEFT_ROOK_SOURCE = 0, CASTLING_RIGHT_ROOK_SOURCE = 7, CASTLING_LEFT_ROOK_TARGET = 3, CASTLING_RIGHT_ROOK_TARGET = 5;
     private boolean firstMovement = true;
 
@@ -44,6 +46,7 @@ abstract class Piece implements IMovable {
 
     public void setChessBoard(final ChessBoard chessBoard) {
         this.chessBoard = chessBoard;
+        this.visualizationMode = chessBoard.getVisualizationMode();
     }
 
     public boolean move(final Position target) {
@@ -94,14 +97,22 @@ abstract class Piece implements IMovable {
         return chessBoard;
     }
 
-    public String toString(final int visualitationMode) {
-        if (visualitationMode == 1) {
-            if (this.color == Color.WHITE) {
-                return this.symbol.getWhite();
+    public String toString() {
+        try {
+            if (this.chessBoard.getVisualizationMode() == GameConsole.VISUALIZATION_ASCII) {
+                if (this.color == Color.WHITE) {
+                    return this.symbol.getWhite();
+                } else {
+                    return this.symbol.getWhite();
+                }
             } else {
-                return this.symbol.getWhite();
+                if (this.color == Color.WHITE) {
+                    return this.symbol.getlabel() + WHITE_STRING;
+                } else {
+                    return this.symbol.getlabel() + BLACK_STRING;
+                }
             }
-        } else {
+        } catch (Exception e) {
             if (this.color == Color.WHITE) {
                 return this.symbol.getlabel() + WHITE_STRING;
             } else {

@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 
 public class KingTest {
 
-    final static int VISUALITATION_MODE = 0;
-
     @Test
     public void testCreateKing() {
         Position pos = new Position(0, 0);
@@ -21,7 +19,7 @@ public class KingTest {
         ChessBoard chessBoard = new ChessBoard();
         King piece = new King(Color.BLACK, pos, chessBoard);
         String expected = "KB";
-        String actual = piece.toString(VISUALITATION_MODE);
+        String actual = piece.toString();
         assertEquals(expected, actual);
     }
 
@@ -31,7 +29,7 @@ public class KingTest {
         ChessBoard chessBoard = new ChessBoard();
         King piece = new King(Color.WHITE, pos, chessBoard);
         String expected = "KW";
-        String actual = piece.toString(VISUALITATION_MODE);
+        String actual = piece.toString();
         assertEquals(expected, actual);
     }
 
