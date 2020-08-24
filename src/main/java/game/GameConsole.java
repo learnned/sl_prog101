@@ -112,7 +112,7 @@ public class GameConsole {
             for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
                 String tmpContainer = "";
                 if (board.getBoard()[icol][irow] == null) {
-                    tmpContainer = FOUR_BLANKS;
+                    tmpContainer = addColorBlack(FOUR_BLANKS);
                 } else {
                     String element = board.getBoard()[icol][irow].toString();
                     if (element.length() == 1) {
@@ -293,9 +293,12 @@ public class GameConsole {
         legendDisplay("******Welcome Chess Game********");
         legendDisplay("********************************");
     }
+
     public void init() {
         sc = new Scanner(System.in);
         welcome();
+        userSelectPiece();
+
         legendDisplay(blink("First Player Name: "));
 
         String nameA  = sc.nextLine();
@@ -311,6 +314,7 @@ public class GameConsole {
         playerBlack = new Player(Color.BLACK, false, nameA);
         playerWhite = new Player(Color.WHITE, true, nameB);
         boolean turn = true;
+
         while(true){
             if (turn) {
                 legendDisplay(blink("Player 1 " + nameA + " is your turn"));
@@ -332,7 +336,7 @@ public class GameConsole {
         int mode;
         switch(option) {
             case 1:
-                System.out.println("Coming soon");
+                userSelectPiece();
                 break;
             case 2:
                 System.out.println("Coming soon");
@@ -346,5 +350,23 @@ public class GameConsole {
             default:
                 System.out.println("UPS");
         }
+    }
+
+    //Fix me
+    public void userSelectPiece(){
+        String column = "A";
+        String row = "7";
+        int[] userInput = convertInputUserToProgram(column, row);
+        System.out.println("-----------------------");
+        drawChessBoardSpecificElement(userInput[0], userInput[1]);
+        System.out.println("-----------------------");
+
+    }
+
+    //Fix me
+    public int[] convertInputUserToProgram(final String column, final String row){
+        //use maps and return positions of the game
+        int[] position = {0, 6};
+        return position;
     }
 }
