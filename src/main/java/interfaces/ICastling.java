@@ -7,4 +7,5 @@ public interface ICastling {
     void addQueensideCastling(ArrayList arrayList, int kingRow);
 
     void addKingsideCastling(ArrayList arrayList, int kingRow);
+
 }

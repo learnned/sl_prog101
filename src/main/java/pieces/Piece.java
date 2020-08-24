@@ -1,5 +1,6 @@
 package pieces;
 import static java.lang.Math.abs;
+
 import game.ChessBoard;
 import game.GameConsole;
 import interfaces.IMovable;
@@ -17,6 +18,7 @@ import enums.Status;
     static final String WHITE_STRING = "W";
     static final String BLACK_STRING = "B";
     static final int CASTLING_RIGHT = 2, CASTLING_LEFT_ROOK_COL_SOURCE = 0, CASTLING_RIGHT_ROOK_COL_SOURCE = 7, CASTLING_LEFT_ROOK_TARGET = 3, CASTLING_RIGHT_ROOK_TARGET = 5;
+
     private boolean firstMovement = true;
 
     public final void die() {
@@ -111,6 +113,7 @@ import enums.Status;
                 } else {
                     moveRookWhenCastling(CASTLING_LEFT_ROOK_COL_SOURCE, target.getRow(), CASTLING_LEFT_ROOK_TARGET);
                 }
+
             }
             return true;
         }

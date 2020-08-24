@@ -1,7 +1,8 @@
 package chess;
-import pieces.Position;
 
 import org.junit.Test;
+import pieces.Position;
+
 import static org.junit.Assert.*;
 
 
