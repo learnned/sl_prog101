@@ -14,4 +14,5 @@ class Main {
         GameConsole console = new GameConsole();
         console.drawChessBoard();
     }
+
 }
