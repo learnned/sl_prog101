@@ -21,7 +21,7 @@ class Main {
         Scanner sc = new Scanner(System.in);
         int modeVisualization = sc.nextByte();
         System.out.println(modeVisualization);
-        GameConsole console = new GameConsole( modeVisualization == 2);
+        GameConsole console = new GameConsole(modeVisualization == 2);
         console.init();
     }
 }

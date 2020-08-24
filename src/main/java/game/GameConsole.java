@@ -2,8 +2,6 @@ package game;
 
 import enums.Color;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class GameConsole {
@@ -22,6 +20,10 @@ public class GameConsole {
     static final String BAR = " | ";
     static final String END_LINE = "\n";
     static final boolean VISUALIZATION_TEXT = false;
+    static final int OPTION_ONE = 1;
+    static final int OPTION_TWO = 2;
+    static final int OPTION_THREE = 3;
+    static final int OPTION_FOUR = 4;
     public static final boolean VISUALIZATION_ASCII = true;
     //Colors
     static final String COLOR_RESET = "\033[0m";
@@ -120,7 +122,7 @@ public class GameConsole {
                         tmpContainer += addColorWhite(BLANK + element + BLANK);
                     }
                 }
-                if (row == irow && col == icol){
+                if (row == irow && col == icol) {
                     tmpContainer = blink(tmpContainer);
                 }
                 container = container + tmpContainer + addColorSymbols(BAR);
@@ -159,26 +161,37 @@ public class GameConsole {
     private String addColorBlack(final String symbol) {
         return COLOR_BLACK + COLOR_GREEN_BACKGROUND + symbol + COLOR_RESET;
     }
-
-
-    private String blink (final String element) {
+    /**
+     * Return efect blink for GUI
+     * @param element
+     * @return String whit the efect
+     */
+    private String blink(final String element) {
         return "\033[5m" + element + "\033[0m";
     }
-
-    public void clearDisplay(){
+    /**
+     * Clear console
+     */
+    public void clearDisplay() {
         System.out.println("\033[2J\033[1;1H");
     }
-
-    public void legendDisplay(final String text){
+    /**
+     * Print message color green
+     */
+    public void legendDisplay(final String text) {
         System.out.println(COLOR_GREEN + text);
     }
-
-    public void welcome(){
+    /**
+     * Display message of the welcome
+     */
+    public void welcome() {
         legendDisplay("********************************");
         legendDisplay("******Welcome Chess Game********");
         legendDisplay("********************************");
     }
-
+    /**
+     * Init game
+     */
     public void init() {
         sc = new Scanner(System.in);
         welcome();
@@ -197,8 +210,7 @@ public class GameConsole {
         playerBlack = new Player(Color.BLACK, false, nameA);
         playerWhite = new Player(Color.WHITE, true, nameB);
         boolean turn = true;
-
-        while(true){
+        while (true) {
             if (turn) {
                 legendDisplay(blink("Player 1 " + nameA + " is your turn"));
             } else {
@@ -208,33 +220,37 @@ public class GameConsole {
             menu(turn);
         }
     }
-
+    /**
+     * Display the menu
+     *  @param turnPlayer
+     */
     public void menu(final boolean turnPlayer) {
         System.out.println("1.- Select Piece");
         System.out.println("2.- View All movements");
         System.out.println("3.- Move Piece");
         int option = sc .nextInt();
         int mode;
-        switch(option) {
-            case 1:
+        switch (option) {
+            case OPTION_ONE:
                 userSelectPiece();
                 break;
-            case 2:
+            case OPTION_TWO:
                 System.out.println("Coming soon");
                 break;
-            case 3:
+            case OPTION_THREE:
                 System.out.println("Coming soon");
                 break;
-            case 4:
+            case OPTION_FOUR:
                 drawChessBoard();
                 break;
             default:
                 System.out.println("UPS");
         }
     }
-
-    //Fix me
-    public void userSelectPiece(){
+     /**
+     * userSelectPiece
+     */
+    public void userSelectPiece() {
         String column = "A";
         String row = "7";
         int[] userInput = convertInputUserToProgram(column, row);
@@ -244,11 +260,13 @@ public class GameConsole {
         System.out.println("-----------------------");
 
     }
-
-    //Fix me
-    public int[] convertInputUserToProgram(final String column, final String row){
+    /**
+     * Convert input A7 to 0,6
+     *  @param column, row
+     */
+    public int[] convertInputUserToProgram(final String column, final String row) {
         //use maps and return positions of the game
-        int[] position = {0, 6};
+        int[] position = {0, OPTION_FOUR + OPTION_TWO}; //0,6
         return position;
     }
 }
