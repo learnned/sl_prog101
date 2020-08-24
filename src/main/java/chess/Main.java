@@ -12,6 +12,7 @@ class Main {
     }
 
     public static void main(final String[] args) {
+        System.out.println("\u001b[40m");
         System.out.println("********************************");
         System.out.println("******Welcome Chess Game********");
         System.out.println("********************************");
