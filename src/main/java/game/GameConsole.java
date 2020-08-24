@@ -1,8 +1,10 @@
 package game;
 
 import enums.Color;
+import pieces.Position;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -18,7 +20,7 @@ public class GameConsole {
     static final int LAST_INDEX = 7;
     static final int FIRST_INDEX = 0;
     static final String BLANK = " ";
-    static final String FOUR_BLANKS = "    ";
+    static final String FOUR_BLANKS = "....";
     static final String BAR = " | ";
     static final String END_LINE = "\n";
     static final boolean VISUALIZATION_TEXT = false;
@@ -32,8 +34,9 @@ public class GameConsole {
     static final String COLOR_WHITE = "\033[37m";
     // Background
     public static final String COLOR_GREEN_BACKGROUND = "\033[42m";
+    public static final String COLOR_BLACK_BACKGROUND = "\u001b[40m";
     // High Intensity
-    public static final String COLOR_WHITE_BRIGHT = "\033[0;97m";
+    public static final String COLOR_WHITE_BRIGHT = "\033[97m";
 
     public GameConsole() {
         visualizationMode = VISUALIZATION_TEXT;
@@ -81,7 +84,7 @@ public class GameConsole {
                         if (element.length() == 1) {
                             container = container + BLANK;
                         }
-                        if ((icol + irow) % 2 == 0) {
+                        if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
                             container = container + addColorBlack(BLANK + element + BLANK);
                         } else {
                             container = container + addColorWhite(BLANK + element + BLANK);
@@ -114,13 +117,49 @@ public class GameConsole {
                     if (element.length() == 1) {
                         tmpContainer = BLANK;
                     }
-                    if ((icol + irow) % 2 == 0) {
-                        tmpContainer += addColorBlack(BLANK + element + BLANK);
+                    if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
+                        tmpContainer += COLOR_BLACK_BACKGROUND + addColorBlack(BLANK + element + BLANK);
                     } else {
                         tmpContainer += addColorWhite(BLANK + element + BLANK);
                     }
                 }
                 if (row == irow && col == icol){
+                    tmpContainer = blink(tmpContainer);
+                }
+                container = container + tmpContainer + addColorSymbols(BAR);
+            }
+            container += addColorSymbols(END_LINE);
+            container += addColorSymbols(HYPHENS_ROW);
+        }
+        container += addColorSymbols(LETTERS_ROW);
+        container += addColorSymbols(HYPHENS_ROW);
+        System.out.print(COLOR_BLACK_BACKGROUND + container);
+    }
+
+    /**Method that prints or draws the board**/
+    public void drawChessBoardSpecificElement(final Map<Integer, Integer> mapPositions, final int sourceCol, final int sourceRow) {
+        String container;
+        container =  addColorSymbols(HYPHENS_ROW);
+        container += addColorSymbols(LETTERS_ROW);
+        container += addColorSymbols(HYPHENS_ROW);
+        for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
+            container = container + addColorSymbols((irow + 1) + "") + addColorSymbols(BLANK + BAR);
+            for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
+                String tmpContainer = "";
+                if (board.getBoard()[icol][irow] == null) {
+                    tmpContainer = FOUR_BLANKS;
+                } else {
+                    String element = board.getBoard()[icol][irow].toString();
+                    if (element.length() == 1) {
+                        tmpContainer = BLANK;
+                    }
+                    if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
+                        tmpContainer += addColorBlack(BLANK + element + BLANK);
+                    } else {
+                        tmpContainer += addColorWhite(BLANK + element + BLANK);
+                    }
+                }
+                if (mapPositions.containsKey(icol) && mapPositions.get(icol) == irow || sourceCol == icol && sourceRow == irow) {
                     tmpContainer = blink(tmpContainer);
                 }
                 container = container + tmpContainer + addColorSymbols(BAR);
@@ -157,7 +196,7 @@ public class GameConsole {
      * @return String whit the color
      */
     private String addColorBlack(final String symbol) {
-        return COLOR_BLACK + COLOR_GREEN_BACKGROUND + symbol + COLOR_RESET;
+        return COLOR_GREEN_BACKGROUND + COLOR_BLACK + symbol + COLOR_RESET;
     }
 
 
@@ -182,13 +221,13 @@ public class GameConsole {
     public void init() {
         sc = new Scanner(System.in);
         welcome();
-        legendDisplay(blink("First Player Name: "));
+        legendDisplay("First Player Name: ");
 
         String nameA  = sc.nextLine();
         clearDisplay();
 
         welcome();
-        legendDisplay(blink("Second Player Name: "));
+        legendDisplay("Second Player Name: ");
         String nameB  = sc.nextLine();
         clearDisplay();
 
@@ -214,10 +253,15 @@ public class GameConsole {
         System.out.println("2.- View All movements");
         System.out.println("3.- Move Piece");
         int option = sc .nextInt();
-        int mode;
-        switch(option) {
-            case 1:
-                userSelectPiece();
+        int row = 0;
+        int col = 0;
+        int[] userInput;
+        switch (option) {
+            case OPTION_ONE:
+                userInput = userSelectPiece();
+                //drawChessBoardSpecificElement(userInput[0], userInput[1]);
+                clearDisplay();
+                drawChessBoardSpecificElement(getPosibleMove(userInput[0], userInput[1]), userInput[0], userInput[1]);
                 break;
             case 2:
                 System.out.println("Coming soon");
@@ -232,23 +276,32 @@ public class GameConsole {
                 System.out.println("UPS");
         }
     }
-
-    //Fix me
-    public void userSelectPiece(){
-        String column = "A";
-        String row = "7";
-        int[] userInput = convertInputUserToProgram(column, row);
-        clearDisplay();
-        System.out.println("-----------------------");
-        drawChessBoardSpecificElement(userInput[0], userInput[1]);
-        System.out.println("-----------------------");
-
+     /**
+     * userSelectPiece
+     */
+    public int[] userSelectPiece() {
+        String cad = sc.next().toUpperCase();
+        return convertInputUserToProgram(cad.charAt(0), String.valueOf(cad.charAt(1)));
     }
-
-    //Fix me
-    public int[] convertInputUserToProgram(final String column, final String row){
-        //use maps and return positions of the game
-        int[] position = {0, 6};
+    /**
+     * Convert input A7 to 0,6
+     *  @param column, row
+     */
+    public int[] convertInputUserToProgram(final char column, final String row) {
+        int[] position = {column - 'A', Integer.parseInt(row) - 1 };
         return position;
+    }
+    /**
+     * Obtain a map whit all possible positions
+     *  @param col, row
+     */
+    public Map<Integer, Integer> getPosibleMove(final int col, final int row) {
+        List<Position> arrayMoves = board.getBoard()[col][row].getPossibleMoves();
+        Map<Integer, Integer> mapPositions = new HashMap<Integer, Integer>();
+        for (Position move : arrayMoves) {
+            System.out.println("Debug  = " + move.getColumn() + " " + move.getRow() + " | " + (char) ('A' + move.getColumn()) + "   " + (move.getRow() + 1)); //debug
+            mapPositions.put(move.getColumn(), move.getRow());
+        }
+        return mapPositions;
     }
 }

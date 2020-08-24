@@ -43,7 +43,7 @@ public class GetPossibleMovePiece {
         for (int i = 0; i < arrayMovementColumn.length; i++) {
             newColumn = column + arrayMovementColumn[i];
             newRow = row + arrayMovementRow[i];
-            if (newColumn >= 0 && newColumn < BOARD_SIZE && newRow >= 0 && newColumn < BOARD_SIZE) {
+            if (newColumn >= 0 && newColumn < BOARD_SIZE && newRow >= 0 && newRow < BOARD_SIZE) {
                 if (isPossibleToContinue(piece.getChessBoard().getBoard()[newColumn][newRow]) == -1) {
                     arrayPositions.add(piece.getChessBoard().getBoard()[newColumn][newRow].getPosition());
                 } else if (isPossibleToContinue(piece.getChessBoard().getBoard()[newColumn][newRow]) == 0) {
