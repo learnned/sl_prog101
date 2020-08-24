@@ -60,7 +60,7 @@ class King extends Piece implements ICastling, ICheck {
             }
         }
         if (getFirstMovement() && !isChecked()) {
-            castling(arrayPosition);
+            addCastling(arrayPosition);
         }
         /*for (Position pos : arrayPosition) {
             System.out.print("[" + pos.getColumn() + "," + pos.getRow() + "]");
@@ -72,21 +72,27 @@ class King extends Piece implements ICastling, ICheck {
     public void checkmate() {
     }
 
-    public void castling(final ArrayList arrayPosition) {
+    public void addCastling(final ArrayList arrayPosition) {
         int kingRow = this.getPosition().getRow();
-        if (!getChessBoard().isUnderAttack(E_COL, kingRow, this.getColor())) {
-            if (getChessBoard().getBoard()[A_COL][kingRow] instanceof Rook && getChessBoard().getBoard()[A_COL][kingRow].getFirstMovement()
-                    && getChessBoard().getBoard()[B_COL][kingRow] == null && getChessBoard().getBoard()[C_COL][kingRow] == null
-                    && getChessBoard().getBoard()[D_COL][kingRow] == null) {
-                if (!getChessBoard().isUnderAttack(C_COL, kingRow, this.getColor()) && !getChessBoard().isUnderAttack(D_COL, kingRow, this.getColor())) {
-                    arrayPosition.add(new Position(C_COL, kingRow));
-                }
+        addQueensideCastling(arrayPosition, kingRow);
+        addKingsideCastling(arrayPosition, kingRow);
+    }
+
+    public void addQueensideCastling(final ArrayList arrayPosition, final int kingRow) {
+        if (getChessBoard().getBoard()[A_COL][kingRow] instanceof Rook && getChessBoard().getBoard()[A_COL][kingRow].getFirstMovement()
+                && getChessBoard().getBoard()[B_COL][kingRow] == null && getChessBoard().getBoard()[C_COL][kingRow] == null
+                && getChessBoard().getBoard()[D_COL][kingRow] == null) {
+            if (!getChessBoard().isUnderAttack(C_COL, kingRow, this.getColor()) && !getChessBoard().isUnderAttack(D_COL, kingRow, this.getColor())) {
+                arrayPosition.add(new Position(C_COL, kingRow));
             }
-            if (getChessBoard().getBoard()[H_COL][kingRow] instanceof Rook && getChessBoard().getBoard()[H_COL][kingRow].getFirstMovement()
-                    && getChessBoard().getBoard()[G_COL][kingRow] == null && getChessBoard().getBoard()[F_COL][kingRow] == null) {
-                if (!getChessBoard().isUnderAttack(G_COL, kingRow, this.getColor()) && !getChessBoard().isUnderAttack(F_COL, kingRow, this.getColor())) {
-                    arrayPosition.add(new Position(G_COL, kingRow));
-                }
+        }
+    }
+
+    public void addKingsideCastling(final ArrayList arrayPosition, final int kingRow) {
+        if (getChessBoard().getBoard()[H_COL][kingRow] instanceof Rook && getChessBoard().getBoard()[H_COL][kingRow].getFirstMovement()
+                && getChessBoard().getBoard()[G_COL][kingRow] == null && getChessBoard().getBoard()[F_COL][kingRow] == null) {
+            if (!getChessBoard().isUnderAttack(G_COL, kingRow, this.getColor()) && !getChessBoard().isUnderAttack(F_COL, kingRow, this.getColor())) {
+                arrayPosition.add(new Position(G_COL, kingRow));
             }
         }
     }
