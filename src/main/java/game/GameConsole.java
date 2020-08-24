@@ -297,8 +297,6 @@ public class GameConsole {
     public void init() {
         sc = new Scanner(System.in);
         welcome();
-        userSelectPiece();
-
         legendDisplay(blink("First Player Name: "));
 
         String nameA  = sc.nextLine();
@@ -327,8 +325,6 @@ public class GameConsole {
     }
 
     public void menu(final boolean turnPlayer) {
-        clearDisplay();
-        drawChessBoard();
         System.out.println("1.- Select Piece");
         System.out.println("2.- View All movements");
         System.out.println("3.- Move Piece");
@@ -357,6 +353,7 @@ public class GameConsole {
         String column = "A";
         String row = "7";
         int[] userInput = convertInputUserToProgram(column, row);
+        clearDisplay();
         System.out.println("-----------------------");
         drawChessBoardSpecificElement(userInput[0], userInput[1]);
         System.out.println("-----------------------");
