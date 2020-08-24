@@ -103,7 +103,7 @@ public class Pawn extends Piece implements IPawn {
      *
      */
     @Override
-    public void inPassant(ArrayList<Position> arrayPositions, final int column, final int row) {
+    public void inPassant(final ArrayList<Position> arrayPositions, final int column, final int row) {
         int increment;
         if (this.getColor() == Color.WHITE) {
             increment = INCREMENT_WHITE;
