@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Pawn extends Piece implements IPawn {
     static final int LIMIT_OF_ARRAY = 8, EMPTY = 0, FRIEND = 1, ENEMY = -1, BEGGING_OF_ARRAY = 0;
     static final int ROCK = 0, BISHOP = 1, QUEEN = 3, HORSE = 2, NEGATIVE = -1, POSITIVE = 1;
-    publi final int INCREMENT_BLACK = +1, INCREMENT_WHITE = -1;
+    static final int INCREMENT_BLACK = +1, INCREMENT_WHITE = -1;
     public Pawn(final Color color, final Position source) {
         super.setColor(color);
         super.setSymbol(Symbol.P);
