@@ -1,9 +1,10 @@
 package interfaces;
-
+import pieces.Position;
+import java.util.ArrayList;
 import pieces.Piece;
 
 public interface IPawn {
     Piece promotion(byte type);
 
-    void inPassant();
+    abstract void inPassant(ArrayList<Position>  arrayPositions, final int column, final int row, final int increment);
 }
