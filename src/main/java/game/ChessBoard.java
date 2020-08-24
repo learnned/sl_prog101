@@ -1,4 +1,14 @@
-package chess;
+package game;
+
+import enums.Color;
+import pieces.Piece;
+import pieces.Bishop;
+import pieces.Horse;
+import pieces.King;
+import pieces.Pawn;
+import pieces.Queen;
+import pieces.Rook;
+import pieces.Position;
 
 import java.util.List;
 

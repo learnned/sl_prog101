@@ -1,7 +1,9 @@
-package chess;
+package interfaces;
+import pieces.Position;
+
 import java.util.List;
 
-interface IMovable {
+public interface IMovable {
     boolean isPossibleMove(Position target);
 
     List<Position> getPossibleMoves();

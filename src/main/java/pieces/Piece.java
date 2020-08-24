@@ -1,6 +1,11 @@
-package chess;
-
-abstract class Piece implements IMovable {
+package pieces;
+import game.ChessBoard;
+import game.GameConsole;
+import interfaces.IMovable;
+import enums.Color;
+import enums.Symbol;
+import enums.Status;
+ public abstract class Piece implements IMovable {
     private Color color;
     private Symbol symbol;
     private Status status;
@@ -16,39 +21,76 @@ abstract class Piece implements IMovable {
         this.status = Status.DEAD;
     }
 
+     /**
+      *
+      * @return Position the actual position of the piece
+      */
     public Position getPosition() {
         return this.position;
     }
 
+     /**
+      *
+      * @return the color of the piece
+      */
     public Color getColor() {
         return this.color;
     }
 
+     /**
+      *
+      * @param color
+      */
     public void setColor(final Color color) {
         this.color = color;
     }
 
+     /**
+      *
+      * @return
+      */
     public boolean getFirstMovement() {
         return firstMovement;
     }
 
+     /**
+      *
+      * @param symbol
+      */
     public void setSymbol(final Symbol symbol) {
         this.symbol = symbol;
     }
 
+     /**
+      *
+      * @param status
+      */
     public void setStatus(final Status status) {
         this.status = status;
     }
 
+     /**
+      *
+      * @param source
+      */
     public void setPosition(final Position source) {
         this.position = source;
     }
 
+     /**
+      *
+      * @param chessBoard
+      */
     public void setChessBoard(final ChessBoard chessBoard) {
         this.chessBoard = chessBoard;
         this.visualizationMode = chessBoard.getVisualizationMode();
     }
 
+     /**
+      *
+      * @param target
+      * @return
+      */
     public boolean move(final Position target) {
         if (isPossibleMove(target)) {
             Position previousPosition = this.getPosition();
@@ -84,6 +126,11 @@ abstract class Piece implements IMovable {
         return false;
     }
 
+     /**
+      *
+      * @param target
+      * @return
+      */
     public boolean isPossibleMove(final Position target) {
         for (Position pos : getPossibleMoves()) {
             if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
@@ -93,10 +140,18 @@ abstract class Piece implements IMovable {
         return false;
     }
 
+     /**
+      *
+      * @return
+      */
     public ChessBoard getChessBoard() {
         return chessBoard;
     }
 
+     /**
+      *
+      * @return
+      */
     public String toString() {
         try {
             if (this.chessBoard.getVisualizationMode() == GameConsole.VISUALIZATION_ASCII) {

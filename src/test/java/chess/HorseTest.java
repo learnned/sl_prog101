@@ -1,6 +1,10 @@
     package chess;
-    import chess.*;
+    import enums.Color;
+    import game.ChessBoard;
     import org.junit.Test;
+    import pieces.Horse;
+    import pieces.Position;
+
     import java.util.List;
     import static org.junit.Assert.*;
 

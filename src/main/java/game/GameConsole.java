@@ -1,4 +1,4 @@
-package chess;
+package game;
 
 public class GameConsole {
     private Player playerWhite;
@@ -15,7 +15,7 @@ public class GameConsole {
     static final String BAR = " | ";
     static final String END_LINE = "\n";
     static final boolean VISUALIZATION_TEXT = false;
-    static final boolean VISUALIZATION_ASCII = true;
+    public static final boolean VISUALIZATION_ASCII = true;
     //Colors
     static final String COLOR_RESET = "\033[0m";
     // Regular Colors

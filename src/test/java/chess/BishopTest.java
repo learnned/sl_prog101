@@ -1,6 +1,11 @@
 package chess;
-import chess.*;
+import enums.Color;
+import game.ChessBoard;
 import org.junit.Test;
+import pieces.Bishop;
+import pieces.Position;
+import pieces.Queen;
+
 import static org.junit.Assert.*;
 
 public class BishopTest {

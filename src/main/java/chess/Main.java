@@ -1,5 +1,7 @@
 package chess;
 
+import game.GameConsole;
+
 class Main {
 
     private String aux;
