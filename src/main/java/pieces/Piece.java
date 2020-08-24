@@ -117,6 +117,12 @@ import enums.Status;
         return false;
     }
 
+     /**
+      * Add Queenside Castling to Array of Positions whether it is possible
+      * @param sourceCol source column of the Rook that does Castling
+      * @param row row where Castling occurs
+      * @param targetCol target column to Rook will move when Castling occurs
+      */
      public void moveRookWhenCastling(final int sourceCol, final int row, final int targetCol) {
          Piece rookToMove = chessBoard.getBoard()[sourceCol][row];
          rookToMove.firstMovement = false;

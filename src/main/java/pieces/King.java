@@ -103,12 +103,20 @@ public class King extends Piece implements ICastling, ICheck {
         }
     }
 
+    /**
+     * Add two Castling types to Array of Positions whether it is possible
+     * @param arrayPosition array of possible positions
+     */
     public void addCastling(final ArrayList arrayPosition) {
         int kingRow = this.getPosition().getRow();
         addQueensideCastling(arrayPosition, kingRow);
         addKingsideCastling(arrayPosition, kingRow);
     }
 
+    /**
+     * Add Queenside Castling to Array of Positions whether it is possible
+     * @param arrayPosition array of possible positions
+     */
     public void addQueensideCastling(final ArrayList arrayPosition, final int kingRow) {
         if (getChessBoard().getBoard()[A_COL][kingRow] instanceof Rook && getChessBoard().getBoard()[A_COL][kingRow].getFirstMovement()
                 && getChessBoard().getBoard()[B_COL][kingRow] == null && getChessBoard().getBoard()[C_COL][kingRow] == null
@@ -119,6 +127,10 @@ public class King extends Piece implements ICastling, ICheck {
         }
     }
 
+    /**
+     * Add Kingside Castling to Array of Positions whether it is possible
+     * @param arrayPosition array of possible positions
+     */
     public void addKingsideCastling(final ArrayList arrayPosition, final int kingRow) {
         if (getChessBoard().getBoard()[H_COL][kingRow] instanceof Rook && getChessBoard().getBoard()[H_COL][kingRow].getFirstMovement()
                 && getChessBoard().getBoard()[G_COL][kingRow] == null && getChessBoard().getBoard()[F_COL][kingRow] == null) {
