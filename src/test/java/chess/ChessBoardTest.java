@@ -34,4 +34,5 @@ public class ChessBoardTest {
                                 "RWHWBWQWKWBWHWRW";
         assertEquals(expected, actual);
     }
+
 }

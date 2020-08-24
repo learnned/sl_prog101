@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Pawn extends Piece implements IPawn {
     static final int LIMIT_OF_ARRAY = 8, EMPTY = 0, FRIEND = 1, ENEMY = -1, BEGGING_OF_ARRAY = 0;
     static final int ROCK = 0, BISHOP = 1, QUEEN = 3, HORSE = 2, NEGATIVE = -1, POSITIVE = 1;
+    static final int INCREMENT_BLACK = +1, INCREMENT_WHITE = -1;
     public Pawn(final Color color, final Position source) {
         super.setColor(color);
         super.setSymbol(Symbol.P);
@@ -66,9 +67,7 @@ public class Pawn extends Piece implements IPawn {
     public void checkMovements(final ArrayList<Position> arrayPositions, final String color, final int column, final int row, final int negative, final int positive) {
         if ((super.getColor() + "").equals(color)) {
             if (getFirstMovement()) {
-                if (possibleMovement(this.getChessBoard().getBoard()[column][row + negative]) == EMPTY) {
-                    arrayPositions.add(new Position(column, row + negative + negative));
-                }
+                inPassant(arrayPositions, column, row, negative);
             }
             if (possibleMovement(this.getChessBoard().getBoard()[column][row + negative]) == EMPTY) {
                 arrayPositions.add(new Position(column, row + negative));
@@ -92,6 +91,11 @@ public class Pawn extends Piece implements IPawn {
      */
     @Override
     public Piece promotion(final byte type) {
+        int row =  this.getPosition().getRow();
+        int column = this.getPosition().getColumn();
+        if (row == BEGGING_OF_ARRAY || row == LIMIT_OF_ARRAY) {
+            this.getChessBoard().getBoard()[column][row] = getPiece(type);
+        }
         return null;
     }
 
@@ -99,8 +103,10 @@ public class Pawn extends Piece implements IPawn {
      *
      */
     @Override
-    public void inPassant() {
-
+    public void inPassant(final ArrayList<Position> arrayPositions, final int column, final int row, final int increment) {
+        if (possibleMovement(this.getChessBoard().getBoard()[column][row + increment + increment]) == EMPTY) {
+            arrayPositions.add(new Position(column, row + increment + increment));
+        }
     }
 
     /**
