@@ -36,7 +36,10 @@ checkstyleTest {
     source ='src/main/java'
 }
 
-check.dependsOn jacocoTestReport
+run{
+    standardInput = System.in
+}
 
+check.dependsOn jacocoTestReport
 test.finalizedBy("checkstyleMain")
 test.finalizedBy("jacocoTestReport")
