@@ -1,10 +1,13 @@
 package game;
 
+import java.util.Scanner;
+
 public class GameConsole {
     private Player playerWhite;
     private Player playerBlack;
     private ChessBoard board;
     private boolean visualizationMode;
+    private Scanner sc;
 
     static final String LETTERS_ROW = "   |  A   |  B   |  C   |  D   |  E   |  F   |  G   |  H   |  \n";
     static final String HYPHENS_ROW = "   +------+------+------+------+------+------+------+------+\n";
@@ -27,7 +30,6 @@ public class GameConsole {
     public static final String COLOR_GREEN_BACKGROUND = "\033[42m";
     // High Intensity
     public static final String COLOR_WHITE_BRIGHT = "\033[0;97m";
-
 
     public GameConsole() {
         visualizationMode = VISUALIZATION_TEXT;
@@ -116,5 +118,78 @@ public class GameConsole {
      */
     private String addColorBlack(final String symbol) {
         return COLOR_BLACK + COLOR_GREEN_BACKGROUND + symbol + COLOR_RESET;
+    }
+
+
+    private String blink (final String element) {
+        return "\033[5m" + element + "\033[0m";
+    }
+
+    public void clearDisplay(){
+        System.out.println("\033[2J\033[1;1H");
+    }
+
+    public void legendDisplay(final String text){
+        System.out.println(COLOR_GREEN + text);
+    }
+
+    public void welcome(){
+        legendDisplay("********************************");
+        legendDisplay("******Welcome Chess Game********");
+        legendDisplay("********************************");
+    }
+    public void init() {
+        sc = new Scanner(System.in);
+        welcome();
+        legendDisplay(blink("First Player Name: "));
+
+        String nameA  = sc.nextLine();
+        clearDisplay();
+
+        welcome();
+        legendDisplay(blink("Second Player Name: "));
+        String nameB  = sc.nextLine();
+        clearDisplay();
+
+        welcome();
+        drawChessBoard();
+        playerBlack = new Player(Color.BLACK, false, nameA);
+        playerWhite = new Player(Color.WHITE, true, nameB);
+        boolean turn = true;
+        while(true){
+            if (turn) {
+                legendDisplay(blink("Player 1 " + nameA + " is your turn"));
+            } else {
+                legendDisplay(blink("Player 2 " + nameA + " is your turn"));
+            }
+            turn = !turn;
+            menu(turn);
+        }
+    }
+
+    public void menu(final boolean turnPlayer) {
+        clearDisplay();
+        drawChessBoard();
+        System.out.println("1.- Select Piece");
+        System.out.println("2.- View All movements");
+        System.out.println("3.- Move Piece");
+        int option = sc .nextInt();
+        int mode;
+        switch(option) {
+            case 1:
+                System.out.println("Coming soon");
+                break;
+            case 2:
+                System.out.println("Coming soon");
+                break;
+            case 3:
+                System.out.println("Coming soon");
+                break;
+            case 4:
+                drawChessBoard();
+                break;
+            default:
+                System.out.println("UPS");
+        }
     }
 }
