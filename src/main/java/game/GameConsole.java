@@ -1,5 +1,7 @@
 package game;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GameConsole {
@@ -22,10 +24,10 @@ public class GameConsole {
     //Colors
     static final String COLOR_RESET = "\033[0m";
     // Regular Colors
-    static final String COLOR_BLACK = "\033[0;30m";
-    static final String COLOR_RED = "\033[0;31m";
-    static final String COLOR_GREEN = "\033[0;32m";
-    static final String COLOR_WHITE = "\033[0;37m";
+    static final String COLOR_BLACK = "\033[30m";
+    static final String COLOR_RED = "\033[31m";
+    static final String COLOR_GREEN = "\033[32m";
+    static final String COLOR_WHITE = "\033[37m";
     // Background
     public static final String COLOR_GREEN_BACKGROUND = "\033[42m";
     // High Intensity
@@ -93,6 +95,42 @@ public class GameConsole {
         System.out.print(container);
     }
 
+    /**Method that prints or draws the board**/
+    public void drawChessBoardSpecificElement(final int col, final int row) {
+        String container;
+        container =  addColorSymbols(HYPHENS_ROW);
+        container += addColorSymbols(LETTERS_ROW);
+        container += addColorSymbols(HYPHENS_ROW);
+        for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
+            container = container + addColorSymbols((irow + 1) + "") + addColorSymbols(BLANK + BAR);
+            for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
+                String tmpContainer = "";
+                if (board.getBoard()[icol][irow] == null) {
+                    tmpContainer = addColorBlack(FOUR_BLANKS);
+                } else {
+                    String element = board.getBoard()[icol][irow].toString();
+                    if (element.length() == 1) {
+                        tmpContainer = BLANK;
+                    }
+                    if ((icol + irow) % 2 == 0) {
+                        tmpContainer += addColorBlack(BLANK + element + BLANK);
+                    } else {
+                        tmpContainer += addColorWhite(BLANK + element + BLANK);
+                    }
+                }
+                if (row == irow && col == icol){
+                    tmpContainer = blink(tmpContainer);
+                }
+                container = container + tmpContainer + addColorSymbols(BAR);
+            }
+            container += addColorSymbols(END_LINE);
+            container += addColorSymbols(HYPHENS_ROW);
+        }
+        container += addColorSymbols(LETTERS_ROW);
+        container += addColorSymbols(HYPHENS_ROW);
+        System.out.print(container);
+    }
+
     /**
      * Return color for GUI
      * @param symbol
@@ -138,9 +176,12 @@ public class GameConsole {
         legendDisplay("******Welcome Chess Game********");
         legendDisplay("********************************");
     }
+
     public void init() {
         sc = new Scanner(System.in);
         welcome();
+        userSelectPiece();
+
         legendDisplay(blink("First Player Name: "));
 
         String nameA  = sc.nextLine();
@@ -156,6 +197,7 @@ public class GameConsole {
         playerBlack = new Player(Color.BLACK, false, nameA);
         playerWhite = new Player(Color.WHITE, true, nameB);
         boolean turn = true;
+
         while(true){
             if (turn) {
                 legendDisplay(blink("Player 1 " + nameA + " is your turn"));
@@ -177,7 +219,7 @@ public class GameConsole {
         int mode;
         switch(option) {
             case 1:
-                System.out.println("Coming soon");
+                userSelectPiece();
                 break;
             case 2:
                 System.out.println("Coming soon");
@@ -191,5 +233,23 @@ public class GameConsole {
             default:
                 System.out.println("UPS");
         }
+    }
+
+    //Fix me
+    public void userSelectPiece(){
+        String column = "A";
+        String row = "7";
+        int[] userInput = convertInputUserToProgram(column, row);
+        System.out.println("-----------------------");
+        drawChessBoardSpecificElement(userInput[0], userInput[1]);
+        System.out.println("-----------------------");
+
+    }
+
+    //Fix me
+    public int[] convertInputUserToProgram(final String column, final String row){
+        //use maps and return positions of the game
+        int[] position = {0, 6};
+        return position;
     }
 }
