@@ -67,7 +67,7 @@ public class Pawn extends Piece implements IPawn {
     public void checkMovements(final ArrayList<Position> arrayPositions, final String color, final int column, final int row, final int negative, final int positive) {
         if ((super.getColor() + "").equals(color)) {
             if (getFirstMovement()) {
-                inPassant(arrayPositions, column, row);
+                inPassant(arrayPositions, column, row, negative);
             }
             if (possibleMovement(this.getChessBoard().getBoard()[column][row + negative]) == EMPTY) {
                 arrayPositions.add(new Position(column, row + negative));
@@ -103,14 +103,8 @@ public class Pawn extends Piece implements IPawn {
      *
      */
     @Override
-    public void inPassant(final ArrayList<Position> arrayPositions, final int column, final int row) {
-        int increment;
-        if (this.getColor() == Color.WHITE) {
-            increment = INCREMENT_WHITE;
-        } else {
-            increment = INCREMENT_BLACK;
-        }
-        if (possibleMovement(this.getChessBoard().getBoard()[column][row + increment]) == EMPTY) {
+    public void inPassant(final ArrayList<Position> arrayPositions, final int column, final int row, final int increment) {
+        if (possibleMovement(this.getChessBoard().getBoard()[column][row + increment + increment]) == EMPTY) {
             arrayPositions.add(new Position(column, row + increment + increment));
         }
     }
