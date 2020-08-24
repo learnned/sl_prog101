@@ -1,6 +1,6 @@
-package chess;
+package enums;
 
-enum Symbol {
+public enum Symbol {
     P("P", "♙", "♟"),
     B("B", "♗", "♝"),
     R("R", "♖", "♜"),

@@ -1,5 +1,7 @@
 package chess;
 
+import enums.Color;
+
 public class Player {
     private Color color;
     private boolean turn;

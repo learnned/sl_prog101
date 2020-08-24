@@ -1,6 +1,6 @@
-package chess;
+package interfaces;
 import java.util.ArrayList;
 
-interface ICastling {
+public interface ICastling {
     void castling(ArrayList arrayList);
 }

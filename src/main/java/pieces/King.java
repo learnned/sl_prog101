@@ -1,8 +1,12 @@
-package chess;
-
+package pieces;
+import chess.ChessBoard;
+import enums.Color;
+import enums.Status;
+import enums.Symbol;
+import interfaces.ICastling;
+import interfaces.ICheck;
 import java.util.ArrayList;
-
-class King extends Piece implements ICastling, ICheck {
+public class King extends Piece implements ICastling, ICheck {
     static final int LEFT_BOTTOM_LIMIT = 0;
     static final int RIGHT_TOP_LIMIT = 7;
     static final int MAX_STEPS_PER_SIDE = 2;
@@ -12,7 +16,7 @@ class King extends Piece implements ICastling, ICheck {
     static final int SIDE3 = 3;
     static final int A_COL = 0, B_COL = 1, C_COL = 2, D_COL = 3, E_COL = 4, F_COL = 5, G_COL = 6, H_COL = 7;
 
-    King(final Color color, final Position source, final ChessBoard chessBoard) {
+    public King(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
         super.setSymbol(Symbol.K);
         super.setStatus(Status.ALIVE);
@@ -20,6 +24,10 @@ class King extends Piece implements ICastling, ICheck {
         super.setChessBoard(chessBoard);
     }
 
+    /**
+     * Method that veirfies all the possible movement of the king
+     * @return arraylist with all the possible movements
+     */
     public ArrayList<Position> getPossibleMoves() {
         ArrayList<Position> arrayPosition = new ArrayList<Position>();
         int col = this.getPosition().getColumn() + 1;
@@ -72,6 +80,10 @@ class King extends Piece implements ICastling, ICheck {
     public void checkmate() {
     }
 
+    /**
+     * Verifies if it is possible a castling
+     * @param arrayPosition array of possible positions
+     */
     public void castling(final ArrayList arrayPosition) {
         int kingRow = this.getPosition().getRow();
         if (!getChessBoard().isUnderAttack(E_COL, kingRow, this.getColor())) {
@@ -91,6 +103,10 @@ class King extends Piece implements ICastling, ICheck {
         }
     }
 
+    /**
+     * Verifies if the position is checked
+     * @return boolean
+     */
     public boolean isChecked() {
         if (getChessBoard().isUnderAttack(this.getPosition().getColumn(), this.getPosition().getRow(), this.getColor())) {
             return true;

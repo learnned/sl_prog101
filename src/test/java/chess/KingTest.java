@@ -1,5 +1,10 @@
 package chess;
+import enums.Color;
 import org.junit.Test;
+import pieces.Bishop;
+import pieces.King;
+import pieces.Position;
+import pieces.Rook;
 
 import static org.junit.Assert.*;
 

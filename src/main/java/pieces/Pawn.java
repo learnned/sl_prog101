@@ -1,18 +1,22 @@
-package chess;
-
+package pieces;
+import chess.ChessBoard;
+import enums.Color;
+import enums.Status;
+import enums.Symbol;
+import interfaces.IPawn;
 import java.util.ArrayList;
 
-class Pawn extends Piece implements IPawn {
+public class Pawn extends Piece implements IPawn {
     static final int LIMIT_OF_ARRAY = 8, EMPTY = 0, FRIEND = 1, ENEMY = -1, BEGGING_OF_ARRAY = 0;
     static final int ROCK = 0, BISHOP = 1, QUEEN = 3, HORSE = 2, NEGATIVE = -1, POSITIVE = 1;
-    Pawn(final Color color, final Position source) {
+    public Pawn(final Color color, final Position source) {
         super.setColor(color);
         super.setSymbol(Symbol.P);
         super.setStatus(Status.ALIVE);
         super.setPosition(source);
     }
 
-    Pawn(final Color color, final Position source, final ChessBoard chessBoard) {
+    public Pawn(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
         super.setSymbol(Symbol.P);
         super.setStatus(Status.ALIVE);
@@ -20,6 +24,10 @@ class Pawn extends Piece implements IPawn {
         super.setChessBoard(chessBoard);
     }
 
+    /**
+     * Verifies all the possible position
+     * @return ArrayList with the possible positions
+     */
     public ArrayList<Position> getPossibleMoves() {
         int row = this.getPosition().getRow();
         int column = this.getPosition().getColumn();
@@ -31,6 +39,11 @@ class Pawn extends Piece implements IPawn {
         return arrayPositions;
     }
 
+    /**
+     *
+     * @param targetPiece
+     * @return
+     */
     public byte possibleMovement(final Piece targetPiece) {
         if (targetPiece == null) {
             return EMPTY;
@@ -41,6 +54,15 @@ class Pawn extends Piece implements IPawn {
         return FRIEND;
     }
 
+    /**
+     *
+     * @param arrayPositions
+     * @param color
+     * @param column
+     * @param row
+     * @param negative
+     * @param positive
+     */
     public void checkMovements(final ArrayList<Position> arrayPositions, final String color, final int column, final int row, final int negative, final int positive) {
         if ((super.getColor() + "").equals(color)) {
             if (getFirstMovement()) {
@@ -63,16 +85,29 @@ class Pawn extends Piece implements IPawn {
     public void checkmate() {
     }
 
+    /**
+     *
+     * @param type
+     * @return
+     */
     @Override
     public Piece promotion(final byte type) {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public void inPassant() {
 
     }
 
+    /**
+     *
+     * @param type
+     * @return
+     */
     public Piece getPiece(final byte type) {
         if (type == ROCK) {
             Piece rock =  new Rook(this.getColor(), this.getPosition());
