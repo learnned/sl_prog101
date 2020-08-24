@@ -1,5 +1,4 @@
-package chess;
-
+package pieces;
 import java.util.ArrayList;
 
 public class GetPossibleMovePiece {

@@ -1,7 +1,7 @@
-package chess;
+package interfaces;
 import java.util.ArrayList;
 
-interface ICastling {
+public interface ICastling {
     void addCastling(ArrayList arrayList);
 
     void addQueensideCastling(ArrayList arrayList, int kingRow);

@@ -1,13 +1,18 @@
-package chess;
+package pieces;
+
+import game.ChessBoard;
+import enums.Color;
+import enums.Symbol;
+import enums.Status;
 
 import java.util.ArrayList;
-class Queen extends Piece {
+public class Queen extends Piece {
     private GetPossibleMovePiece getPossibleMovePiece;
     static final int NEGATIVEONE = -1;
     static final int POSITIVEONE = +1;
     static final int ZERO = 0;
 
-    Queen(final Color color, final Position source) {
+    public Queen(final Color color, final Position source) {
         super.setColor(color);
         super.setSymbol(Symbol.Q);
         super.setStatus(Status.ALIVE);
@@ -15,7 +20,7 @@ class Queen extends Piece {
         this.getPossibleMovePiece = new GetPossibleMovePiece(this);
     }
 
-    Queen(final Color color, final Position source, final ChessBoard chessBoard) {
+    public Queen(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
         super.setSymbol(Symbol.Q);
         super.setStatus(Status.ALIVE);
@@ -24,6 +29,10 @@ class Queen extends Piece {
         this.getPossibleMovePiece = new GetPossibleMovePiece(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Position> getPossibleMoves() {
         int row = this.getPosition().getRow();
         int column = this.getPosition().getColumn();

@@ -1,4 +1,6 @@
-package chess;
+package game;
+
+import enums.Color;
 
 public class Player {
     private Color color;

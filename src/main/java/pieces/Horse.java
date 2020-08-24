@@ -1,11 +1,15 @@
-package chess;
+package pieces;
+import game.ChessBoard;
+import enums.Color;
+import enums.Status;
+import enums.Symbol;
 import java.util.ArrayList;
 
-class Horse extends Piece {
+public class Horse extends Piece {
 
     private GetPossibleMovePiece getPossibleMovePiece;
 
-    Horse(final Color color, final Position source, final ChessBoard chessBoard) {
+    public Horse(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
         super.setSymbol(Symbol.H);
         super.setStatus(Status.ALIVE);
@@ -21,6 +25,10 @@ class Horse extends Piece {
         getPossibleMovePiece = new GetPossibleMovePiece(this);
     }
 
+    /**
+     * verifies all the possible movemento of the horse
+     * @return arrayList with the possible moves of horse
+     */
     public ArrayList<Position> getPossibleMoves() {
         ArrayList<Position> arrayPosition = new ArrayList<Position>();
         getPossibleMovePiece.possibleMovementHorse(arrayPosition, this.getPosition().getColumn(), this.getPosition().getRow());

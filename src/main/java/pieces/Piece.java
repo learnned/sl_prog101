@@ -1,8 +1,13 @@
-package chess;
-
+package pieces;
 import static java.lang.Math.abs;
+import game.ChessBoard;
+import game.GameConsole;
+import interfaces.IMovable;
+import enums.Color;
+import enums.Symbol;
+import enums.Status;
 
-abstract class Piece implements IMovable {
+ public abstract class Piece implements IMovable {
     private Color color;
     private Symbol symbol;
     private Status status;
@@ -18,43 +23,76 @@ abstract class Piece implements IMovable {
         this.status = Status.DEAD;
     }
 
+     /**
+      *
+      * @return Position the actual position of the piece
+      */
     public Position getPosition() {
         return this.position;
     }
 
+     /**
+      *
+      * @return the color of the piece
+      */
     public Color getColor() {
         return this.color;
     }
 
+     /**
+      *
+      * @param color
+      */
     public void setColor(final Color color) {
         this.color = color;
     }
 
+     /**
+      *
+      * @return
+      */
     public boolean getFirstMovement() {
         return firstMovement;
     }
 
-    public ChessBoard getChessBoard() {
-        return chessBoard;
-    }
-
+     /**
+      *
+      * @param symbol
+      */
     public void setSymbol(final Symbol symbol) {
         this.symbol = symbol;
     }
 
+     /**
+      *
+      * @param status
+      */
     public void setStatus(final Status status) {
         this.status = status;
     }
 
+     /**
+      *
+      * @param source
+      */
     public void setPosition(final Position source) {
         this.position = source;
     }
 
+     /**
+      *
+      * @param chessBoard
+      */
     public void setChessBoard(final ChessBoard chessBoard) {
         this.chessBoard = chessBoard;
         this.visualizationMode = chessBoard.getVisualizationMode();
     }
 
+     /**
+      *
+      * @param target
+      * @return
+      */
     public boolean move(final Position target) {
         if (isPossibleMove(target)) {
             Position previousPosition = this.getPosition();
@@ -66,7 +104,7 @@ abstract class Piece implements IMovable {
             }
             this.position = target;
             chessBoard.movePiece(this, previousPosition);
-            if (this instanceof King && abs(this.getPosition().getColumn() - previousPosition.getColumn()) == 2) {
+            if (this instanceof King && abs(this.getPosition().getColumn() - previousPosition.getColumn()) == CASTLING_RIGHT) {
                 int positionsDiff = this.getPosition().getColumn() - previousPosition.getColumn();
                 if (positionsDiff == CASTLING_RIGHT) {
                     moveRookWhenCastling(CASTLING_RIGHT_ROOK_COL_SOURCE, target.getRow(), CASTLING_RIGHT_ROOK_TARGET);
@@ -79,14 +117,19 @@ abstract class Piece implements IMovable {
         return false;
     }
 
-    public void moveRookWhenCastling(final int sourceCol, final int row, final int targetCol) {
-        Piece rookToMove = chessBoard.getBoard()[sourceCol][row];
-        rookToMove.firstMovement = false;
-        rookToMove.position.setColumn(targetCol);
-        chessBoard.getBoard()[targetCol][row] = rookToMove;
-        chessBoard.getBoard()[sourceCol][row] = null;
-    }
+     public void moveRookWhenCastling(final int sourceCol, final int row, final int targetCol) {
+         Piece rookToMove = chessBoard.getBoard()[sourceCol][row];
+         rookToMove.firstMovement = false;
+         rookToMove.position.setColumn(targetCol);
+         chessBoard.getBoard()[targetCol][row] = rookToMove;
+         chessBoard.getBoard()[sourceCol][row] = null;
+     }
 
+     /**
+      *
+      * @param target
+      * @return
+      */
     public boolean isPossibleMove(final Position target) {
         for (Position pos : getPossibleMoves()) {
             if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
@@ -96,6 +139,18 @@ abstract class Piece implements IMovable {
         return false;
     }
 
+     /**
+      *
+      * @return
+      */
+    public ChessBoard getChessBoard() {
+        return chessBoard;
+    }
+
+     /**
+      *
+      * @return
+      */
     public String toString() {
         try {
             if (this.chessBoard.getVisualizationMode() == GameConsole.VISUALIZATION_ASCII) {

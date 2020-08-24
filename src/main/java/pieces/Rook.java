@@ -1,10 +1,16 @@
-package chess;
+package pieces;
+
+import game.ChessBoard;
+import enums.Color;
+import enums.Status;
+import enums.Symbol;
+
 
 import java.util.ArrayList;
-class Rook extends Piece {
+public class Rook extends Piece {
 
     private GetPossibleMovePiece getPossibleMovePiece;
-    Rook(final Color color, final Position source) {
+    public Rook(final Color color, final Position source) {
         super.setColor(color);
         super.setSymbol(Symbol.R);
         super.setStatus(Status.ALIVE);
@@ -12,7 +18,7 @@ class Rook extends Piece {
         this.getPossibleMovePiece = new GetPossibleMovePiece(this);
     }
 
-    Rook(final Color color, final Position source, final ChessBoard chessBoard) {
+    public Rook(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
         super.setSymbol(Symbol.R);
         super.setStatus(Status.ALIVE);
@@ -21,6 +27,10 @@ class Rook extends Piece {
         this.getPossibleMovePiece = new GetPossibleMovePiece(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Position> getPossibleMoves() {
         ArrayList<Position> arrayPositions = new ArrayList<Position>();
         int row = this.getPosition().getRow();
