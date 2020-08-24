@@ -1,4 +1,4 @@
-package chess;
+package game;
 
 import enums.Color;
 import pieces.Piece;

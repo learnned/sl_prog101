@@ -1,5 +1,6 @@
     package chess;
     import enums.Color;
+    import game.ChessBoard;
     import org.junit.Test;
     import pieces.Horse;
     import pieces.Position;

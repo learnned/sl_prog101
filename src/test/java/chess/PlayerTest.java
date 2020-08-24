@@ -1,5 +1,6 @@
 package chess;
 import enums.Color;
+import game.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

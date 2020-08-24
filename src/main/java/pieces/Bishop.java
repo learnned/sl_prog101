@@ -1,5 +1,5 @@
 package pieces;
-import chess.ChessBoard;
+import game.ChessBoard;
 import enums.Color;
 import enums.Status;
 import enums.Symbol;

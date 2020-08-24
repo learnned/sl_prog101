@@ -1,6 +1,6 @@
 package pieces;
-import chess.ChessBoard;
-import chess.GameConsole;
+import game.ChessBoard;
+import game.GameConsole;
 import interfaces.IMovable;
 import enums.Color;
 import enums.Symbol;

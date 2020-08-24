@@ -1,4 +1,5 @@
 package chess;
+import game.ChessBoard;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
