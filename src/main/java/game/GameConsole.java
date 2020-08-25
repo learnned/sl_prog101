@@ -1,6 +1,7 @@
 package game;
 
 import enums.Color;
+import pieces.Piece;
 import pieces.Position;
 
 import java.util.HashMap;
@@ -102,42 +103,6 @@ public class GameConsole {
         container += addColorSymbols(LETTERS_ROW);
         container += addColorSymbols(HYPHENS_ROW);
         System.out.print(container);
-    }
-
-    /**Method that prints or draws the board**/
-    public void drawChessBoardSpecificElement(final int col, final int row) {
-        String container;
-        container =  addColorSymbols(HYPHENS_ROW);
-        container += addColorSymbols(LETTERS_ROW);
-        container += addColorSymbols(HYPHENS_ROW);
-        for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
-            container = container + addColorSymbols((irow + 1) + "") + addColorSymbols(BLANK + BAR);
-            for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
-                String tmpContainer = "";
-                if (board.getBoard()[icol][irow] == null) {
-                    tmpContainer = addColorBlack(FOUR_BLANKS);
-                } else {
-                    String element = board.getBoard()[icol][irow].toString();
-                    if (element.length() == 1) {
-                        tmpContainer = BLANK;
-                    }
-                    if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
-                        tmpContainer += COLOR_BLACK_BACKGROUND + addColorBlack(BLANK + element + BLANK);
-                    } else {
-                        tmpContainer += addColorWhite(BLANK + element + BLANK);
-                    }
-                }
-                if (row == irow && col == icol) {
-                    tmpContainer = blink(tmpContainer);
-                }
-                container = container + tmpContainer + addColorSymbols(BAR);
-            }
-            container += addColorSymbols(END_LINE);
-            container += addColorSymbols(HYPHENS_ROW);
-        }
-        container += addColorSymbols(LETTERS_ROW);
-        container += addColorSymbols(HYPHENS_ROW);
-        System.out.print(COLOR_BLACK_BACKGROUND + container);
     }
 
     /**Method that prints or draws the board**/
@@ -257,8 +222,8 @@ public class GameConsole {
             } else {
                 legendDisplay(blink("Player 2 " + nameA + " is your turn"));
             }
-            turn = !turn;
             menu(turn);
+            turn = !turn;
         }
     }
     /**
@@ -267,27 +232,32 @@ public class GameConsole {
      */
     public void menu(final boolean turnPlayer) {
         System.out.println("1.- Select Piece");
-        System.out.println("2.- View All movements");
-        System.out.println("3.- Move Piece");
+        System.out.println("2.- Move Piece");
         int option = sc .nextInt();
         int row = 0;
         int col = 0;
         int[] userInput;
         switch (option) {
             case OPTION_ONE:
+                System.out.println("Ingress position");
                 userInput = userSelectPiece();
-                //drawChessBoardSpecificElement(userInput[0], userInput[1]);
                 clearDisplay();
+                row = userInput[0];
+                col = userInput[1];
+                System.out.println(board.getBoard()[row][col].getClass());
+                System.out.println(board.getBoard()[col][row].getClass());
+
                 drawChessBoardSpecificElement(getPosibleMove(userInput[0], userInput[1]), userInput[0], userInput[1]);
                 break;
             case OPTION_TWO:
-                System.out.println("Coming soon");
-                break;
-            case OPTION_THREE:
-                System.out.println("Coming soon");
-                break;
-            case OPTION_FOUR:
-                drawChessBoard();
+                System.out.println("Ingress target position");
+                userInput = userSelectPiece();
+                System.out.println(userInput[0] + " " + userInput[1]);
+                Piece piece = board.getBoard()[userInput[0]][userInput[1]];
+                System.out.println(board.getBoard()[userInput[0]][userInput[1]].getClass());
+                System.out.println(piece.getClass());
+                boolean po = piece.move(new Position(userInput[0], userInput[1]));
+                System.out.println(po);
                 break;
             default:
                 System.out.println("UPS");
