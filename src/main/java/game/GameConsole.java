@@ -1,10 +1,7 @@
 package game;
 
 import enums.Color;
-<<<<<<< HEAD
 import pieces.Piece;
-=======
->>>>>>> Adding event blink to specific piece and movements
 import pieces.Position;
 
 import java.util.HashMap;
@@ -122,11 +119,7 @@ public class GameConsole {
                         tmpContainer = BLANK;
                     }
                     if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
-<<<<<<< HEAD
                         tmpContainer += addColorBlack(BLANK + element + BLANK);
-=======
-                        tmpContainer += COLOR_BLACK_BACKGROUND + addColorBlack(BLANK + element + BLANK);
->>>>>>> Adding event blink to specific piece and movements
                     } else {
                         tmpContainer += addColorWhite(BLANK + element + BLANK);
                     }
