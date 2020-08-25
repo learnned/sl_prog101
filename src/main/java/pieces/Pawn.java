@@ -10,12 +10,6 @@ public class Pawn extends Piece implements IPawn {
     static final int LIMIT_OF_ARRAY = 8, EMPTY = 0, FRIEND = 1, ENEMY = -1, BEGGING_OF_ARRAY = 0;
     static final int ROCK = 0, BISHOP = 1, QUEEN = 3, HORSE = 2, NEGATIVE = -1, POSITIVE = 1;
     static final int INCREMENT_BLACK = +1, INCREMENT_WHITE = -1;
-    public Pawn(final Color color, final Position source) {
-        super.setColor(color);
-        super.setSymbol(Symbol.P);
-        super.setStatus(Status.ALIVE);
-        super.setPosition(source);
-    }
 
     public Pawn(final Color color, final Position source, final ChessBoard chessBoard) {
         super.setColor(color);
@@ -72,11 +66,15 @@ public class Pawn extends Piece implements IPawn {
             if (possibleMovement(this.getChessBoard().getBoard()[column][row + negative]) == EMPTY) {
                 arrayPositions.add(new Position(column, row + negative));
             }
-            if (possibleMovement(this.getChessBoard().getBoard()[column + negative][row + negative]) == ENEMY) {
-                arrayPositions.add(this.getChessBoard().getBoard()[column + negative][row + negative].getPosition());
+            if (column <= LIMIT_OF_ARRAY) {
+                if (possibleMovement(this.getChessBoard().getBoard()[column + negative][row + negative]) == ENEMY) {
+                    arrayPositions.add(this.getChessBoard().getBoard()[column + negative][row + negative].getPosition());
+                }
             }
-            if (possibleMovement(this.getChessBoard().getBoard()[column + positive][row + negative]) == ENEMY) {
-                arrayPositions.add(this.getChessBoard().getBoard()[column + positive][row + negative].getPosition());
+            if (column >= BEGGING_OF_ARRAY) {
+                if (possibleMovement(this.getChessBoard().getBoard()[column + positive][row + negative]) == ENEMY) {
+                    arrayPositions.add(this.getChessBoard().getBoard()[column + positive][row + negative].getPosition());
+                }
             }
         }
     }

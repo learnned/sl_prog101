@@ -79,11 +79,6 @@ public class ChessBoard {
         return this.board;
     }
 
-    /**method to move a piece**/
-   /* public void move2(final Position p, final Piece piece) {
-        board[p.getColumn()][p.getRow()] = piece;
-    }*/
-
     /**Method that creates the pieces**/
     public void createPieces() {
         createPawns();
@@ -97,9 +92,9 @@ public class ChessBoard {
     private void createPawns() {
         for (int icol = 0; icol < CHESSBOARD_SIZE; icol++) {
             Position posWhite = new Position(icol, SOURCE_ROW_BLACK_PAWNS);
-            board[icol][SOURCE_ROW_BLACK_PAWNS] = new Pawn(Color.BLACK, posWhite);
+            board[icol][SOURCE_ROW_BLACK_PAWNS] = new Pawn(Color.BLACK, posWhite, this);
             Position posBlack = new Position(icol, SOURCE_ROW_WHITE_PAWNS);
-            board[icol][SOURCE_ROW_WHITE_PAWNS] = new Pawn(Color.WHITE, posBlack);
+            board[icol][SOURCE_ROW_WHITE_PAWNS] = new Pawn(Color.WHITE, posBlack, this);
         }
     }
 

@@ -11,15 +11,19 @@ public class PawnTest {
 
     @Test
     public void testCreatePawn() {
-        Position pos = new Position(0, 0);
-        Pawn piece = new Pawn(Color.BLACK, pos);
+        ChessBoard chessBoardTest = new ChessBoard();
+        chessBoardTest.crateAnEmptyChessBoard();
+        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(1, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[1][1];
         assertNotNull(piece);
     }
 
     @Test
     public void testBlackPawnToString() {
-        Position pos = new Position(0, 0);
-        Pawn piece = new Pawn(Color.BLACK, pos);
+        ChessBoard chessBoardTest = new ChessBoard();
+        chessBoardTest.crateAnEmptyChessBoard();
+        chessBoardTest.addPiece(new Pawn(Color.BLACK, new Position(1, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[1][1];
         String expected = "PB";
         String actual = piece.toString();
         assertEquals(expected, actual);
@@ -27,8 +31,10 @@ public class PawnTest {
 
     @Test
     public void testWhitePawnToString() {
-        Position pos = new Position(0, 0);
-        Pawn piece = new Pawn(Color.WHITE, pos);
+        ChessBoard chessBoardTest = new ChessBoard();
+        chessBoardTest.crateAnEmptyChessBoard();
+        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(1, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[1][1];
         String expected = "PW";
         String actual = piece.toString();
         assertEquals(expected, actual);
@@ -38,9 +44,9 @@ public class PawnTest {
     public void testAdvanceOneSquareAsPieceWhite() {
         ChessBoard chessBoardTest = new ChessBoard();
         chessBoardTest.crateAnEmptyChessBoard();
-        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(4, 4), chessBoardTest));
-        Pawn piece = (Pawn) chessBoardTest.getBoard()[4][4];
-        boolean movementAllowed = piece.move(new Position(4, 5));
+        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(1, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[1][1];
+        boolean movementAllowed = piece.move(new Position(1, 2));
         assertTrue(movementAllowed);
     }
 
@@ -70,9 +76,9 @@ public class PawnTest {
     public void testAdvanceTwoSquaresAsPieceWhite() {
         ChessBoard chessBoardTest = new ChessBoard();
         chessBoardTest.crateAnEmptyChessBoard();
-        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(4, 4), chessBoardTest));
-        Pawn piece = (Pawn) chessBoardTest.getBoard()[4][4];
-        boolean movementAllowed = piece.move(new Position(4, 6));
+        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(4, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[4][1];
+        boolean movementAllowed = piece.move(new Position(4, 3));
         assertTrue(movementAllowed);
     }
 
@@ -157,4 +163,5 @@ public class PawnTest {
         boolean movementAllowed = piece.move(new Position(4, 2));
         assertFalse(movementAllowed);
     }
+
 }
