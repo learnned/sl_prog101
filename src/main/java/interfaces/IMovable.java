@@ -1,12 +1,12 @@
 package interfaces;
 import pieces.Position;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IMovable {
     boolean isPossibleMove(Position target);
 
-    ArrayList<Position> getPossibleMoves();
+    List<Position> getPossibleMoves();
 
     void checkmate();
 }

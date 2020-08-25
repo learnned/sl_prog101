@@ -16,7 +16,6 @@ public class Horse extends Piece {
         super.setPosition(source);
         super.setChessBoard(chessBoard);
         getPossibleMovePiece = new GetPossibleMovePiece(this);
-        super.setPossibleMovements(getPossibleMoves());
     }
     Horse(final Color color, final Position source) {
         super.setColor(color);

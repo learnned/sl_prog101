@@ -7,7 +7,7 @@ import interfaces.IPawn;
 import java.util.ArrayList;
 
 public class Pawn extends Piece implements IPawn {
-    static final int LIMIT_OF_ARRAY = 7, EMPTY = 0, FRIEND = 1, ENEMY = -1, BEGGING_OF_ARRAY = 0;
+    static final int LIMIT_OF_ARRAY = 8, EMPTY = 0, FRIEND = 1, ENEMY = -1, BEGGING_OF_ARRAY = 0;
     static final int ROCK = 0, BISHOP = 1, QUEEN = 3, HORSE = 2, NEGATIVE = -1, POSITIVE = 1;
     static final int INCREMENT_BLACK = +1, INCREMENT_WHITE = -1;
 
@@ -17,7 +17,6 @@ public class Pawn extends Piece implements IPawn {
         super.setStatus(Status.ALIVE);
         super.setPosition(source);
         super.setChessBoard(chessBoard);
-        super.setPossibleMovements(getPossibleMoves());
     }
 
     /**
@@ -28,7 +27,7 @@ public class Pawn extends Piece implements IPawn {
         int row = this.getPosition().getRow();
         int column = this.getPosition().getColumn();
         ArrayList<Position> arrayPositions = new ArrayList<Position>();
-        if ((row >= BEGGING_OF_ARRAY) && (column >= BEGGING_OF_ARRAY) && (row <= LIMIT_OF_ARRAY) && (column <= LIMIT_OF_ARRAY)) {
+        if ((row >= BEGGING_OF_ARRAY) && (column >= BEGGING_OF_ARRAY) && (row < LIMIT_OF_ARRAY) && (column < LIMIT_OF_ARRAY)) {
             checkMovements(arrayPositions, "WHITE", column, row, POSITIVE, NEGATIVE);
             checkMovements(arrayPositions, "BLACK", column, row, NEGATIVE, POSITIVE);
         }
@@ -67,12 +66,12 @@ public class Pawn extends Piece implements IPawn {
             if (possibleMovement(this.getChessBoard().getBoard()[column][row + negative]) == EMPTY) {
                 arrayPositions.add(new Position(column, row + negative));
             }
-            if ((column + negative) <= LIMIT_OF_ARRAY && (column + negative) >= BEGGING_OF_ARRAY) {
+            if (column <= LIMIT_OF_ARRAY) {
                 if (possibleMovement(this.getChessBoard().getBoard()[column + negative][row + negative]) == ENEMY) {
                     arrayPositions.add(this.getChessBoard().getBoard()[column + negative][row + negative].getPosition());
                 }
             }
-            if ((column + positive) <= LIMIT_OF_ARRAY && (column + positive) >= BEGGING_OF_ARRAY) {
+            if (column >= BEGGING_OF_ARRAY) {
                 if (possibleMovement(this.getChessBoard().getBoard()[column + positive][row + negative]) == ENEMY) {
                     arrayPositions.add(this.getChessBoard().getBoard()[column + positive][row + negative].getPosition());
                 }
