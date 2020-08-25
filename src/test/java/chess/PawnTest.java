@@ -11,15 +11,19 @@ public class PawnTest {
 
     @Test
     public void testCreatePawn() {
-        Position pos = new Position(0, 0);
-        Pawn piece = new Pawn(Color.BLACK, pos);
+        ChessBoard chessBoardTest = new ChessBoard();
+        chessBoardTest.crateAnEmptyChessBoard();
+        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(1, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[1][1];
         assertNotNull(piece);
     }
 
     @Test
     public void testBlackPawnToString() {
-        Position pos = new Position(0, 0);
-        Pawn piece = new Pawn(Color.BLACK, pos);
+        ChessBoard chessBoardTest = new ChessBoard();
+        chessBoardTest.crateAnEmptyChessBoard();
+        chessBoardTest.addPiece(new Pawn(Color.BLACK, new Position(1, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[1][1];
         String expected = "PB";
         String actual = piece.toString();
         assertEquals(expected, actual);
@@ -27,8 +31,10 @@ public class PawnTest {
 
     @Test
     public void testWhitePawnToString() {
-        Position pos = new Position(0, 0);
-        Pawn piece = new Pawn(Color.WHITE, pos);
+        ChessBoard chessBoardTest = new ChessBoard();
+        chessBoardTest.crateAnEmptyChessBoard();
+        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(1, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[1][1];
         String expected = "PW";
         String actual = piece.toString();
         assertEquals(expected, actual);
