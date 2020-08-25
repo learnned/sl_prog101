@@ -1,10 +1,13 @@
 package pieces;
+import static java.lang.Math.abs;
+
 import game.ChessBoard;
 import game.GameConsole;
 import interfaces.IMovable;
 import enums.Color;
 import enums.Symbol;
 import enums.Status;
+
  public abstract class Piece implements IMovable {
     private Color color;
     private Symbol symbol;
@@ -14,7 +17,8 @@ import enums.Status;
     private boolean visualizationMode;
     static final String WHITE_STRING = "W";
     static final String BLACK_STRING = "B";
-    static final int CASTLING_LEFT = -2, CASTLING_RIGHT = 2, CASTLING_LEFT_ROOK_SOURCE = 0, CASTLING_RIGHT_ROOK_SOURCE = 7, CASTLING_LEFT_ROOK_TARGET = 3, CASTLING_RIGHT_ROOK_TARGET = 5;
+    static final int CASTLING_RIGHT = 2, CASTLING_LEFT_ROOK_COL_SOURCE = 0, CASTLING_RIGHT_ROOK_COL_SOURCE = 7, CASTLING_LEFT_ROOK_TARGET = 3, CASTLING_RIGHT_ROOK_TARGET = 5;
+
     private boolean firstMovement = true;
 
     public final void die() {
@@ -100,31 +104,35 @@ import enums.Status;
             if (chessBoard.getBoard()[target.getColumn()][target.getRow()] != null) {
                 chessBoard.getBoard()[target.getColumn()][target.getRow()].die();
             }
-            chessBoard.addPiece(this);
             this.position = target;
-            chessBoard.getBoard()[previousPosition.getColumn()][previousPosition.getRow()] = null;
-            if (this instanceof King && (this.getPosition().getColumn() - previousPosition.getColumn() == CASTLING_LEFT || this.getPosition().getColumn() - previousPosition.getColumn() == CASTLING_RIGHT)) {
-                Piece rookMoved;
-                int targetCol;
-                if (this.getPosition().getColumn() - previousPosition.getColumn() == CASTLING_RIGHT) {
-                    rookMoved = chessBoard.getBoard()[CASTLING_RIGHT_ROOK_SOURCE][previousPosition.getRow()];
-                    targetCol = CASTLING_RIGHT_ROOK_TARGET;
+            chessBoard.movePiece(this, previousPosition);
+            if (this instanceof King && abs(this.getPosition().getColumn() - previousPosition.getColumn()) == CASTLING_RIGHT) {
+                int positionsDiff = this.getPosition().getColumn() - previousPosition.getColumn();
+                if (positionsDiff == CASTLING_RIGHT) {
+                    moveRookWhenCastling(CASTLING_RIGHT_ROOK_COL_SOURCE, target.getRow(), CASTLING_RIGHT_ROOK_TARGET);
                 } else {
-                    rookMoved = chessBoard.getBoard()[CASTLING_LEFT_ROOK_SOURCE][previousPosition.getRow()];
-                    targetCol = CASTLING_LEFT_ROOK_TARGET;
+                    moveRookWhenCastling(CASTLING_LEFT_ROOK_COL_SOURCE, target.getRow(), CASTLING_LEFT_ROOK_TARGET);
                 }
-                Position previousRookPos = rookMoved.getPosition();
-                if (rookMoved.firstMovement) {
-                    firstMovement = false;
-                }
-                chessBoard.addPiece(rookMoved);
-                rookMoved.position = new Position(targetCol, previousPosition.getRow());
-                chessBoard.getBoard()[previousRookPos.getColumn()][previousRookPos.getRow()] = null;
+
             }
             return true;
         }
         return false;
     }
+
+     /**
+      * Add Queenside Castling to Array of Positions whether it is possible
+      * @param sourceCol source column of the Rook that does Castling
+      * @param row row where Castling occurs
+      * @param targetCol target column to Rook will move when Castling occurs
+      */
+     public void moveRookWhenCastling(final int sourceCol, final int row, final int targetCol) {
+         Piece rookToMove = chessBoard.getBoard()[sourceCol][row];
+         rookToMove.firstMovement = false;
+         rookToMove.position.setColumn(targetCol);
+         chessBoard.getBoard()[targetCol][row] = rookToMove;
+         chessBoard.getBoard()[sourceCol][row] = null;
+     }
 
      /**
       *

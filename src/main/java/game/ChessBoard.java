@@ -64,6 +64,12 @@ public class ChessBoard {
         board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
     }
 
+    /** move a Piece into ChessBoard and become null previous position**/
+    public void movePiece(final Piece piece, final Position previousPosition) {
+        board[piece.getPosition().getColumn()][piece.getPosition().getRow()] = piece;
+        board[previousPosition.getColumn()][previousPosition.getRow()] = null;
+    }
+
     /**
      *
      * @return board of ChessBoard

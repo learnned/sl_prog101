@@ -8,6 +8,7 @@ import pieces.Rook;
 
 import static org.junit.Assert.*;
 
+
 public class RookTest {
 
     @Test
