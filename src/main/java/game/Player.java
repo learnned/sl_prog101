@@ -4,6 +4,23 @@ import enums.Color;
 
 public class Player {
     private Color color;
+    /**Getter for the attribute name**/
+    public Color getColor() {
+        return color;
+    }
+    /**Getter for the attribute name**/
+    public void setColor(final Color color) {
+        this.color = color;
+    }
+    /**Getter for the attribute name**/
+    public boolean isTurn() {
+        return turn;
+    }
+    /**Getter for the attribute name**/
+    public void setTurn(final boolean turn) {
+        this.turn = turn;
+    }
+
     private boolean turn;
     private String name;
 
@@ -48,8 +65,3 @@ public class Player {
 
 
 }
-
-
-
-
-
