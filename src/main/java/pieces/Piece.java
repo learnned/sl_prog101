@@ -95,30 +95,29 @@ import enums.Status;
       * @param target
       * @return
       */
-    public boolean move(final Position target) {
-        if (isPossibleMove(target)) {
-            Position previousPosition = this.getPosition();
-            if (firstMovement) {
-                firstMovement = false;
-            }
-            if (chessBoard.getBoard()[target.getColumn()][target.getRow()] != null) {
-                chessBoard.getBoard()[target.getColumn()][target.getRow()].die();
-            }
-            this.position = target;
-            chessBoard.movePiece(this, previousPosition);
-            if (this instanceof King && abs(this.getPosition().getColumn() - previousPosition.getColumn()) == CASTLING_RIGHT) {
-                int positionsDiff = this.getPosition().getColumn() - previousPosition.getColumn();
-                if (positionsDiff == CASTLING_RIGHT) {
-                    moveRookWhenCastling(CASTLING_RIGHT_ROOK_COL_SOURCE, target.getRow(), CASTLING_RIGHT_ROOK_TARGET);
-                } else {
-                    moveRookWhenCastling(CASTLING_LEFT_ROOK_COL_SOURCE, target.getRow(), CASTLING_LEFT_ROOK_TARGET);
-                }
-
-            }
-            return true;
-        }
-        return false;
-    }
+     public boolean move(final Position target) {
+         if (isPossibleMove(target)) {
+             Position previousPosition = this.getPosition();
+             if (firstMovement) {
+                 firstMovement = false;
+             }
+             if (chessBoard.getBoard()[target.getColumn()][target.getRow()] != null) {
+                 chessBoard.getBoard()[target.getColumn()][target.getRow()].die();
+             }
+             this.position = target;
+             chessBoard.movePiece(this, previousPosition);
+             if (this instanceof King && abs(this.getPosition().getColumn() - previousPosition.getColumn()) == CASTLING_RIGHT) {
+                 int positionsDiff = this.getPosition().getColumn() - previousPosition.getColumn();
+                 if (positionsDiff == CASTLING_RIGHT) {
+                     moveRookWhenCastling(CASTLING_RIGHT_ROOK_COL_SOURCE, target.getRow(), CASTLING_RIGHT_ROOK_TARGET);
+                 } else {
+                     moveRookWhenCastling(CASTLING_LEFT_ROOK_COL_SOURCE, target.getRow(), CASTLING_LEFT_ROOK_TARGET);
+                 }
+             }
+             return true;
+         }
+         return false;
+     }
 
      /**
       * Add Queenside Castling to Array of Positions whether it is possible
@@ -133,7 +132,6 @@ import enums.Status;
          chessBoard.getBoard()[targetCol][row] = rookToMove;
          chessBoard.getBoard()[sourceCol][row] = null;
      }
-
      /**
       *
       * @param target
@@ -141,6 +139,7 @@ import enums.Status;
       */
     public boolean isPossibleMove(final Position target) {
         for (Position pos : getPossibleMoves()) {
+            System.out.println(pos.getColumn() + " ==== " + pos.getRow());
             if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
                 return true;
             }

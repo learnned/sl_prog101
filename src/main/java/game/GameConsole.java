@@ -152,14 +152,14 @@ public class GameConsole {
             for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
                 String tmpContainer = "";
                 if (board.getBoard()[icol][irow] == null) {
-                    tmpContainer = FOUR_BLANKS;
+                    tmpContainer =  addColorBlack(FOUR_BLANKS);
                 } else {
                     String element = board.getBoard()[icol][irow].toString();
                     if (element.length() == 1) {
                         tmpContainer = BLANK;
                     }
                     if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
-                        tmpContainer += addColorBlack(BLANK + element + BLANK);
+                        tmpContainer += addColorBlack(BLANK + element + BLANK);;
                     } else {
                         tmpContainer += addColorWhite(BLANK + element + BLANK);
                     }
@@ -239,12 +239,12 @@ public class GameConsole {
         welcome();
         legendDisplay("First Player Name: ");
 
-        String nameA  = sc.nextLine();
+        String nameA = sc.nextLine();
         clearDisplay();
 
         welcome();
         legendDisplay("Second Player Name: ");
-        String nameB  = sc.nextLine();
+        String nameB = sc.nextLine();
         clearDisplay();
 
         welcome();
@@ -252,53 +252,44 @@ public class GameConsole {
         playerBlack = new Player(Color.BLACK, false, nameA);
         playerWhite = new Player(Color.WHITE, true, nameB);
         boolean turn = true;
+        int row = 0;
+        int col = 0;
         while (true) {
             if (turn) {
                 legendDisplay(blink("Player 1 " + nameA + " is your turn"));
             } else {
                 legendDisplay(blink("Player 2 " + nameA + " is your turn"));
             }
-            menu(turn);
+            System.out.println("1.- Select Piece");
+            System.out.println("2.- Move Piece");
+            int option = sc.nextInt();
+            int[] userInput;
+            switch (option) {
+                case OPTION_ONE:
+                    System.out.println("Ingress position");
+                    userInput = userSelectPiece();
+                    clearDisplay();
+                    row = userInput[0];
+                    col = userInput[1];
+                    drawChessBoardSpecificElement(getPosibleMove(row, col), row, col);
+                    break;
+                case OPTION_TWO:
+                    System.out.println("Ingress target position");
+                    userInput = userSelectPiece();
+                    Piece piece = board.getBoard()[row][col];
+                    System.out.println(row+ " "+ col);
+                    Position pos = new Position(userInput[0], userInput[1]);
+                    boolean po = piece.move(pos);
+                    clearDisplay();
+                    drawChessBoard();
+                    break;
+                default:
+                    System.out.println("UPS");
+            }
             turn = !turn;
         }
     }
-    /**
-     * Display the menu
-     *  @param turnPlayer
-     */
-    public void menu(final boolean turnPlayer) {
-        System.out.println("1.- Select Piece");
-        System.out.println("2.- Move Piece");
-        int option = sc .nextInt();
-        int row = 0;
-        int col = 0;
-        int[] userInput;
-        switch (option) {
-            case OPTION_ONE:
-                System.out.println("Ingress position");
-                userInput = userSelectPiece();
-                clearDisplay();
-                row = userInput[0];
-                col = userInput[1];
-                System.out.println(board.getBoard()[row][col].getClass());
-                System.out.println(board.getBoard()[col][row].getClass());
 
-                drawChessBoardSpecificElement(getPosibleMove(userInput[0], userInput[1]), userInput[0], userInput[1]);
-                break;
-            case OPTION_TWO:
-                System.out.println("Ingress target position");
-                userInput = userSelectPiece();
-                System.out.println(userInput[0] + " " + userInput[1]);
-                Piece piece = board.getBoard()[userInput[0]][userInput[1]];
-                System.out.println(board.getBoard()[userInput[0]][userInput[1]].getClass());
-                System.out.println(piece.getClass());
-                boolean po = piece.move(new Position(userInput[0], userInput[1]));
-                System.out.println(po);
-                break;
-            default:
-                System.out.println("UPS");
-        }
-    }
     /**
      * userSelectPiece
      */
@@ -425,12 +416,17 @@ public class GameConsole {
      *  @param col, row
      */
     public Map<Integer, Integer> getPosibleMove(final int col, final int row) {
-        List<Position> arrayMoves = board.getBoard()[col][row].getPossibleMoves();
         Map<Integer, Integer> mapPositions = new HashMap<Integer, Integer>();
-        for (Position move : arrayMoves) {
-            System.out.println("Debug  = " + move.getColumn() + " " + move.getRow() + " | " + (char) ('A' + move.getColumn()) + "   " + (move.getRow() + 1)); //debug
-            mapPositions.put(move.getColumn(), move.getRow());
+        try {
+            List<Position> arrayMoves = board.getBoard()[col][row].getPossibleMoves();
+            for (Position move : arrayMoves) {
+                System.out.println("Debug  = " + move.getColumn() + " " + move.getRow() + " | " + (char) ('A' + move.getColumn()) + "   " + (move.getRow() + 1)); //debug
+                mapPositions.put(move.getColumn(), move.getRow());
+            }
+        } catch (Exception e) {
+            System.out.println("ES UN CAMPO VACIO O NULO");
         }
+
         return mapPositions;
     }
 }
