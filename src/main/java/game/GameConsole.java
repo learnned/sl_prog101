@@ -25,11 +25,11 @@ public class GameConsole {
     static final String BAR = " | ";
     static final String END_LINE = "\n";
     static final boolean VISUALIZATION_TEXT = false;
-    public static final boolean VISUALIZATION_ASCII = true;
     static final int OPTION_ONE = 1;
     static final int OPTION_TWO = 2;
     static final int OPTION_THREE = 3;
     static final int OPTION_FOUR = 4;
+    public static final boolean VISUALIZATION_ASCII = true;
     //Colors
     static final String COLOR_RESET = "\033[0m";
     // Regular Colors
@@ -104,6 +104,7 @@ public class GameConsole {
         container += addColorSymbols(HYPHENS_ROW);
         System.out.print(container);
     }
+
 
     /**Method that prints or draws the board**/
     public void drawChessBoardSpecificElement(final Map<Integer, Integer> mapPositions, final int sourceCol, final int sourceRow) {
@@ -264,6 +265,7 @@ public class GameConsole {
         }
     }
     /**
+     /**
      * userSelectPiece
      */
     public int[] userSelectPiece() {
