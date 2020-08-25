@@ -22,6 +22,7 @@ public class King extends Piece implements ICastling, ICheck {
         super.setStatus(Status.ALIVE);
         super.setPosition(source);
         super.setChessBoard(chessBoard);
+        super.setPossibleMovements(getPossibleMoves());
     }
 
     /**

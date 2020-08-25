@@ -8,12 +8,15 @@ import enums.Color;
 import enums.Symbol;
 import enums.Status;
 
- public abstract class Piece implements IMovable {
+import java.util.ArrayList;
+
+public abstract class Piece implements IMovable {
     private Color color;
     private Symbol symbol;
     private Status status;
     private Position position;
     private ChessBoard chessBoard;
+    private ArrayList<Position> possibleMovements;
     private boolean visualizationMode;
     static final String WHITE_STRING = "W";
     static final String BLACK_STRING = "B";
@@ -90,6 +93,14 @@ import enums.Status;
         this.visualizationMode = chessBoard.getVisualizationMode();
     }
 
+    public ArrayList<Position> getPossibleMovements() {
+        return possibleMovements;
+    }
+
+    public void setPossibleMovements(ArrayList<Position> possibleMoves) {
+        this.possibleMovements = possibleMoves;
+    }
+
      /**
       *
       * @param target
@@ -114,6 +125,7 @@ import enums.Status;
                      moveRookWhenCastling(CASTLING_LEFT_ROOK_COL_SOURCE, target.getRow(), CASTLING_LEFT_ROOK_TARGET);
                  }
              }
+             this.setPossibleMovements(getPossibleMoves());
              return true;
          }
          return false;

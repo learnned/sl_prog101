@@ -25,6 +25,7 @@ public class Bishop extends Piece {
         super.setPosition(source);
         super.setChessBoard(chessBoard);
         this.getPossibleMovePiece = new GetPossibleMovePiece(this);
+        super.setPossibleMovements(getPossibleMoves());
     }
 
     /**

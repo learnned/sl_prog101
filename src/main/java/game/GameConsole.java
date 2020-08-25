@@ -212,8 +212,8 @@ public class GameConsole {
 
         welcome();
         drawChessBoard();
-        playerBlack = new Player(Color.BLACK, false, nameA);
-        playerWhite = new Player(Color.WHITE, true, nameB);
+        playerBlack = new Player(Color.BLACK, false, nameB);
+        playerWhite = new Player(Color.WHITE, true, nameA);
         boolean turn = true;
         int row = 0;
         int col = 0;
@@ -221,7 +221,7 @@ public class GameConsole {
             if (turn) {
                 legendDisplay(blink("Player 1 " + nameA + " is your turn"));
             } else {
-                legendDisplay(blink("Player 2 " + nameA + " is your turn"));
+                legendDisplay(blink("Player 2 " + nameB + " is your turn"));
             }
             System.out.println("1.- Select Piece");
             System.out.println("2.- Move Piece");
@@ -229,7 +229,7 @@ public class GameConsole {
             int[] userInput;
             switch (option) {
                 case OPTION_ONE:
-                    System.out.println("Ingress position");
+                    System.out.println("Insert position");
                     userInput = userSelectPiece();
                     clearDisplay();
                     row = userInput[0];
@@ -237,7 +237,7 @@ public class GameConsole {
                     drawChessBoardSpecificElement(getPosibleMove(row, col), row, col);
                     break;
                 case OPTION_TWO:
-                    System.out.println("Ingress target position");
+                    System.out.println("Insert target position");
                     userInput = userSelectPiece();
                     Piece piece = board.getBoard()[row][col];
                     Position pos = new Position(userInput[0], userInput[1]);
