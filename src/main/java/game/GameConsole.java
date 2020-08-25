@@ -26,6 +26,10 @@ public class GameConsole {
     static final String END_LINE = "\n";
     static final boolean VISUALIZATION_TEXT = false;
     public static final boolean VISUALIZATION_ASCII = true;
+    static final int OPTION_ONE = 1;
+    static final int OPTION_TWO = 2;
+    static final int OPTION_THREE = 3;
+    static final int OPTION_FOUR = 4;
     //Colors
     static final String COLOR_RESET = "\033[0m";
     // Regular Colors
@@ -78,19 +82,19 @@ public class GameConsole {
         for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
             container = container + addColorSymbols((irow + 1) + "") + addColorSymbols(BLANK + BAR);
             for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
-                    if (board.getBoard()[icol][irow] == null) {
-                        container = container + addColorBlack(FOUR_BLANKS);
-                    } else {
-                        String element = board.getBoard()[icol][irow].toString();
-                        if (element.length() == 1) {
-                            container = container + BLANK;
-                        }
-                        if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
-                            container = container + addColorBlack(BLANK + element + BLANK);
-                        } else {
-                            container = container + addColorWhite(BLANK + element + BLANK);
-                        }
+                if (board.getBoard()[icol][irow] == null) {
+                    container = container + addColorBlack(FOUR_BLANKS);
+                } else {
+                    String element = board.getBoard()[icol][irow].toString();
+                    if (element.length() == 1) {
+                        container = container + BLANK;
                     }
+                    if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
+                        container = container + addColorBlack(BLANK + element + BLANK);
+                    } else {
+                        container = container + addColorWhite(BLANK + element + BLANK);
+                    }
+                }
                 container = container + addColorSymbols(BAR);
             }
             container += addColorSymbols(END_LINE);
@@ -199,26 +203,37 @@ public class GameConsole {
     private String addColorBlack(final String symbol) {
         return COLOR_GREEN_BACKGROUND + COLOR_BLACK + symbol + COLOR_RESET;
     }
-
-
-    private String blink (final String element) {
+    /**
+     * Return efect blink for GUI
+     * @param element
+     * @return String whit the efect
+     */
+    private String blink(final String element) {
         return "\033[5m" + element + "\033[0m";
     }
-
-    public void clearDisplay(){
+    /**
+     * Clear console
+     */
+    public void clearDisplay() {
         System.out.println("\033[2J\033[1;1H");
     }
-
-    public void legendDisplay(final String text){
+    /**
+     * Print message color green
+     */
+    public void legendDisplay(final String text) {
         System.out.println(COLOR_GREEN + text);
     }
-
-    public void welcome(){
+    /**
+     * Display message of the welcome
+     */
+    public void welcome() {
         legendDisplay("********************************");
         legendDisplay("******Welcome Chess Game********");
         legendDisplay("********************************");
     }
-
+    /**
+     * Init game
+     */
     public void init() {
         sc = new Scanner(System.in);
         welcome();
@@ -237,8 +252,7 @@ public class GameConsole {
         playerBlack = new Player(Color.BLACK, false, nameA);
         playerWhite = new Player(Color.WHITE, true, nameB);
         boolean turn = true;
-
-        while(true){
+        while (true) {
             if (turn) {
                 legendDisplay(blink("Player 1 " + nameA + " is your turn"));
             } else {
@@ -248,7 +262,10 @@ public class GameConsole {
             turn = !turn;
         }
     }
-
+    /**
+     * Display the menu
+     *  @param turnPlayer
+     */
     public void menu(final boolean turnPlayer) {
         System.out.println("1.- Select Piece");
         System.out.println("2.- Move Piece");
@@ -282,7 +299,7 @@ public class GameConsole {
                 System.out.println("UPS");
         }
     }
-     /**
+    /**
      * userSelectPiece
      */
     public int[] userSelectPiece() {
