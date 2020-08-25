@@ -72,11 +72,15 @@ public class Pawn extends Piece implements IPawn {
             if (possibleMovement(this.getChessBoard().getBoard()[column][row + negative]) == EMPTY) {
                 arrayPositions.add(new Position(column, row + negative));
             }
-            if (possibleMovement(this.getChessBoard().getBoard()[column + negative][row + negative]) == ENEMY) {
-                arrayPositions.add(this.getChessBoard().getBoard()[column + negative][row + negative].getPosition());
+            if (column <= LIMIT_OF_ARRAY ) {
+                if (possibleMovement(this.getChessBoard().getBoard()[column + negative][row + negative]) == ENEMY) {
+                    arrayPositions.add(this.getChessBoard().getBoard()[column + negative][row + negative].getPosition());
+                }
             }
-            if (possibleMovement(this.getChessBoard().getBoard()[column + positive][row + negative]) == ENEMY) {
-                arrayPositions.add(this.getChessBoard().getBoard()[column + positive][row + negative].getPosition());
+            if (column >= BEGGING_OF_ARRAY ) {
+                if (possibleMovement(this.getChessBoard().getBoard()[column + positive][row + negative]) == ENEMY) {
+                    arrayPositions.add(this.getChessBoard().getBoard()[column + positive][row + negative].getPosition());
+                }
             }
         }
     }
