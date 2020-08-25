@@ -38,9 +38,9 @@ public class PawnTest {
     public void testAdvanceOneSquareAsPieceWhite() {
         ChessBoard chessBoardTest = new ChessBoard();
         chessBoardTest.crateAnEmptyChessBoard();
-        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(4, 4), chessBoardTest));
-        Pawn piece = (Pawn) chessBoardTest.getBoard()[4][4];
-        boolean movementAllowed = piece.move(new Position(4, 5));
+        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(1, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[1][1];
+        boolean movementAllowed = piece.move(new Position(1, 0));
         assertTrue(movementAllowed);
     }
 
@@ -70,9 +70,9 @@ public class PawnTest {
     public void testAdvanceTwoSquaresAsPieceWhite() {
         ChessBoard chessBoardTest = new ChessBoard();
         chessBoardTest.crateAnEmptyChessBoard();
-        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(4, 4), chessBoardTest));
-        Pawn piece = (Pawn) chessBoardTest.getBoard()[4][4];
-        boolean movementAllowed = piece.move(new Position(4, 6));
+        chessBoardTest.addPiece(new Pawn(Color.WHITE, new Position(4, 1), chessBoardTest));
+        Pawn piece = (Pawn) chessBoardTest.getBoard()[4][1];
+        boolean movementAllowed = piece.move(new Position(4, 0));
         assertTrue(movementAllowed);
     }
 
@@ -157,4 +157,5 @@ public class PawnTest {
         boolean movementAllowed = piece.move(new Position(4, 2));
         assertFalse(movementAllowed);
     }
+
 }
