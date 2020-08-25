@@ -104,43 +104,6 @@ public class GameConsole {
         container += addColorSymbols(HYPHENS_ROW);
         System.out.print(container);
     }
-
-    /**Method that prints or draws the board**/
-    public void drawChessBoardSpecificElement(final Map<Integer, Integer> mapPositions, final int sourceCol, final int sourceRow) {
-        String container;
-        container =  addColorSymbols(HYPHENS_ROW);
-        container += addColorSymbols(LETTERS_ROW);
-        container += addColorSymbols(HYPHENS_ROW);
-        for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
-            container = container + addColorSymbols((irow + 1) + "") + addColorSymbols(BLANK + BAR);
-            for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
-                String tmpContainer = "";
-                if (board.getBoard()[icol][irow] == null) {
-                    tmpContainer = addColorBlack(FOUR_BLANKS);
-                } else {
-                    String element = board.getBoard()[icol][irow].toString();
-                    if (element.length() == 1) {
-                        tmpContainer = BLANK;
-                    }
-                    if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
-                        tmpContainer += addColorBlack(BLANK + element + BLANK);
-                    } else {
-                        tmpContainer += addColorWhite(BLANK + element + BLANK);
-                    }
-                }
-                if (mapPositions.containsKey(icol) && mapPositions.get(icol) == irow || sourceCol == icol && sourceRow == irow) {
-                    tmpContainer = blink(tmpContainer);
-                }
-                container = container + tmpContainer + addColorSymbols(BAR);
-            }
-            container += addColorSymbols(END_LINE);
-            container += addColorSymbols(HYPHENS_ROW);
-        }
-        container += addColorSymbols(LETTERS_ROW);
-        container += addColorSymbols(HYPHENS_ROW);
-        System.out.print(COLOR_BLACK_BACKGROUND + container);
-    }
-
     /**Method that prints or draws the board**/
     public void drawChessBoardSpecificElement(final Map<Integer, Integer> mapPositions, final int sourceCol, final int sourceRow) {
         String container;
@@ -159,7 +122,7 @@ public class GameConsole {
                         tmpContainer = BLANK;
                     }
                     if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
-                        tmpContainer += addColorBlack(BLANK + element + BLANK);;
+                        tmpContainer += addColorBlack(BLANK + element + BLANK);
                     } else {
                         tmpContainer += addColorWhite(BLANK + element + BLANK);
                     }
@@ -277,7 +240,6 @@ public class GameConsole {
                     System.out.println("Ingress target position");
                     userInput = userSelectPiece();
                     Piece piece = board.getBoard()[row][col];
-                    System.out.println(row+ " "+ col);
                     Position pos = new Position(userInput[0], userInput[1]);
                     boolean po = piece.move(pos);
                     clearDisplay();
@@ -316,117 +278,6 @@ public class GameConsole {
             System.out.println("Debug  = " + move.getColumn() + " " + move.getRow() + " | " + (char) ('A' + move.getColumn()) + "   " + (move.getRow() + 1)); //debug
             mapPositions.put(move.getColumn(), move.getRow());
         }
-        return mapPositions;
-    }
-
-
-    private String blink (final String element) {
-        return "\033[5m" + element + "\033[0m";
-    }
-
-    public void clearDisplay(){
-        System.out.println("\033[2J\033[1;1H");
-    }
-
-    public void legendDisplay(final String text){
-        System.out.println(COLOR_GREEN + text);
-    }
-
-    public void welcome(){
-        legendDisplay("********************************");
-        legendDisplay("******Welcome Chess Game********");
-        legendDisplay("********************************");
-    }
-
-    public void init() {
-        sc = new Scanner(System.in);
-        welcome();
-        legendDisplay("First Player Name: ");
-
-        String nameA  = sc.nextLine();
-        clearDisplay();
-
-        welcome();
-        legendDisplay("Second Player Name: ");
-        String nameB  = sc.nextLine();
-        clearDisplay();
-
-        welcome();
-        drawChessBoard();
-        playerBlack = new Player(Color.BLACK, false, nameA);
-        playerWhite = new Player(Color.WHITE, true, nameB);
-        boolean turn = true;
-
-        while(true){
-            if (turn) {
-                legendDisplay(blink("Player 1 " + nameA + " is your turn"));
-            } else {
-                legendDisplay(blink("Player 2 " + nameA + " is your turn"));
-            }
-            turn = !turn;
-            menu(turn);
-        }
-    }
-
-    public void menu(final boolean turnPlayer) {
-        System.out.println("1.- Select Piece");
-        System.out.println("2.- View All movements");
-        System.out.println("3.- Move Piece");
-        int option = sc .nextInt();
-        int row = 0;
-        int col = 0;
-        int[] userInput;
-        switch (option) {
-            case OPTION_ONE:
-                userInput = userSelectPiece();
-                //drawChessBoardSpecificElement(userInput[0], userInput[1]);
-                clearDisplay();
-                drawChessBoardSpecificElement(getPosibleMove(userInput[0], userInput[1]), userInput[0], userInput[1]);
-                break;
-            case 2:
-                System.out.println("Coming soon");
-                break;
-            case 3:
-                System.out.println("Coming soon");
-                break;
-            case 4:
-                drawChessBoard();
-                break;
-            default:
-                System.out.println("UPS");
-        }
-    }
-     /**
-     * userSelectPiece
-     */
-    public int[] userSelectPiece() {
-        String cad = sc.next().toUpperCase();
-        return convertInputUserToProgram(cad.charAt(0), String.valueOf(cad.charAt(1)));
-    }
-    /**
-     * Convert input A7 to 0,6
-     *  @param column, row
-     */
-    public int[] convertInputUserToProgram(final char column, final String row) {
-        int[] position = {column - 'A', Integer.parseInt(row) - 1 };
-        return position;
-    }
-    /**
-     * Obtain a map whit all possible positions
-     *  @param col, row
-     */
-    public Map<Integer, Integer> getPosibleMove(final int col, final int row) {
-        Map<Integer, Integer> mapPositions = new HashMap<Integer, Integer>();
-        try {
-            List<Position> arrayMoves = board.getBoard()[col][row].getPossibleMoves();
-            for (Position move : arrayMoves) {
-                System.out.println("Debug  = " + move.getColumn() + " " + move.getRow() + " | " + (char) ('A' + move.getColumn()) + "   " + (move.getRow() + 1)); //debug
-                mapPositions.put(move.getColumn(), move.getRow());
-            }
-        } catch (Exception e) {
-            System.out.println("ES UN CAMPO VACIO O NULO");
-        }
-
         return mapPositions;
     }
 }

@@ -139,7 +139,6 @@ import enums.Status;
       */
     public boolean isPossibleMove(final Position target) {
         for (Position pos : getPossibleMoves()) {
-            System.out.println(pos.getColumn() + " ==== " + pos.getRow());
             if ((pos.getColumn() == target.getColumn()) && (pos.getRow() == target.getRow())) {
                 return true;
             }
