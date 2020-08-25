@@ -25,6 +25,10 @@ public class GameConsole {
     static final String BAR = " | ";
     static final String END_LINE = "\n";
     static final boolean VISUALIZATION_TEXT = false;
+    static final int OPTION_ONE = 1;
+    static final int OPTION_TWO = 2;
+    static final int OPTION_THREE = 3;
+    static final int OPTION_FOUR = 4;
     public static final boolean VISUALIZATION_ASCII = true;
     static final int OPTION_ONE = 1;
     static final int OPTION_TWO = 2;
@@ -116,6 +120,43 @@ public class GameConsole {
                 String tmpContainer = "";
                 if (board.getBoard()[icol][irow] == null) {
                     tmpContainer =  addColorBlack(FOUR_BLANKS);
+                } else {
+                    String element = board.getBoard()[icol][irow].toString();
+                    if (element.length() == 1) {
+                        tmpContainer = BLANK;
+                    }
+                    if (board.getBoard()[icol][irow].getColor().equals(Color.BLACK)) {
+                        tmpContainer += addColorBlack(BLANK + element + BLANK);
+                    } else {
+                        tmpContainer += addColorWhite(BLANK + element + BLANK);
+                    }
+                }
+                if (mapPositions.containsKey(icol) && mapPositions.get(icol) == irow || sourceCol == icol && sourceRow == irow) {
+                    tmpContainer = blink(tmpContainer);
+                }
+                container = container + tmpContainer + addColorSymbols(BAR);
+            }
+            container += addColorSymbols(END_LINE);
+            container += addColorSymbols(HYPHENS_ROW);
+        }
+        container += addColorSymbols(LETTERS_ROW);
+        container += addColorSymbols(HYPHENS_ROW);
+        System.out.print(container);
+    }
+
+
+    /**Method that prints or draws the board**/
+    public void drawChessBoardSpecificElement(final Map<Integer, Integer> mapPositions, final int sourceCol, final int sourceRow) {
+        String container;
+        container =  addColorSymbols(HYPHENS_ROW);
+        container += addColorSymbols(LETTERS_ROW);
+        container += addColorSymbols(HYPHENS_ROW);
+        for (int irow = LAST_INDEX; irow >= FIRST_INDEX; irow--) {
+            container = container + addColorSymbols((irow + 1) + "") + addColorSymbols(BLANK + BAR);
+            for (int icol = FIRST_INDEX; icol <= LAST_INDEX; icol++) {
+                String tmpContainer = "";
+                if (board.getBoard()[icol][irow] == null) {
+                    tmpContainer = FOUR_BLANKS;
                 } else {
                     String element = board.getBoard()[icol][irow].toString();
                     if (element.length() == 1) {
