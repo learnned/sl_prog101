@@ -155,7 +155,7 @@ public class ChessBoard {
             for (int icol = 0; icol < CHESSBOARD_SIZE; icol++) {
                 if (this.board[icol][irow] != null && this.board[icol][irow].getColor() != color) {
                     List<Position> arrayMoves;
-                    arrayMoves = board[icol][irow].getPossibleMovements();
+                    arrayMoves = board[icol][irow].getPossibleMoves();
                     for (Position move : arrayMoves) {
                         if (move.getColumn() == col && move.getRow() == row) {
                             return true;
