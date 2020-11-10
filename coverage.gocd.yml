@@ -1,0 +1,25 @@
+format_version: 5
+pipelines:
+    coverage:
+        group: sl_prog101
+        materials:
+            repo:
+                git: git@bitbucket.org:sloza/sl_prog101.git
+                branch: gocd
+            mydependency:
+                pipeline: test
+                stage: Test
+        stages:
+            - coverage:
+                jobs:
+                    Jacoco:
+                        tasks:
+                            - exec:
+                                command: ./gradlew
+                                arguments:
+                                    - "test"
+                                    - "jacocoTestReport"
+                        artifacts:
+                            - build:
+                                source: build/reports/jacoco/test/html/index.html
+                                destination: html
