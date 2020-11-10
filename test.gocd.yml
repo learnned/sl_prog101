@@ -4,8 +4,8 @@ pipelines:
       group: sl_prog101
       materials:
         repo:
-          git: git@bitbucket.org:at12-group-01/sl_prog101.git
-          branch: master
+          git: git@bitbucket.org:sloza/sl_prog101.git
+          branch: gocd
         mydependency:
           pipeline: assemble
           stage: Assemble
