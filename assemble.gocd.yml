@@ -1,0 +1,24 @@
+format_version: 5
+pipelines:
+    assemble:
+      group: sl_prog101
+      materials:
+        repo:
+          git: git@bitbucket.org:at12-group-01/sl_prog101.git
+          branch: master
+      stages:
+        - Assemble:
+            clean_workspace: true
+            keep_artifacts: yes
+            jobs:
+              run:
+                tasks:
+                  - exec:
+                      command: ./gradlew
+                      arguments:
+                        - "clean"
+                        - "assemble"
+                artifacts:
+                  - build:
+                      source: build/
+                      destination: assemble

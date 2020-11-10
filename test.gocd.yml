@@ -1,0 +1,28 @@
+format_version: 5
+pipelines:
+    test:
+      group: sl_prog101
+      materials:
+        repo:
+          git: git@bitbucket.org:at12-group-01/sl_prog101.git
+          branch: master
+        mydependency:
+          pipeline: assemble
+          stage: Assemble
+          ignore_for_scheduling: false
+      stages:
+        - Test:
+            jobs:
+              run:
+                tasks:
+                  - exec:
+                      command: ./gradlew
+                      arguments:
+                        - "test"
+                artifacts:
+                  - test:
+                      source: build/test-results/test/*.xml
+                      destination: xml
+                  - test:
+                      source: build/reports/tests/test/*
+                      destination: html
